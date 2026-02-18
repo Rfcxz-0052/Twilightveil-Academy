@@ -53,7 +53,7 @@ function playSE(name) {
 
     if (currentBGM) {
         // 壓低音樂（保留原本音量比例）
-        currentBGM.volume = bgmVolume * 0.3;
+        currentBGM.volume = bgmVolume * 0.6;
     }
 
     sound.currentTime = 0;
