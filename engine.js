@@ -1,5 +1,6 @@
 let currentNode = "enter";
 let firstClick = true;
+const dialogBox = document.getElementById("dialogBox");
 
 function showNode(nodeId) {
     const node = storyNodes[nodeId];
@@ -20,6 +21,13 @@ function showNode(nodeId) {
     // BGM
     if (!firstClick) {
         switchBGM(node.bgm);
+    }
+
+    // 首頁 / restart 節點隱藏對話框背景
+    if (nodeId === "enter" || nodeId === "restart") {
+        dialogBox.classList.add("no-background");
+    } else {
+        dialogBox.classList.remove("no-background");
     }
 
     // 顯示文字

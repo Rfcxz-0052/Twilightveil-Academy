@@ -43,6 +43,25 @@ body {
     text-align: center;
 }
 
+.dialog-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* 這個 class 會讓 dialog-box 背景透明、陰影消失 */
+.dialog-box.no-background {
+    background-color: transparent;
+    box-shadow: none;
+}
+
 .story {
     font-size: 24px;
     margin-bottom: 20px;

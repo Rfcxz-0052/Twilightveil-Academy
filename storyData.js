@@ -3,7 +3,7 @@
 const storyNodes = {
     enter: {
         bgm: "surface",
-        text: ["暮影學院", "光與影的交際處"],
+        text: ["歡迎來到暮影學院!", "光與影的交際處"],
         background: "image/DuskCampus.png",
         choices: [{ text: "進入遊戲", next: "start" }]
     },
@@ -63,7 +63,7 @@ const storyNodes = {
 
     nodeInner: {
         bgm: "inner",
-        speaker: "player",
+        speaker: "character",
         text: [
             "你進入裡世界，四周充滿神秘的藍黑宮廷風",
             "這裡只有覺醒的人才能進入"
