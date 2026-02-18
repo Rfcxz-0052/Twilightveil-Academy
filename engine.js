@@ -6,12 +6,12 @@ function showNode(nodeId) {
     const node = storyNodes[nodeId];
     if (!node) return;
 
-    // ❗ 先停止哭聲（避免殘留）
-    stopSE("cry");
+    // ❗ 先停止音效（避免殘留）
+    stopSE("ghost");
 
-    // 如果是 node01 或 node02 才播放哭聲
+    // 如果是 node01 或 node02 才播放
     if (nodeId === "node01" || nodeId === "node02") {
-        playSE("cry");
+        playSE("ghost");
     }
 
     // 背景圖

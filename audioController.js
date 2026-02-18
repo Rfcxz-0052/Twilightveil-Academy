@@ -5,7 +5,7 @@ const bgmMap = {
 };
 
 const seMap = {
-    cry: document.getElementById("seCry")
+    ghost: document.getElementById("seghost")
 };
 
 let currentBGM = null;

@@ -33,7 +33,6 @@ const storyNodes = {
         text: [
             "你獨自加班到九點，周圍都沒有人，極為安靜",
             "突然!你聽到奇怪的聲音",
-            "好像是哭泣聲"
         ],
         background: "image/DuskCampus.png",
         playerImg: "image/player.png",
@@ -48,16 +47,34 @@ const storyNodes = {
         bgm: "suspense",
         speaker: "player",
         text: [
-            "你走向哭泣聲來源處，原來是一本書",
-            "書名是紅衣小女孩……",
-            "奇怪?店裡什麼時候有這本書?"
+            "你走向聲音來源處，原來是一本書",
+            "這不是同學和圖書館借來要請我們訂的書",
+            "(書的外觀很破舊，書的底部有紅色印跡，",
+            "應該是以前館藏章模糊了吧...)"
         ],
         background: "image/DuskCampus.png",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
         choices: [
-            { text: "翻開書查看", next: "nodeInner" },
-            { text: "不碰觸書，再觀察一下", next: "restart" }
+            { text: "翻開書查看", next: "node03" },
+            { text: "不碰觸書，放回原處", next: "node03" }
+        ]
+    },
+
+    node03: {
+        bgm: "suspense",
+        speaker: "player",
+        text: [
+            "你眼前出現一位女孩，她對你說:",
+            "姐姐，工作很辛苦嗎?",
+            "要不要和我一起玩?"
+        ],
+        background: "image/library.png",
+        playerImg: "image/girl01.png",
+        characterImg: "image/male.png",
+        choices: [
+            { text: "(她感覺很危險，先觀察看看)這裡是哪裡?", next: "node04" },
+            { text: "你...你要做什麼?", next: "restart" }
         ]
     },
 
