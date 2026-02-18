@@ -74,7 +74,91 @@ const storyNodes = {
         characterImg: "image/male.png",
         choices: [
             { text: "(她感覺很危險，先觀察看看)這裡是哪裡?", next: "node04" },
-            { text: "你...你要做什麼?", next: "restart" }
+            { text: "你...你要做什麼?", next: "node04" }
+        ]
+    },
+
+    node04: {
+        bgm: "suspense",
+        speaker: "player",
+        text: [
+            "這裡圖書館，姐姐喜歡嗎?",
+            "我一直待在這裡讀書，一直讀...,一直讀",
+            "就為了大學畢業以後找份好工作，",
+            "姐姐這麼辛苦，讓我代替你工作好不好啊",
+            "(女孩一個利爪襲來，瞬間我臉上出現一道傷痕，開始流血)"
+        ],
+        background: "image/library.png",
+        playerImg: "image/girl01.png",
+        characterImg: "image/male.png",
+        choices: [
+            { text: "等等，你這麼努力一定能找到更好的工作", next: "node05" },
+            { text: "啊!(趕緊逃跑)", next: "node05" }
+        ]
+    },
+
+    node05: {
+        bgm: "suspense",
+        speaker: "player",
+        text: [
+            "不!我不想再等了，我等了好久好久了",
+            "姐姐不是常常抱怨要加班",
+            "把妳的身體給我，姐姐就可以休息了",
+        ],
+        background: "image/library.png",
+        playerImg: "image/girl01.png",
+        characterImg: "image/male.png",
+        choices: [
+            { text: "就算妳代替我，那也不是妳的人生，妳要讓你的努力白費嗎?", next: "node06" },
+            { text: "(繼續逃跑中)", next: "node06" }
+        ]
+    },
+
+    node06: {
+        bgm: "suspense",
+        speaker: "player",
+        text: [
+            "但是這裡好冷啊!好冷好冷啊!",
+            "姐姐抱我一下，好不好"
+        ],
+        background: "image/library.png",
+        playerImg: "image/girl01.png",
+        characterImg: "image/male.png",
+        choices: [
+            { text: "我感到不忍，緩緩走近女孩", next: "node08" },
+            { text: "(發現跑不出去，但也不敢靠近)", next: "node07" }
+        ]
+    },
+
+    node07: {
+        bgm: "suspense",
+        speaker: "player",
+        text: [
+            "沒用的,姐姐,妳跑不出去的",
+            "我在這裡被困了好久",
+            "妳也別想離開"
+        ],
+        background: "image/library.png",
+        playerImg: "image/girl01.png",
+        characterImg: "image/male.png",
+        choices: [
+            { text: "被女鬼搶奪身體，只能眼睜睜看著她代替妳活著...", next: "restart" }
+        ]
+    },
+
+    node08: {
+        bgm: "suspense",
+        speaker: "player",
+        text: [
+            "在我走近女孩，她的利爪刺進我的腹部",
+            "我倒在地上，流著血，難道我要死了..."
+        ],
+        background: "image/library.png",
+        playerImg: "image/girl01.png",
+        characterImg: "image/male.png",
+        choices: [
+            { text: "不!我的媽媽還在等著我... (突然我發出一道光，身上的傷都好了)", next: "node09" },
+            { text: "我放棄掙扎，昏過去, 被女鬼搶奪身體，只能眼睜睜看著她代替妳活著...", next: "restart" }
         ]
     },
 
