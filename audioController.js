@@ -1,5 +1,3 @@
-// audioController.js
-
 const bgmMap = {
     surface: document.getElementById("bgmSurface"),
     inner: document.getElementById("bgmInner"),
@@ -12,42 +10,14 @@ const seMap = {
 
 let currentBGM = null;
 
-function fadeOut(audio) {
-    if (!audio) return;
-
-    let fade = setInterval(() => {
-        if (audio.volume > 0.05) {
-            audio.volume -= 0.05;
-        } else {
-            audio.pause();
-            audio.volume = 1;
-            clearInterval(fade);
-        }
-    }, 100);
-}
-
-function fadeIn(audio) {
-    if (!audio) return;
-
-    audio.volume = 0;
-    audio.play();
-
-    let fade = setInterval(() => {
-        if (audio.volume < 0.95) {
-            audio.volume += 0.05;
-        } else {
-            audio.volume = 1;
-            clearInterval(fade);
-        }
-    }, 100);
-}
-
+// 直接切換 BGM，不淡入淡出
 function switchBGM(name) {
     const target = bgmMap[name];
     if (!target || target === currentBGM) return;
 
-    fadeOut(currentBGM);
-    fadeIn(target);
+    if (currentBGM) currentBGM.pause(); // 停掉舊音樂
+    target.currentTime = 0;
+    target.play();
     currentBGM = target;
 }
 
