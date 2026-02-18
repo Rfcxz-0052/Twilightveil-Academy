@@ -16,6 +16,8 @@
 
     <!-- 🔊 音效 -->
     <audio id="seghost" src="audio/ghost.mp3"></audio>
+    <audio id="sepage" src="audio/page.mp3"></audio>
+    <audio id="seattack01" src="audio/attack01.mp3"></audio>
 
     <div class="story-container">
         <div class="player-img" id="playerImg">
@@ -32,6 +34,26 @@
         <div class="character-img" id="characterImg">
             <img src="" alt="角色">
         </div> 
+    </div>
+
+    <!-- ⚙ 設定按鈕 -->
+    <button id="openSettings" class="settings-btn">⚙音量設定</button>
+
+    <!-- 🎛 設定面板 -->
+    <div id="settingsPanel" class="settings-panel hidden">
+        <h3>音量設定</h3>
+
+        <label>
+            🎵 音樂音量
+            <input type="range" id="bgmSlider" min="0" max="1" step="0.01">
+        </label>
+
+        <label>
+            🔊 音效音量
+            <input type="range" id="seSlider" min="0" max="1" step="0.01">
+        </label>
+
+        <button id="closeSettings">關閉</button>
     </div>
 
     <script src="storyData.js"></script>

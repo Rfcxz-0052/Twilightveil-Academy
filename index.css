@@ -111,3 +111,36 @@ body {
         transform: translateY(0);
     }
 }
+
+.settings-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 20px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}
+
+.settings-panel {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 250px;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+.settings-panel input {
+    width: 100%;
+}

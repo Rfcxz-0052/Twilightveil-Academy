@@ -29,6 +29,7 @@ const storyNodes = {
 
     node01: {
         bgm: "suspense",
+        se: "ghost", 
         speaker: "player",
         text: [
             "你獨自加班到九點，周圍都沒有人，極為安靜",
@@ -45,6 +46,7 @@ const storyNodes = {
 
     node02: {
         bgm: "suspense",
+        se: "page", 
         speaker: "player",
         text: [
             "你走向聲音來源處，原來是一本書",
@@ -80,6 +82,7 @@ const storyNodes = {
 
     node04: {
         bgm: "suspense",
+        se: "attack01",
         speaker: "player",
         text: [
             "這裡圖書館，姐姐喜歡嗎?",
