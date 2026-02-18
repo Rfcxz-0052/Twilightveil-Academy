@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暮影學院</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="image/favicon.ico" type="image/x-icon">
+</head>
+<body id="gameBody">
+
+    <!-- 🎵 背景音樂 -->
+    <audio id="bgmSurface" src="audio/surface.mp3" loop></audio>
+    <audio id="bgmInner" src="audio/inner.mp3" loop></audio>
+    <audio id="bgmSuspense" src="audio/suspense.mp3" loop></audio>
+
+    <!-- 🔊 音效 -->
+    <audio id="seCry" src="audio/cry.mp3"></audio>
+
+    <div class="story-container">
+        <div class="player-img" id="playerImg">
+            <img src="" alt="玩家">
+        </div>
+
+        <div class="middle-area">
+            <div class="story" id="storyText"></div>
+            <div class="center-buttons" id="choiceButtons"></div>
+        </div>
+
+        <div class="character-img" id="characterImg">
+            <img src="" alt="角色">
+        </div> 
+    </div>
+
+    <script src="storyData.js"></script>
+    <script src="audioController.js"></script>
+    <script src="engine.js"></script>
+
+</body>
+</html>
