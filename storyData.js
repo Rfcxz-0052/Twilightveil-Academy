@@ -1,4 +1,5 @@
 const storyNodes = {
+    // 第一章 靈力覺醒的契機
     enter: {
         bgm: "surface",
         text: ["歡迎來到暮影學院!", "光與影的交際處"],
@@ -278,6 +279,8 @@ const storyNodes = {
         characterImg: "image/male.png",
         choices: [{ text: "探索裡世界", next: "restart" }]
     },
+
+    // 第二章 進入裡世界
 
     restart: {
         bgm: "surface",
