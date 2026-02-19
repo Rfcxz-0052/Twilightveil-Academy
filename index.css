@@ -133,53 +133,6 @@ body {
 }
 
 /* ==========================
-   設定按鈕遊戲化 & 響應式
-========================== */
-.settings-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 20px;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    transition: all 0.3s ease;
-    z-index: 1000;
-}
-
-.settings-btn:hover {
-    background-color: rgba(0, 0, 0, 0.85);
-    transform: scale(1.1);
-}
-
-.settings-panel {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 250px;
-    background: rgba(0,0,0,0.85);
-    color: white;
-    padding: 20px;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    transition: all 0.5s ease;
-}
-
-.settings-panel input {
-    width: 100%;
-}
-
-.hidden {
-    display: none;
-}
-
-/* ==========================
    響應式：平板 (<=1024px)
 ========================== */
 @media (max-width: 1024px) {
@@ -215,20 +168,6 @@ body {
         font-size: 16px;
     }
 
-    /* 設定按鈕平板 */
-    .settings-btn {
-        bottom: 15px;
-        right: 15px;
-        font-size: 18px;
-        padding: 8px;
-    }
-
-    .settings-panel {
-        width: 220px;
-        bottom: 70px;
-        right: 15px;
-        padding: 18px;
-    }
 }
 
 /* ==========================
@@ -280,23 +219,4 @@ body {
         font-size: 14px;
     }
 
-    /* 設定按鈕手機 */
-    .settings-btn {
-        bottom: 10px;
-        right: 10px;
-        font-size: 16px;
-        padding: 7px;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .settings-btn:hover {
-        background-color: rgba(0, 0, 0, 0.75);
-    }
-
-    .settings-panel {
-        width: 180px;
-        bottom: 60px;
-        right: 10px;
-        padding: 12px;
-    }
 }

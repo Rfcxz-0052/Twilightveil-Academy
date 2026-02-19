@@ -78,21 +78,3 @@ function showNode(nodeId) {
 // 初始顯示
 showNode(currentNode);
 
-const settingsPanel = document.getElementById("settingsPanel");
-const openBtn = document.getElementById("openSettings");
-const closeBtn = document.getElementById("closeSettings");
-
-const bgmSlider = document.getElementById("bgmSlider");
-const seSlider = document.getElementById("seSlider");
-
-// 預設值
-bgmSlider.value = bgmVolume;
-seSlider.value = seVolume;
-
-// 開關設定面板
-openBtn.onclick = () => settingsPanel.classList.remove("hidden");
-closeBtn.onclick = () => settingsPanel.classList.add("hidden");
-
-// 滑桿控制
-bgmSlider.oninput = (e) => setBGMVolume(e.target.value);
-seSlider.oninput = (e) => setSEVolume(e.target.value);
