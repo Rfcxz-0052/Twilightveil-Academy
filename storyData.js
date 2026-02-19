@@ -174,7 +174,7 @@ const storyNodes = {
 
     node09: {
         bgm: "suspense",
-        se:"",
+        se:"attack02",
         speaker: "player",
         text: [
             "在我走近女孩，她的利爪刺進我的腹部",
