@@ -9,6 +9,7 @@ const seMap = {
     page: document.getElementById("sepage"),
     attack01: document.getElementById("seattack01"),
     attack02: document.getElementById("seattack02"),
+    ghost01: document.getElementById("seghost01"),
 };
 
 let currentBGM = null;

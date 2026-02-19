@@ -8,10 +8,10 @@ const storyNodes = {
 
     start: {
         bgm: "surface",
-        speaker: "player", // 整個節點說話者
+        speaker: "player",
         text: [
-            "這裡是暮影大學，歷史悠久，附設高中及國中",
-            "而你是一個剛入職的大學書店的店員",
+            "這裡是暮影大學，歷史悠久，附設高中及國中。",
+            "你是一個剛入職的大學書店店員，第一次踏入這裡，心中既興奮又緊張。"
         ],
         background: "image/DuskCampus.png",
         playerImg: "image/player.png",
@@ -23,152 +23,153 @@ const storyNodes = {
 
     node00: {
         bgm: "surface",
-        speaker: "player", // 整個節點說話者
+        speaker: "player",
         text: [
-            "然而現在剛開學，很多學生訂購新學期的教科書",
-            "事情很多都還沒做完,",
-            "於是你打算......"
+            "新學期開始，訂書的學生絡繹不絕。",
+            "事情還沒做完，你決定..."
         ],
         background: "image/DuskCampus.png",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
         choices: [
-            { text: "加班做完", next: "node01" },
-            { text: "不加班，交給明天的我了", next: "restart" }
+            { text: "加班完成工作", next: "node01" },
+            { text: "不加班，交給明天再處理", next: "restart" }
         ]
     },
 
     node01: {
         bgm: "suspense",
-        se: "ghost", 
+        se: "page",
         speaker: "player",
         text: [
-            "你獨自加班到九點，周圍都沒有人，極為安靜",
-            "突然!你聽到奇怪的聲音",
+            "你獨自加班到九點，周圍一片安靜。",
+            "突然，你聽到輕微的聲響，好像有人在翻動書頁。"
         ],
         background: "image/DuskCampus.png",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
         choices: [
-            { text: "你走向聲音來源處", next: "node02" },
-            { text: "好可怕! 還是趕緊收拾東西回家吧!", next: "restart" }
+            { text: "走向聲音來源查看", next: "node02" },
+            { text: "太可怕了，先收拾東西回家吧", next: "restart" }
         ]
     },
 
+
     node02: {
         bgm: "suspense",
-        se: "page", 
         speaker: "player",
         text: [
-            "你走向聲音來源處，原來是一本書",
-            "這不是同學和圖書館借來要請我們訂的書",
-            "(書的外觀很破舊，書的底部有紅色印跡...)",
+            "你發現是一本文字泛黃、破損的書，底部還留著鮮紅的痕跡。",
+            "這不是學校圖書館的書嗎?怎麼會出現在這裡?",
+            "難道是學生遺落的?"
         ],
         background: "image/DuskCampus.png",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
         choices: [
             { text: "翻開書查看", next: "node03" },
-            { text: "不碰觸書，放回原處", next: "node03" }
+            { text: "不碰，放回原處", next: "node03" }
         ]
     },
 
     node03: {
         bgm: "suspense",
-        speaker: "player",
+        se: "ghost",
+        speaker: "character",
         text: [
-            "你眼前出現一位女孩，她對你說:",
-            "姐姐，工作很辛苦嗎?",
-            "要不要和我一起玩?"
+            "四周的光線扭曲，書店的書架變得模糊。",
+            "一股奇異力量將你拉向書本，腳步不由自主地踏出。",
+            "眼前出現一位女孩，她微笑著，對你說:",
+            "「姐姐，工作辛苦嗎？要不要一起玩？」",
+            "你心裡一驚，感覺她出現得太突然了。"
         ],
         background: "image/library.png",
-        playerImg: "image/girl01.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.png",
+        characterImg: "image/girl01.png",
         choices: [
-            { text: "(她感覺很危險，先觀察看看)這裡是哪裡?", next: "node04" },
-            { text: "你...你要做什麼?", next: "node04" }
+            { text: "她看起來很奇怪，先觀察看看，這裡是哪裡？", next: "node04" },
+            { text: "你……你想做什麼？", next: "node04" }
         ]
     },
 
     node04: {
         bgm: "suspense",
-        speaker: "player",
+        speaker: "character",
         text: [
-            "這裡是圖書館，姐姐喜歡嗎?",
-            "我一直在這裡讀書…為了畢業後找到好工作。",
-            "姐姐這麼辛苦，我來幫你工作好不好？"
+            "女孩指了指周圍堆滿書籍的圖書館角落，語氣天真卻又有些詭異。",
+            "「這裡是圖書館，你喜歡嗎？我一直在這裡讀書……為了畢業後找到好工作。」",
+            "「姐姐這麼辛苦，我來幫你工作好不好？」",
+            "你覺得氣氛越來越奇怪，心裡有一絲不安。"
         ],
         background: "image/library.png",
-        playerImg: "image/girl01.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.png",
+        characterImg: "image/girl01.png",
         choices: [
-            { text: "嗯…好吧", next: "node05" },
-            { text: "不…不要!(你往後退)", next: "node05" }
+            { text: "嗯……好吧", next: "node05" },
+            { text: "不……不要！(你往後退)", next: "node05" }
         ]
     },
 
     node05: {
         bgm: "suspense",
         se: "attack01",
-        speaker: "player",
+        speaker: "character",
         text: [
-            "(女孩突然往前揮爪，我臉上出現一道傷痕，開始流血)"
+            "女孩突然揮爪，你的腹部被抓傷，鮮血迅速流下，劇痛讓你倒在地上。"
         ],
         background: "image/library.png",
-        playerImg: "image/girl01.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.png",
+        characterImg: "image/girl01.png",
         choices: [
-            { text: "等等，你這麼努力一定能找到更好的工作", next: "node06" },
-            { text: "啊!(趕緊逃跑)", next: "node06" }
+            { text: "你這麼努力，一定會有更好的未來", next: "node06" },
+            { text: "快逃！", next: "node06" }
         ]
     },
 
     node06: {
         bgm: "suspense",
-        speaker: "player",
+        speaker: "character",
         text: [
-            "不!我不想再等了，我等了好久好久了",
-            "姐姐不是常常抱怨要加班",
-            "把妳的身體給我，姐姐就可以休息了",
+            "女孩的語氣變得急切，眼神渴求你的身體。",
+            "但你感受到體內湧動的力量，一道光芒從心底升起……"
         ],
         background: "image/library.png",
-        playerImg: "image/girl01.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.png",
+        characterImg: "image/girl01.png",
         choices: [
-            { text: "就算妳代替我，那也不是妳的人生，妳要讓你的努力白費嗎?", next: "node07" },
-            { text: "(繼續逃跑中)", next: "node07" }
+            { text: "這不是你的命運，你要守護自己的努力", next: "node07" },
+            { text: "繼續逃跑", next: "node07" }
         ]
     },
 
     node07: {
         bgm: "suspense",
-        speaker: "player",
+        speaker: "character",
         text: [
-            "但是這裡好冷啊!好冷好冷啊!",
-            "姐姐抱我一下，好不好"
+            "這裡……好冷……姐姐……抱我……",
+            "你聽到女孩的哀求。",
+            "你心中不忍，慢慢靠近她..."
         ],
         background: "image/library.png",
-        playerImg: "image/girl01.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.png",
+        characterImg: "image/girl01.png",
         choices: [
-            { text: "我感到不忍，緩緩走近女孩", next: "node09" },
-            { text: "(發現跑不出去，但也不敢靠近)", next: "node08" }
+            { text: "靠近女孩", next: "node09" },
+            { text: "躲避，但心中不安", next: "node08" }
         ]
     },
 
     node08: {
         bgm: "suspense",
-        speaker: "player",
+        speaker: "character",
         text: [
-            "沒用的,姐姐,妳跑不出去的",
-            "我在這裡被困了好久",
-            "妳也別想離開"
+            "女孩冷笑，告訴你無路可逃，她被困很久，你也別想離開。"
         ],
         background: "image/library.png",
-        playerImg: "image/girl01.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.png",
+        characterImg: "image/girl01.png",
         choices: [
-            { text: "被女鬼搶奪身體，只能眼睜睜看著她代替妳活著...", next: "restart" }
+            { text: "被女鬼搶奪身體...", next: "restart" }
         ]
     },
 
@@ -177,30 +178,15 @@ const storyNodes = {
         se:"attack02",
         speaker: "player",
         text: [
-            "在我走近女孩，她的利爪刺進我的腹部",
-            "我倒在地上，流著血，難道我要死了..."
+            "利爪刺入腹部，你倒在地上，鮮血染紅了地板。",
+            "絕望之際，一股未知的力量在體內湧動，你的靈力覺醒了！"
         ],
         background: "image/library.png",
-        playerImg: "image/girl01.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.png",
+        characterImg: "image/girl01.png",
         choices: [
-            { text: "不!我的家人還在等著我... (突然我發出一道光，身上的血止住了)", next: "node10" },
-            { text: "我放棄掙扎，昏過去, 被女鬼搶奪身體，只能眼睜睜看著她代替妳活著...", next: "restart" }
-        ]
-    },
-
-    node10: {
-        bgm: "suspense",
-        speaker: "player",
-        text: [
-            "(女孩很驚奇的看著我)姐姐，妳...",
-            "妳怎麼..."
-        ],
-        background: "image/library.png",
-        playerImg: "image/girl01.png",
-        characterImg: "image/male.png",
-        choices: [
-            { text: "我忍著疼痛站起身", next: "node10" },
+            { text: "光芒止住了血，但疼痛沒消失", next: "node10" },
+            { text: "放棄掙扎", next: "restart" }
         ]
     },
 
@@ -208,24 +194,84 @@ const storyNodes = {
         bgm: "suspense",
         speaker: "character",
         text: [
-            "我也不知道...，但妳竟然想殺我!",
-            "(突然一個笑聲響起)",
-            "又多一個漂亮的小妞",
+            "女孩震驚地看著你，語氣帶著不解和畏懼：",
+            "姐姐，你……怎麼辦到的？"
         ],
         background: "image/library.png",
-        playerImg: "image/girl01.png",
+        playerImg: "image/player.png",
+        characterImg: "image/girl01.png",
+        choices: [
+            { text: "忍著疼痛站起", next: "node11" }
+        ]
+    },
+
+    node11: {
+        bgm: "suspense",
+        se: "ghost01",
+        speaker: "character",
+        text: [
+            "突然，一個猥瑣的胖男鬼出現，笑聲刺耳，盯著女孩不放。",
+            "女孩嚇得躲到你身後。"
+        ],
+        background: "image/library.png",
+        playerImg: "image/player.png",
         characterImg: "image/male01.png",
         choices: [
-            { text: "你是誰?", next: "nodeinner" },
+            { text: "擋住女孩：你是誰？", next: "node12" }
+        ]
+    },
+
+    node12: {
+        bgm: "suspense",
+        speaker: "character",
+        text: [
+            "胖男鬼咧嘴傻笑，伸手靠近你們：",
+            "漂亮的小妞，和叔叔玩玩嗎？"
+        ],
+        background: "image/library.png",
+        playerImg: "image/player.png",
+        characterImg: "image/male01.png",
+        choices: [
+            { text: "爆發靈力，阻止他靠近", next: "node13" }
+        ]
+    },
+
+    node13: {
+        bgm: "suspense",
+        speaker: "character",
+        text: [
+            "你不和我玩，那我就找她!",
+            "男鬼惱羞成怒，指向女孩。",
+        ],
+        background: "image/library.png",
+        playerImg: "image/player.png",
+        characterImg: "image/male01.png",
+        choices: [
+            { text: "與女鬼合作消滅男鬼", next: "nodeinner" },
+            { text: "逃走，留下女孩", next: "node14" }
+        ]
+    },
+
+    node14: {
+        bgm: "suspense",
+        speaker: "character",
+        text: [
+            "女孩被男鬼吞噬，你回到書店，耳邊仍迴響著她的慘叫..."
+        ],
+        background: "image/library.png",
+        playerImg: "image/player.png",
+        characterImg: "image/girl01.png",
+        choices: [
+            { text: "回到遊戲首頁", next: "restart" }
         ]
     },
 
     nodeinner: {
         bgm: "inner",
-        speaker: "character",
+        speaker: "player",
         text: [
-            "你進入裡世界，四周充滿神秘的藍黑宮廷風",
-            "這裡只有覺醒的人才能進入"
+            "你和女孩一起擊退了男鬼，她的心願得以了結，投胎離去。",
+            "你進入裡世界，四周充滿神秘的藍黑宮廷風，這裡只有覺醒的人才能進入。"
         ],
         background: "image/InnerWorld.jpg",
         playerImg: "image/player.png",
