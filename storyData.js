@@ -184,12 +184,12 @@ const storyNodes = {
         playerImg: "image/girl01.png",
         characterImg: "image/male.png",
         choices: [
-            { text: "不!我的家人還在等著我... (突然我發出一道光，身上的傷都好了)", next: "node09" },
+            { text: "不!我的家人還在等著我... (突然我發出一道光，身上的傷都好了)", next: "nodeinner" },
             { text: "我放棄掙扎，昏過去, 被女鬼搶奪身體，只能眼睜睜看著她代替妳活著...", next: "restart" }
         ]
     },
 
-    nodeInner: {
+    nodeinner: {
         bgm: "inner",
         speaker: "character",
         text: [
