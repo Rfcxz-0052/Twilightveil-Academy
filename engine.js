@@ -25,9 +25,9 @@ function showNode(nodeId) {
     
     // 首頁 / restart 節點隱藏對話框背景
     if (nodeId === "enter" || nodeId === "restart") {
-         dialogBox.classList.add("no-background"); 
+        dialogBox.classList.add("no-box"); 
     } else { 
-        dialogBox.classList.remove("no-background"); 
+        dialogBox.classList.remove("no-box"); 
     }
 
     // 顯示文字

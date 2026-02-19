@@ -1,51 +1,63 @@
+/* ==========================
+   全局基本樣式
+========================== */
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     background-size: cover;
     background-position: center;
     font-family: sans-serif;
     color: rgb(7, 7, 7);
     display: flex;
-    justify-content: center; /* 水平置中 */
-    align-items: center;     /* 垂直置中 */
+    justify-content: center; 
+    align-items: center;     
 }
 
+/* ==========================
+   故事區塊
+========================== */
 .story-container {
     display: flex;
-    align-items: stretch;    /* 左中右同高 */
+    align-items: stretch;    
     width: 100%;
     max-width: 1200px;
-    height: 60vh;            /* 中間區域高度，可依需要調整 */
+    height: 60vh;            
     gap: 20px;
+    transition: all 0.5s ease;
 }
 
 .player-img, .character-img {
-    width: 25%;             /* 左右圖片各占 25% */
+    width: 25%;             
     height: 100%;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.5s ease;
 }
 
 .player-img img, .character-img img {
     max-height: 100%;
     width: auto;
-    object-fit: contain;     /* 圖片保持比例且撐滿高度 */
+    object-fit: contain;     
 }
 
 .middle-area {
-    flex: 1;                 /* 中間區域占剩餘空間 */
+    flex: 1;                 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* 文字 + 按鈕垂直置中 */
+    justify-content: center; 
     align-items: center;
     text-align: center;
+    transition: all 0.5s ease;
 }
 
+/* ==========================
+   對話框
+========================== */
 .dialog-box {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     padding: 20px;
     width: 100%;
@@ -55,24 +67,32 @@ body {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.2s ease;
 }
 
-/* 這個 class 會讓 dialog-box 背景透明、陰影消失 */
-.dialog-box.no-background {
-    background-color: transparent;
+/* 首頁 / restart 完全隱藏對話框，但保留內容 */
+.dialog-box.no-box {
+    display: contents;
+    background: none;
     box-shadow: none;
+    padding: 0;
+    width: auto;
 }
 
+/* ==========================
+   故事文字
+========================== */
 .story {
     font-size: 24px;
     margin-bottom: 20px;
-    color: black;
+    color: #111;
     font-weight: bold;
-
-    text-shadow: 0 2px 6px rgba(255, 255, 255, 0.7);
-
+    text-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
 }
 
+/* ==========================
+   選項按鈕
+========================== */
 .center-buttons {
     display: flex;
     flex-direction: column;
@@ -86,9 +106,9 @@ body {
     cursor: pointer;
     border: none;
     border-radius: 8px;
-    background-color: rgba(162, 52, 212, 0.8);
+    background-color: rgba(162, 52, 212, 0.85);
     color: rgb(235, 232, 74);
-    transition: background-color 0.3s, transform 0.2s;
+    transition: all 0.3s ease;
     min-width: 200px;
     white-space: nowrap;
     opacity: 0;
@@ -112,15 +132,28 @@ body {
     }
 }
 
+/* ==========================
+   設定按鈕遊戲化 & 響應式
+========================== */
 .settings-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
     font-size: 20px;
-    padding: 8px 12px;
+    padding: 10px;
     cursor: pointer;
     border-radius: 50%;
     border: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.settings-btn:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+    transform: scale(1.1);
 }
 
 .settings-panel {
@@ -135,12 +168,135 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    transition: all 0.5s ease;
+}
+
+.settings-panel input {
+    width: 100%;
 }
 
 .hidden {
     display: none;
 }
 
-.settings-panel input {
-    width: 100%;
+/* ==========================
+   響應式：平板 (<=1024px)
+========================== */
+@media (max-width: 1024px) {
+    .story-container {
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .middle-area {
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 10px;
+    }
+
+    .player-img, .character-img {
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100%;
+    }
+
+    .dialog-box {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .center-buttons button {
+        min-width: 160px;
+        font-size: 16px;
+    }
+
+    /* 設定按鈕平板 */
+    .settings-btn {
+        bottom: 15px;
+        right: 15px;
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    .settings-panel {
+        width: 220px;
+        bottom: 70px;
+        right: 15px;
+        padding: 18px;
+    }
+}
+
+/* ==========================
+   響應式：手機 (<=600px)
+========================== */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    .story-container {
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .middle-area {
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 10px;
+    }
+
+    .player-img, .character-img {
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100%;
+    }
+
+    .dialog-box {
+        width: 95%;
+        padding: 12px;
+    }
+
+    .story {
+        font-size: 18px;
+    }
+
+    .center-buttons {
+        gap: 12px;
+    }
+
+    .center-buttons button {
+        min-width: 120px;
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    /* 設定按鈕手機 */
+    .settings-btn {
+        bottom: 10px;
+        right: 10px;
+        font-size: 16px;
+        padding: 7px;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .settings-btn:hover {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .settings-panel {
+        width: 180px;
+        bottom: 60px;
+        right: 10px;
+        padding: 12px;
+    }
 }
