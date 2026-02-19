@@ -1,3 +1,5 @@
+製作者:林芮安 spin
+
 # 暮影學院 Twilightveil Academy
 
 一款瀏覽器視覺小說遊戲。

@@ -184,8 +184,39 @@ const storyNodes = {
         playerImg: "image/girl01.png",
         characterImg: "image/male.png",
         choices: [
-            { text: "不!我的家人還在等著我... (突然我發出一道光，身上的傷都好了)", next: "nodeinner" },
+            { text: "不!我的家人還在等著我... (突然我發出一道光，身上的血止住了)", next: "node10" },
             { text: "我放棄掙扎，昏過去, 被女鬼搶奪身體，只能眼睜睜看著她代替妳活著...", next: "restart" }
+        ]
+    },
+
+    node10: {
+        bgm: "suspense",
+        speaker: "player",
+        text: [
+            "(女孩很驚奇的看著我)姐姐，妳...",
+            "妳怎麼..."
+        ],
+        background: "image/library.png",
+        playerImg: "image/girl01.png",
+        characterImg: "image/male.png",
+        choices: [
+            { text: "我忍著疼痛站起身", next: "node10" },
+        ]
+    },
+
+    node10: {
+        bgm: "suspense",
+        speaker: "character",
+        text: [
+            "我也不知道...，但妳竟然想殺我!",
+            "(突然一個笑聲響起)",
+            "又多一個漂亮的小妞",
+        ],
+        background: "image/library.png",
+        playerImg: "image/girl01.png",
+        characterImg: "image/male01.png",
+        choices: [
+            { text: "你是誰?", next: "nodeinner" },
         ]
     },
 
