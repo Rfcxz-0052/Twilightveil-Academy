@@ -9,37 +9,57 @@
 </head>
 <body id="gameBody">
 
-    <!-- 🎵 背景音樂 -->
+    <!-- 故事區塊 -->
+    <div class="story-container">
+        <div id="playerImg" class="player-img"><img src="" alt="player"></div>
+        <div class="middle-area">
+            <div id="dialogBox" class="dialog-box">
+                <div id="storyText" class="story"></div>
+                <div id="choiceButtons" class="center-buttons"></div>
+            </div>
+        </div>
+        <div id="characterImg" class="character-img"><img src="" alt="character"></div>
+    </div>
+
+    <!-- 側邊欄 -->
+    <div id="sidebar" class="sidebar">
+        <button id="toggleSidebar" class="sidebar-toggle">☰</button>
+
+        <div class="panel-section">
+            <h3>聲音設定</h3>
+            <label>音樂 音量</label>
+            <input type="range" min="0" max="1" step="0.01" id="bgmSlider">
+            <label>音效 音量</label>
+            <input type="range" min="0" max="1" step="0.01" id="seSlider">
+        </div>
+    </div>
+
+    <!-- BGM / SE 音源 -->
     <audio id="bgmSurface" src="audio/surface.mp3" loop></audio>
     <audio id="bgmInner" src="audio/inner.mp3" loop></audio>
     <audio id="bgmSuspense" src="audio/suspense.mp3" loop></audio>
 
-    <!-- 🔊 音效 -->
     <audio id="seghost" src="audio/ghost.mp3"></audio>
     <audio id="sepage" src="audio/page.mp3"></audio>
     <audio id="seattack01" src="audio/attack01.mp3"></audio>
     <audio id="seattack02" src="audio/attack02.mp3"></audio>
 
-    <div class="story-container">
-        <div class="player-img" id="playerImg">
-            <img src="" alt="玩家">
-        </div>
-
-        <div class="middle-area">
-            <div class="dialog-box" id="dialogBox">
-                <div class="story" id="storyText"></div>
-                <div class="center-buttons" id="choiceButtons"></div>
-            </div>
-        </div>
-
-        <div class="character-img" id="characterImg">
-            <img src="" alt="角色">
-        </div> 
-    </div>
-
     <script src="storyData.js"></script>
     <script src="audioController.js"></script>
     <script src="engine.js"></script>
+
+    <script>
+        // 音量滑桿控制
+        document.getElementById('bgmSlider').value = localStorage.getItem("bgmVolume") || 0.4;
+        document.getElementById('seSlider').value = localStorage.getItem("seVolume") || 1.0;
+
+        document.getElementById('bgmSlider').addEventListener('input', e => {
+            setBGMVolume(e.target.value);
+        });
+        document.getElementById('seSlider').addEventListener('input', e => {
+            setSEVolume(e.target.value);
+        });
+    </script>
 
 </body>
 </html>
