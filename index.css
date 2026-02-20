@@ -20,7 +20,7 @@ body {
    故事區塊
 ========================== */
 .story-container {
-    flex: 1;   /* ⭐ 撐開 */
+    flex: 1;   /* 撐開 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +29,6 @@ body {
     height: 75vh;
     gap: 20px;
     transition: all 0.5s ease;
-
     margin: 0 auto;
 }
 
@@ -57,6 +56,15 @@ body {
     align-items: center;
     text-align: center;
     transition: all 0.5s ease;
+}
+
+/* --------------------------
+   中心對齊 (首頁 + 所有節點)
+--------------------------- */
+.middle-area.centered {
+    justify-content: center;  /* 垂直置中 */
+    align-items: center;      /* 水平置中 */
+    text-align: center;
 }
 
 /* ==========================
@@ -170,7 +178,7 @@ body {
     font-size: 22px;
     padding: 8px 12px;
     border-radius: 8px;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.3);
     color: white;
     border: none;
     cursor: pointer;
@@ -178,7 +186,7 @@ body {
 }
 
 .sidebar-toggle:hover {
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.3);
 }
 
 .panel-section {
@@ -196,46 +204,106 @@ body {
 }
 
 /* ==========================
-   📱 手機版 RWD
+   📱 手機版 RWD 完整整合
 ========================== */
 @media (max-width: 768px) {
 
-    /* 整體改成上下排列 */
+    /* 整體上下排列，撐滿螢幕 */
     .story-container {
         flex-direction: column;
-        height: 100vh;
-        justify-content: space-between; 
+        height: 100vh;          /* 撐滿螢幕 */
+        justify-content: space-between; /* 讓元素上下均分 */
+        align-items: center;
+        gap: 5px;
+        padding: 5px 0;
     }
 
-    /* 上方 70%：文字區 */
+    /* 對話框 + 故事文字 + 選項區 */
     .middle-area {
         order: 1;
-        height: 70vh;
-        justify-content: flex-start;
-        padding-top: 40px;
+        height: 35%;             /* 占螢幕高度 35% */
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 5px;
+        width: 90%;              /* 寬度縮小以符合手機 */
     }
 
-    /* 對話框寬度調整 */
     .dialog-box {
-        max-width: 90%;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        box-sizing: border-box;
     }
 
-    /* 下方 30%：角色圖片區 */
+    /* 故事文字縮小 */
+    .story {
+        font-size: 16px;         /* 縮小字體 */
+        margin-bottom: 10px;
+    }
+
+    /* 選項按鈕容器 */
+    .center-buttons {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    /* 選項按鈕 */
+    .center-buttons button {
+        font-size: 14px;         /* 縮小文字 */
+        padding: 6px 10px;       /* 縮小內距 */
+        width: 100%;             /* 撐滿對話框 */
+        max-width: 100%;
+        box-sizing: border-box;
+        white-space: normal;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeInUp 0.5s forwards;
+    }
+
+    /* 動畫延遲 */
+    .center-buttons button:nth-child(1) { animation-delay: 0.2s; }
+    .center-buttons button:nth-child(2) { animation-delay: 0.4s; }
+    .center-buttons button:nth-child(3) { animation-delay: 0.6s; }
+
+    /* 玩家 & 角色圖片 */
     .player-img,
     .character-img {
         order: 2;
-        height: 30vh;
+        height: 30%;             /* 占螢幕高度 30% */
+        width: 30%;              /* 寬高一致 */
+        max-width: 70vw;         /* 防止超出螢幕寬度 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
     }
 
     .player-img img,
     .character-img img {
-        max-height: 100%;
-        max-width: 80%;
+        height: 100%;
+        width: 100%;
         object-fit: contain;
     }
 
-    .middle-area {
-    justify-content: flex-start;
-    padding-top: 40px;
+    /* Footer */
+    .site-footer {
+        order: 3;
+        font-size: 0.55rem;               /* 縮小文字 */
+        padding: 4px 0;                   /* 內距縮小 */
+        text-align: center;
+        width: 90%;
+        margin: 0 auto;                   /* 置中 */
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 6px;
     }
 }

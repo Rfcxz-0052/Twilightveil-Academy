@@ -11,15 +11,23 @@ function showNode(nodeId) {
     document.getElementById("gameBody").style.backgroundImage = `url('${node.background}')`;
     if (!firstClick) switchBGM(node.bgm);
 
+    const middleArea = document.querySelector(".middle-area");
+
+    // 所有節點文字+選項置中
+    middleArea.classList.add("centered");
+
+    // 首頁 / restart → 對話框樣式
     if (nodeId === "enter" || nodeId === "restart") {
-        dialogBox.classList.add("no-box"); 
-    } else { 
-        dialogBox.classList.remove("no-box"); 
+        dialogBox.classList.add("no-box");
+    } else {
+        dialogBox.classList.remove("no-box");
     }
 
+    // 顯示文字
     const storyDiv = document.getElementById("storyText");
     storyDiv.innerHTML = node.text.map(line => `<p>${line}</p>`).join('');
 
+    // 角色圖片顯示
     const playerImgDiv = document.getElementById("playerImg");
     const characterImgDiv = document.getElementById("characterImg");
 
@@ -36,6 +44,7 @@ function showNode(nodeId) {
         characterImgDiv.style.display = "none";
     }
 
+    // 選項按鈕
     const buttonsDiv = document.getElementById("choiceButtons");
     buttonsDiv.innerHTML = "";
 
@@ -57,7 +66,6 @@ showNode(currentNode);
 // 側邊欄按鈕
 const sidebar = document.getElementById("sidebar");
 const toggleSidebar = document.getElementById("toggleSidebar");
-
 toggleSidebar.onclick = () => {
     sidebar.classList.toggle("active");
 };
