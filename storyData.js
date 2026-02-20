@@ -3,7 +3,7 @@ const storyNodes = {
     enter: {
         bgm: "surface",
         text: ["歡迎來到暮影學院!", "光與影的交際處"],
-        background: "image/DuskCampus.png",
+        background: "image/DuskCampus.webp",
         choices: [{ text: "進入遊戲", next: "start" }]
     },
 
@@ -15,7 +15,7 @@ const storyNodes = {
             "你是一個剛入職的大學書店店員，",
             "第一次踏入這裡，心中既興奮又緊張。"
         ],
-        background: "image/DuskCampus.png",
+        background: "image/DuskCampus.webp",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
         choices: [
@@ -30,7 +30,7 @@ const storyNodes = {
             "新學期開始，訂書的學生絡繹不絕。",
             "事情還沒做完，你決定..."
         ],
-        background: "image/DuskCampus.png",
+        background: "image/DuskCampus.webp",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
         choices: [
@@ -47,7 +47,7 @@ const storyNodes = {
             "你獨自加班到九點，周圍一片安靜。",
             "突然，你聽到輕微的聲響，好像有人在翻動書頁。"
         ],
-        background: "image/DuskCampus.png",
+        background: "image/DuskCampus.webp",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
         choices: [
@@ -66,7 +66,7 @@ const storyNodes = {
             "這不是學校圖書館的書嗎?怎麼會出現在這裡?",
             "難道是學生遺落的?"
         ],
-        background: "image/DuskCampus.png",
+        background: "image/DuskCampus.webp",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
         choices: [
@@ -86,7 +86,7 @@ const storyNodes = {
             "「姐姐，工作辛苦嗎？要不要一起玩？」",
             "你心裡一驚，感覺她出現得太突然了。"
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/girl01.png",
         choices: [
@@ -105,7 +105,7 @@ const storyNodes = {
             "「姐姐這麼辛苦，我來幫你工作好不好？」",
             "你覺得氣氛越來越奇怪，心裡有一絲不安。"
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/girl01.png",
         choices: [
@@ -121,7 +121,7 @@ const storyNodes = {
         text: [
             "女孩突然揮爪，你的腹部被抓傷，鮮血迅速流下，劇痛讓你倒在地上。"
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/girl01.png",
         choices: [
@@ -137,7 +137,7 @@ const storyNodes = {
             "女孩的語氣變得急切，眼神渴求你的身體。",
             "但你感受到體內湧動的力量，一道光芒從心底升起……"
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/girl01.png",
         choices: [
@@ -154,7 +154,7 @@ const storyNodes = {
             "你聽到女孩的哀求。",
             "你心中不忍，慢慢靠近她..."
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/girl01.png",
         choices: [
@@ -169,7 +169,7 @@ const storyNodes = {
         text: [
             "女孩冷笑，告訴你無路可逃，她被困很久，你也別想離開。"
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/girl01.png",
         choices: [
@@ -185,7 +185,7 @@ const storyNodes = {
             "利爪刺入腹部，你倒在地上，鮮血染紅了地板。",
             "絕望之際，一股未知的力量在體內湧動，你的靈力覺醒了！"
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/girl01.png",
         choices: [
@@ -201,11 +201,11 @@ const storyNodes = {
             "女孩震驚地看著你，語氣帶著不解和畏懼：",
             "姐姐，你……怎麼辦到的？"
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/girl01.png",
         choices: [
-            { text: "忍著疼痛站起", next: "node11" }
+            { text: "你忍著疼痛站起", next: "node11" }
         ]
     },
 
@@ -217,7 +217,7 @@ const storyNodes = {
             "突然，一個猥瑣的胖男鬼出現，笑聲刺耳，盯著女孩不放。",
             "女孩嚇得躲到你身後。"
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/male01.png",
         choices: [
@@ -232,7 +232,7 @@ const storyNodes = {
             "胖男鬼咧嘴傻笑，伸手靠近你們：",
             "漂亮的小妞，和叔叔玩玩嗎？"
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/male01.png",
         choices: [
@@ -247,7 +247,7 @@ const storyNodes = {
             "你不和我玩，那我就找她!",
             "男鬼惱羞成怒，指向女孩。",
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/male01.png",
         choices: [
@@ -262,7 +262,7 @@ const storyNodes = {
         text: [
             "女孩被男鬼吞噬，你回到書店，耳邊仍迴響著她的慘叫..."
         ],
-        background: "image/library.png",
+        background: "image/library.webp",
         playerImg: "image/player.png",
         characterImg: "image/girl01.png",
         choices: [

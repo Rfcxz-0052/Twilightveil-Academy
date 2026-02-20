@@ -10,17 +10,19 @@ body {
     background-position: center;
     font-family: sans-serif;
     color: rgb(7, 7, 7);
+
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
 /* ==========================
    故事區塊
 ========================== */
 .story-container {
+    flex: 1;   /* ⭐ 撐開 */
     display: flex;
-    align-items: stretch;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     max-width: 1200px;
     height: 60vh;
@@ -177,4 +179,13 @@ body {
 .panel-section {
     border-bottom: 1px solid rgba(255,255,255,0.2);
     padding-bottom: 10px;
+}
+
+.site-footer {
+    width: 100%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 8px 0;
+    background: rgba(0, 0, 0, 0.4);
 }
