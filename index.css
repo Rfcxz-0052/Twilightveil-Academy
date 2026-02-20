@@ -36,6 +36,7 @@ body {
     width: 35%;         /* 比之前更寬 */
     max-width: 500px;   /* 防止過大 */
     height: 700px;      /* 高度比對話框高 */
+    max-height: 80vh;   /* 限制不要超過視窗高度 */
     display: flex;
     justify-content: center;
     align-items: center;

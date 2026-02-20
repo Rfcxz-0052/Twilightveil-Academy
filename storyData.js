@@ -16,8 +16,8 @@ const storyNodes = {
             "第一次踏入這裡，心中既興奮又緊張。"
         ],
         background: "image/SurfaceWorld.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/male.webp",
         choices: [
             { text: "經過幾個月的學習，你對店裡的業務漸漸上手", next: "node00" },
         ]
@@ -31,8 +31,8 @@ const storyNodes = {
             "事情還沒做完，你決定..."
         ],
         background: "image/DuskCampus.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/male.webp",
         choices: [
             { text: "加班完成工作", next: "node01" },
             { text: "不加班，交給明天再處理", next: "restart" }
@@ -48,8 +48,8 @@ const storyNodes = {
             "突然，你聽到輕微的聲響，好像有人在翻動書頁。"
         ],
         background: "image/DuskCampus.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/male.webp",
         choices: [
             { text: "走向聲音來源查看", next: "node02" },
             { text: "太可怕了，先收拾東西回家吧", next: "restart" }
@@ -67,8 +67,8 @@ const storyNodes = {
             "難道是學生遺落的?"
         ],
         background: "image/DuskCampus.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/male.webp",
         choices: [
             { text: "翻開書查看", next: "node03" },
             { text: "不碰，放回原處", next: "node03" }
@@ -87,8 +87,8 @@ const storyNodes = {
             "你心裡一驚，感覺她出現得太突然了。"
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/girl01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
         choices: [
             { text: "她看起來很奇怪，先觀察看看，這裡是哪裡？", next: "node04" },
             { text: "你……你想做什麼？", next: "node04" }
@@ -106,8 +106,8 @@ const storyNodes = {
             "你覺得氣氛越來越奇怪，心裡有一絲不安。"
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/girl01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
         choices: [
             { text: "嗯……好吧", next: "node05" },
             { text: "不……不要！(你往後退)", next: "node05" }
@@ -122,8 +122,8 @@ const storyNodes = {
             "女孩突然揮爪，你的腹部被抓傷，鮮血迅速流下，劇痛讓你倒在地上。"
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/girl01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
         choices: [
             { text: "你這麼努力，一定會有更好的未來", next: "node06" },
             { text: "快逃！", next: "node06" }
@@ -138,8 +138,8 @@ const storyNodes = {
             "但你感受到體內湧動的力量，一道光芒從心底升起……"
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/girl01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
         choices: [
             { text: "這不是你的命運，你要守護自己的努力", next: "node07" },
             { text: "繼續逃跑", next: "node07" }
@@ -155,8 +155,8 @@ const storyNodes = {
             "你心中不忍，慢慢靠近她..."
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/girl01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
         choices: [
             { text: "靠近女孩", next: "node09" },
             { text: "躲避，但心中不安", next: "node08" }
@@ -170,8 +170,8 @@ const storyNodes = {
             "女孩冷笑，告訴你無路可逃，她被困很久，你也別想離開。"
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/girl01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
         choices: [
             { text: "被女鬼搶奪身體...", next: "restart" }
         ]
@@ -186,8 +186,8 @@ const storyNodes = {
             "絕望之際，一股未知的力量在體內湧動，你的靈力覺醒了！"
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/girl01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
         choices: [
             { text: "光芒止住了血，但疼痛沒消失", next: "node10" },
             { text: "放棄掙扎", next: "restart" }
@@ -202,8 +202,8 @@ const storyNodes = {
             "姐姐，你……怎麼辦到的？"
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/girl01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
         choices: [
             { text: "你忍著疼痛站起", next: "node11" }
         ]
@@ -218,8 +218,8 @@ const storyNodes = {
             "女孩嚇得躲到你身後。"
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/male01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/male01.webp",
         choices: [
             { text: "擋住女孩：你是誰？", next: "node12" }
         ]
@@ -233,8 +233,8 @@ const storyNodes = {
             "漂亮的小妞，和叔叔玩玩嗎？"
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/male01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/male01.webp",
         choices: [
             { text: "爆發靈力，阻止他靠近", next: "node13" }
         ]
@@ -248,8 +248,8 @@ const storyNodes = {
             "男鬼惱羞成怒，指向女孩。",
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/male01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/male01.webp",
         choices: [
             { text: "與女鬼合作消滅男鬼", next: "nodeinner" },
             { text: "逃走，留下女孩", next: "node14" }
@@ -263,8 +263,8 @@ const storyNodes = {
             "女孩被男鬼吞噬，你回到書店，耳邊仍迴響著她的慘叫..."
         ],
         background: "image/library.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/girl01.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
         choices: [
             { text: "回到遊戲首頁", next: "restart" }
         ]
@@ -277,9 +277,9 @@ const storyNodes = {
             "你和女孩一起擊退了男鬼，她的心願得以了結，投胎離去。",
             "你進入裡世界，四周充滿神秘的藍黑宮廷風，這裡只有覺醒的人才能進入。"
         ],
-        background: "image/InnerWorld.jpg",
-        playerImg: "image/player.png",
-        characterImg: "image/male.png",
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male.webp",
         choices: [{ text: "探索裡世界", next: "restart" }]
     },
 
@@ -289,8 +289,8 @@ const storyNodes = {
         bgm: "surface",
         text: [""],
         background: "image/DuskCampus.webp",
-        playerImg: "image/player.png",
-        characterImg: "image/male.png",
+        playerImg: "image/player.webp",
+        characterImg: "image/male.webp",
         choices: [{ text: "重新開始遊戲", next: "start" }]
     }
 };
