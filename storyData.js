@@ -15,7 +15,7 @@ const storyNodes = {
             "你是一個剛入職的大學書店店員，",
             "第一次踏入這裡，心中既興奮又緊張。"
         ],
-        background: "image/DuskCampus.webp",
+        background: "image/SurfaceWorld.webp",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
         choices: [
@@ -287,7 +287,7 @@ const storyNodes = {
 
     restart: {
         bgm: "surface",
-        text: ["回到遊戲首頁"],
+        text: [""],
         background: "image/DuskCampus.webp",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
