@@ -237,7 +237,7 @@ const storyNodes = {
         ],
         background: "image/library.webp",
         playerImg: "image/player.webp",
-        characterImg: "image/male01.webp",
+        characterImg: "image/ghost02.webp",
         choices: [
             { text: "擋住小英：你是誰？", next: "node13" }
         ]
@@ -252,7 +252,7 @@ const storyNodes = {
         ],
         background: "image/library.webp",
         playerImg: "image/player.webp",
-        characterImg: "image/male01.webp",
+        characterImg: "image/ghost02.webp",
         choices: [
             { text: "爆發靈力，阻止他靠近", next: "node14" }
         ]
@@ -269,7 +269,7 @@ const storyNodes = {
         ],
         background: "image/library.webp",
         playerImg: "image/player.webp",
-        characterImg: "image/male01.webp",
+        characterImg: "image/ghost02.webp",
         choices: [
             { text: "你繼續施展靈力，阻擋男鬼靠近", next: "node16" },
             { text: "逃走，留下女孩", next: "node15" }
@@ -356,7 +356,7 @@ const storyNodes = {
         ]
     },
 
-    nodeinner: {
+    node20: {
         bgm: "inner",
         speaker: "player",
         text: [
@@ -366,7 +366,7 @@ const storyNodes = {
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male.webp",
-        choices: [{ text: "我觀察著四周，因為陌生，沒有四處走動", next: "nodeinner" }]
+        choices: [{ text: "我觀察著四周，因為陌生，沒有四處走動", next: "inner" }]
     },
 
     // 第二章 進入裡世界
@@ -382,41 +382,65 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male.webp",
         choices: [
-            { text: "一頭紅色短髮，眼神銳利看著你的霸氣男子", next: "restart" },
-            { text: "一頭黑色短髮，眼神溫和看著你的和善男子", next: "restart" },
-            { text: "一頭銀白色長髮，冷淡看著你的神祕男子", next: "restart" }
+            { text: "一頭紅色短髮，氣場強勢，彷彿理所當然要妳站到他身邊的男子", next: "inner00" },
+            { text: "一頭黑色短髮，目光溫柔，像是在擔心妳是否害怕的男子", next: "inner01" },
+            { text: "一頭銀白色長髮，他的目光冷淡，卻讓你產生一種莫名的熟悉感。" , next: "inner01" }
         ]
     },
 
+    //白祈
     inner00: {
         bgm: "inner",
-        speaker: "player",
+        speaker: "character",
         text: [
-            "此時有三位男子出現在你的眼前",
-            "你首先看向..."
+            "……別站在那裡。",
+            "這裡的氣息，妳還承受不了。"
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male.webp",
         choices: [
-            { text: "一頭紅色短髮，眼神銳利看著你的霸氣男子", next: "restart" },
-            { text: "一頭黑色短髮，眼神溫和看著你的和善男子", next: "restart" },
-            { text: "一頭銀白色長髮，冷淡看著你的神祕男子", next: "restart" }
+            { text: "請問你是?(對他有種熟悉的感覺，但因為陌生，你克制自己要走向他的腳步)", next: "restart" }, //好感度+2
+            { text: "請問你是(因為對他有種熟悉感，你不由自主走向他)", next: "restart" }, //好感度+1
+            { text: "請問你是?", next: "restart" }  //好感度沒有增加
         ]
     },
 
-    nodeinner: {
+    //炎燼
+    inner01: {
         bgm: "inner",
-        speaker: "player",
+        speaker: "character",
         text: [
-            "你和女孩一起擊退了男鬼，她的心願得以了結，投胎離去。",
-             "你進入裡世界，四周充滿神秘的藍黑宮廷風，這裡只有覺醒的人才能進入。"
+            "第一次來?",
+            "站到我這邊。妳還不夠強。",
+            "你承受不了這裡的氣息",
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
-        characterImg: "image/male.webp",
-        choices: [{ text: "探索裡世界", next: "restart" }]
+        characterImg: "image/male01.webp",
+        choices: [
+            { text: "請問你是(因為他的氣場，你不由自主走向他)", next: "restart" }, //好感度+2
+            { text: "請問你是?", next: "restart" }  //好感度沒有增加
+        ]
     },
+
+    //墨行
+    inner02: {
+        bgm: "inner",
+        speaker: "character",
+        text: [
+            "第一次來這裡?別害怕!剛來都會不適應",
+            "但這裡氣息太強，你要不要先離開這裡"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male02.webp",
+        choices: [
+            { text: "請問你是(因為他溫和親切的氣息，你不由自主走向他)", next: "restart" }, //好感度+2
+            { text: "請問你是?", next: "restart" } //好感度沒有增加
+        ]
+    },
+    
 
     restart: {
         bgm: "surface",
