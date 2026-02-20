@@ -288,7 +288,7 @@ const storyNodes = {
     restart: {
         bgm: "surface",
         text: ["回到遊戲首頁"],
-        background: "image/DuskCampus.png",
+        background: "image/DuskCampus.webp",
         playerImg: "image/player.png",
         characterImg: "image/male.png",
         choices: [{ text: "重新開始遊戲", next: "start" }]
