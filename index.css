@@ -153,7 +153,7 @@ body {
 .sidebar {
     position: fixed;
     top: 0;
-    left: -260px; /* 初始隱藏 */
+    left: -280px; /* 初始隱藏 */
     width: 250px;
     height: 100%;
     background: rgba(0,0,0,0.9);
@@ -178,7 +178,7 @@ body {
     font-size: 22px;
     padding: 8px 12px;
     border-radius: 8px;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.8);
     color: white;
     border: none;
     cursor: pointer;
@@ -186,7 +186,7 @@ body {
 }
 
 .sidebar-toggle:hover {
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.5);
 }
 
 .panel-section {
@@ -198,13 +198,13 @@ body {
     width: 100%;
     text-align: center;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     padding: 8px 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.6);
 }
 
 /* ==========================
-   📱 手機版 RWD 完整整合
+   📱 手機版 RWD 完整整合（含側邊欄）
 ========================== */
 @media (max-width: 768px) {
 
@@ -270,7 +270,6 @@ body {
         animation: fadeInUp 0.5s forwards;
     }
 
-    /* 動畫延遲 */
     .center-buttons button:nth-child(1) { animation-delay: 0.2s; }
     .center-buttons button:nth-child(2) { animation-delay: 0.4s; }
     .center-buttons button:nth-child(3) { animation-delay: 0.6s; }
@@ -305,5 +304,31 @@ body {
         margin: 0 auto;                   /* 置中 */
         background: rgba(0, 0, 0, 0.5);
         border-radius: 6px;
+    }
+
+    /* -------------------------
+       側邊欄 RWD
+    ------------------------- */
+    .sidebar {
+        width: 200px;                     /* 縮小側邊欄寬度 */
+        left: -220px;                     /* 初始隱藏 */
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .sidebar-toggle {
+        top: 10px;
+        right: -35px;                     /* 按鈕靠近側邊欄 */
+        font-size: 18px;
+        padding: 6px 10px;
+    }
+
+    .panel-section {
+        padding-bottom: 8px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
     }
 }
