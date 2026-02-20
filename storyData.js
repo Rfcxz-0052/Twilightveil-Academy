@@ -441,7 +441,6 @@ const storyNodes = {
         ]
     },
     
-
     restart: {
         bgm: "surface",
         text: [""],
