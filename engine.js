@@ -26,6 +26,10 @@ function updateAffectionUI() {
 }
 
 function showNode(nodeId) {
+    if (nodeId === "restart") {
+    resetAffection();
+    }
+    
     const node = storyNodes[nodeId];
     if (!node) return;
 

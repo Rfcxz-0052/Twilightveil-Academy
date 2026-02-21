@@ -27,3 +27,9 @@ function changeAffection(character, value) {
 function getAffection(character) {
     return affection[character] || 0;
 }
+
+function resetAffection() {
+    Object.keys(affection).forEach(key => {
+        affection[key] = 0;
+    });
+}
