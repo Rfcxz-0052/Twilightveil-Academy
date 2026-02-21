@@ -1,6 +1,13 @@
 // engine.js
 let currentNode = "enter";
 let firstClick = true;
+
+const characterNames = {
+    baiqi: "白祈",   // 白祈
+    yanzhen: "炎燼", // 炎燼
+    moxing: "墨行"  // 墨行
+};
+
 const dialogBox = document.getElementById("dialogBox");
 
 // 更新側邊欄好感度
@@ -8,9 +15,14 @@ function updateAffectionUI() {
     const affectionDiv = document.getElementById("affectionDisplay");
     if (!affectionDiv) return;
 
-    affectionDiv.innerHTML = Object.entries(affection)
-        .map(([char, score]) => `<p>${char}: ${score}</p>`)
-        .join('');
+    affectionDiv.innerHTML =
+        `<h3>❤️ 好感度</h3>` +
+        Object.entries(affection)
+            .map(([char, score]) => {
+                const displayName = characterNames[char] || char;
+                return `<p>${displayName}：${score}</p>`;
+            })
+            .join(''); 
 }
 
 function showNode(nodeId) {
