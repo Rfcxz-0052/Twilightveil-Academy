@@ -27,7 +27,7 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 1200px;
-    height: 75vh;
+    min-height: 75vh;
     gap: 20px;
     transition: all 0.5s ease;
     margin: 0 auto;
@@ -36,8 +36,8 @@ body {
 .player-img, .character-img {
     width: 35%;         /* 比之前更寬 */
     max-width: 500px;   /* 防止過大 */
-    height: 700px;      /* 高度比對話框高 */
-    max-height: 80vh;   /* 限制不要超過視窗高度 */
+    height: 80vh;
+    max-height: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
