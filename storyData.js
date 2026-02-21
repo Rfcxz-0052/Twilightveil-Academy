@@ -44,8 +44,10 @@ const storyNodes = {
         se: "page",
         speaker: "player",
         text: [
-            "你獨自加班到九點，周圍一片安靜。",
-            "突然，你聽到輕微的聲響，好像有人在翻動書頁。"
+            "時鐘指向九點。",
+            "書店只剩下你一個人的呼吸聲。",
+            "——沙。",
+            "書頁翻動的聲音，在空無一人的角落響起。",
         ],
         background: "image/DuskCampus.webp",
         playerImg: "image/player.webp",
@@ -71,7 +73,7 @@ const storyNodes = {
         characterImg: "image/male.webp",
         choices: [
             { text: "翻開書查看", next: "node03" },
-            { text: "不碰，放回原處", next: "node03" }
+            { text: "不碰，放回原處", next: "node03" } //白祈好感度+1
         ]
     },
 
@@ -135,14 +137,17 @@ const storyNodes = {
         se: "attack01",
         speaker: "character",
         text: [
-            "女孩突然揮爪，你的腹部被抓傷，鮮血迅速流下，劇痛讓你倒在地上。"
+            "她的笑容沒有消失。",
+            "但手，已經變成利爪",
+            "下一秒——",
+            "劇痛從腹部炸開。"
         ],
         background: "image/library.webp",
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "你這麼努力，你代替我，你的努力也白費了", next: "node08" },
-            { text: "快逃！", next: "node07" }
+            { text: "你這麼努力...", next: "node08" }, //善意值+1
+            { text: "快逃！", next: "node07" } //黑暗值+1
         ]
     },
 
@@ -157,8 +162,8 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "這不是你的命運，你要守護自己的努力", next: "node08" },
-            { text: "繼續逃跑", next: "node08" }
+            { text: "這不是你的命運，你要守護自己的努力", next: "node08" }, //善意值+1
+            { text: "繼續逃跑", next: "node08" } //黑暗值+1
         ]
     },
 
@@ -174,8 +179,8 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "慢慢地靠近小英", next: "node10" },
-            { text: "躲避，但心中不安", next: "node09" }
+            { text: "慢慢地靠近小英", next: "node10" },  //善意值+1
+            { text: "躲避，但心中不安", next: "node09" } //黑暗值+1
         ]
     },
 
@@ -239,7 +244,7 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/ghost02.webp",
         choices: [
-            { text: "擋住小英：你是誰？", next: "node13" }
+            { text: "擋住小英：你是誰？", next: "node13" } //善意值+1
         ]
     },
 
@@ -264,6 +269,7 @@ const storyNodes = {
         text: [
             "你不和我玩，那我就找她!",
             "男鬼惱羞成怒，指向小英。",
+            "像她這種拼命讀書的，最有趣了。",
             "(看著小英瑟瑟發抖的樣子)",
             "不!你不能動她!"
         ],
@@ -272,7 +278,7 @@ const storyNodes = {
         characterImg: "image/ghost02.webp",
         choices: [
             { text: "你繼續施展靈力，阻擋男鬼靠近", next: "node16" },
-            { text: "逃走，留下女孩", next: "node15" }
+            { text: "逃走，留下女孩", next: "node15" } //黑暗值 +3
         ]
     },
 
@@ -280,7 +286,7 @@ const storyNodes = {
         bgm: "suspense",
         speaker: "character",
         text: [
-            "女孩被男鬼吞噬，你回到書店，耳邊仍迴響著她的慘叫..."
+            "小英被男鬼吞噬，你回到書店，耳邊仍迴響著她的慘叫..."
         ],
         background: "image/library.webp",
         playerImg: "image/player.webp",
@@ -309,16 +315,16 @@ const storyNodes = {
         bgm: "surface",
         speaker: "character",
         text: [
-            "小英感激地看著你",
-            "姐姐,謝謝你和我一起消滅他!",
-            "我活著時，在我的努力下，我一直維持不錯的成績",
-            "但這一切都被他毀了...", 
+            "小英低著頭，語氣比剛才平靜許多。",
+            "「其實……我成績一直都很好。」",
+            "「老師說，只要再撐一學期，就可以拿到推薦資格。」",
         ],
         background: "image/library.webp",
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "我安慰著哭泣的小英", next: "node18" }
+            { text: "我安慰地拍了拍小英的肩膀，靜靜地聽著...", next: "node18" },
+            { text: "靜靜地聽著小英的敘述...", next: "node18" },
         ]
     },
 
@@ -326,16 +332,16 @@ const storyNodes = {
         bgm: "surface",
         speaker: "character",
         text: [
-            "沒關係的，姐姐",
-            "很高興遇到姐姐，抱歉傷了你",
-            "她歉疚的看著我雖然不流血的腹部，但我仍然忍痛的表情",
-            "(她用靈力治好了我，但她的身體越來越透明)", 
+            "她輕輕笑了一下。",
+            "我連畢業照都想好要怎麼拍了。",
+            "結果，那天之後，我再也沒有走出圖書館。",
+            "姐姐，你說……如果那天我早一點離開，是不是就不一樣了？",
         ],
         background: "image/library.webp",
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "我擔憂地看著小英", next: "node19" }
+            { text: "我安慰著流淚的小英", next: "node19" }
         ]
     },
 
@@ -343,20 +349,38 @@ const storyNodes = {
         bgm: "surface",
         speaker: "character",
         text: [
-            "別擔心，姐姐",
-            "我只是要開啟下一段新的旅程了",
-            "她微笑看著我，靈魂漸漸消失",
-            "她的心願得以了結，投胎離去。",
+            "不過沒關係了。",
+            "至少最後一次，是我自己選擇戰鬥的。",
+            "姐姐……謝謝你。",
+            "她的指尖泛起柔和的光。",
+            "溫暖順著傷口蔓延開來。"
         ],
         background: "image/library.webp",
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "我微笑地對小英說:小英，下輩子一定要幸福喔!!", next: "node20" }
+            { text: "我擔憂地看著小英", next: "node20" }
         ]
     },
 
     node20: {
+        bgm: "surface",
+        speaker: "character",
+        text: [
+            "別擔心，姐姐。",
+            "我只是要去下一段旅程了。",
+            "她的身影在光中慢慢變得透明。",
+            "希望下次，我能走到畢業典禮。"
+        ],
+        background: "image/library.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
+        choices: [
+            { text: "小英，下輩子一定要幸福喔!", next: "node21" }
+        ]
+    },
+
+    node21: {
         bgm: "inner",
         speaker: "player",
         text: [
@@ -375,20 +399,22 @@ const storyNodes = {
         bgm: "inner",
         speaker: "player",
         text: [
-            "此時有三位男子出現在你的眼前",
+            "三股截然不同的靈壓同時逼近。",
+            "一熱、一靜、一冷。",
+            "你抬頭，看見三道身影。",
             "你首先看向..."
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male.webp",
         choices: [
-            { text: "一頭紅色短髮，氣場強勢，彷彿理所當然要妳站到他身邊的男子", next: "inner00" },
-            { text: "一頭黑色短髮，目光溫柔，像是在擔心妳是否害怕的男子", next: "inner01" },
-            { text: "一頭銀白色長髮，他的目光冷淡，卻讓你產生一種莫名的熟悉感。" , next: "inner01" }
+            { text: "一頭紅色短髮，氣場強勢，彷彿理所當然要妳站到他身邊的男子", next: "inner00" }, //炎燼好感度+1
+            { text: "一頭黑色短髮，目光溫柔，像是在擔心妳是否害怕的男子", next: "inner01" }, //墨行好感度+1
+            { text: "一頭銀白色長髮，他的目光冷淡，卻讓你產生一種莫名的熟悉感。" , next: "inner02" } //白祈好感度+1
         ]
     },
 
-    //白祈
+    //白祈 (男主1，中間派)
     inner00: {
         bgm: "inner",
         speaker: "character",
@@ -400,13 +426,13 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male.webp",
         choices: [
-            { text: "請問你是?(對他有種熟悉的感覺，但因為陌生，你克制自己要走向他的腳步)", next: "restart" }, //好感度+2
-            { text: "請問你是(因為對他有種熟悉感，你不由自主走向他)", next: "restart" }, //好感度+1
-            { text: "請問你是?", next: "restart" }  //好感度沒有增加
+            { text: "請問你是?(對他有種熟悉的感覺，但因為陌生，你克制自己要走向他的腳步)", next: "node03" }, //白祈好感度+2
+            { text: "請問你是(因為對他有種熟悉感，你不由自主走向他)", next: "node03" }, //白祈好感度+1
+            { text: "請問你是?", next: "node03" }  //白祈好感度沒有增加
         ]
     },
 
-    //炎燼
+    //炎燼 (男主2，滅鬼派)
     inner01: {
         bgm: "inner",
         speaker: "character",
@@ -419,12 +445,12 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male01.webp",
         choices: [
-            { text: "請問你是(因為他的氣場，你不由自主走向他)", next: "restart" }, //好感度+2
-            { text: "請問你是?", next: "restart" }  //好感度沒有增加
+            { text: "請問你是(因為他的氣場，你不由自主走向他)", next: "node03" }, //炎燼好感度+2
+            { text: "請問你是?", next: "node03" }  //炎燼好感度沒有增加
         ]
     },
 
-    //墨行
+    //墨行 (男主3，渡鬼派)
     inner02: {
         bgm: "inner",
         speaker: "character",
@@ -436,11 +462,27 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male02.webp",
         choices: [
-            { text: "請問你是(因為他溫和親切的氣息，你不由自主走向他)", next: "restart" }, //好感度+2
-            { text: "請問你是?", next: "restart" } //好感度沒有增加
+            { text: "請問你是(因為他溫和親切的氣息，你不由自主走向他)", next: "node03" }, //墨行好感度+2
+            { text: "請問你是?", next: "node03" } //墨行好感度沒有增加
         ]
     },
-    
+
+    inner03: {
+        bgm: "inner",
+        speaker: "character",
+        text: [
+            "(一個和藹的老爺爺微笑看著你)",
+            "小姑娘，別理他們，你才剛覺醒靈力",
+            "靈學院的靈氣較強，剛開始你會比較難適應"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male03.webp",
+        choices: [
+            { text: "你好，請問您是?", next: "restart" },
+        ]
+    },
+
     restart: {
         bgm: "surface",
         text: [""],
