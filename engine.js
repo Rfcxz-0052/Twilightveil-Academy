@@ -25,11 +25,23 @@ function updateAffectionUI() {
             .join(''); 
 }
 
+function updateMoralityUI() {
+    const moralityDiv = document.getElementById("moralityDisplay");
+    if (!moralityDiv) return;
+
+    moralityDiv.innerHTML = `
+        <h3>⚖️ 善惡傾向</h3>
+        <p>🌿 善意：${morality.light}</p>
+        <p>🌑 黑暗：${morality.dark}</p>
+        <p>✨ 傾向值：${getMoralityBalance()}</p>
+    `;
+}
+
 function showNode(nodeId) {
     if (nodeId === "restart") {
     resetAffection();
     }
-    
+
     const node = storyNodes[nodeId];
     if (!node) return;
 
@@ -86,6 +98,13 @@ function showNode(nodeId) {
                     }
                 }
 
+                // 加善惡值
+                if (choice.morality) {
+                    for (const [type, value] of Object.entries(choice.morality)) {
+                        changeMorality(type, value);
+                    }
+                }
+
                 // 更新側邊欄
                 updateAffectionUI();
 
@@ -125,6 +144,7 @@ function showNode(nodeId) {
 
     // 更新好感度側邊欄
     updateAffectionUI();
+    updateMoralityUI();
 }
 
 // 初始顯示

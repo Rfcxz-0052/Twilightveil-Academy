@@ -183,8 +183,8 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "慢慢地靠近小英", next: "node10" },  //善意值+1
-            { text: "對小英的哀求，你沒有理會，只是一心想著離開", next: "node09" } //黑暗值+1
+            { text: "慢慢地靠近小英", next: "node10", morality: { light: 1 } },  //善意值+1
+            { text: "對小英的哀求，你沒有理會，只是一心想著離開", next: "node09", morality: { dark: 1 } } //黑暗值+1
         ]
     },
 
@@ -285,7 +285,7 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/ghost02.webp",
         choices: [
-            { text: "擋在小英前：你是誰？", next: "node14" } //善意值+1
+            { text: "擋在小英前：你是誰？", next: "node14", morality: { light: 1 } } //善意值+1
         ]
     },
 
@@ -319,7 +319,7 @@ const storyNodes = {
         characterImg: "image/ghost02.webp",
         choices: [
             { text: "你繼續施展靈力，阻擋男鬼靠近", next: "node17" },
-            { text: "逃走，留下女孩", next: "node16" } //黑暗值 +3
+            { text: "逃走，留下女孩", next: "node16", morality: { dark: 3 }} //黑暗值 +3
         ]
     },
 
