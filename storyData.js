@@ -1,3 +1,4 @@
+// storyData.js
 const storyNodes = {
     // 第一章 靈力覺醒的契機
     enter: {
@@ -242,7 +243,6 @@ const storyNodes = {
 
     node11: {
         bgm: "suspense",
-        se:"attack02",
         speaker: "player",
         text: [
             "絕望之際，一股未知的力量從體內升起，溫暖而強烈...",
@@ -446,9 +446,9 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male.webp",
         choices: [
-            { text: "一頭紅色短髮，氣場強勢，彷彿理所當然要妳站到他身邊的男子", next: "inner01" }, //炎燼好感度+1
-            { text: "一頭黑色短髮，目光溫柔，像是在擔心妳是否害怕的男子", next: "inner02" }, //墨行好感度+1
-            { text: "一頭銀白色長髮，他的目光冷淡，卻讓你產生一種莫名的熟悉感。" , next: "inner00" } //白祈好感度+1
+            { text: "一頭紅色短髮，氣場強勢，彷彿理所當然要妳站到他身邊的男子", next: "inner01", affection: { yanzhen: 2 } }, //炎燼好感度+1
+            { text: "一頭黑色短髮，目光溫柔，像是在擔心妳是否害怕的男子", next: "inner02", affection: { moxing: 2}  }, //墨行好感度+1
+            { text: "一頭銀白色長髮，他的目光冷淡，卻讓你產生一種莫名的熟悉感。" , next: "inner00", affection: { baiqi: 1 } } //白祈好感度+1
         ]
     },
 
@@ -464,9 +464,9 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male.webp",
         choices: [
-            { text: "……我們是不是在哪裡見過？（壓下想靠近他的衝動)", next: "inner03" }, //白祈好感度+2
-            { text: "為什麼……我會覺得你很熟悉？（忍不住向他走近）", next: "inner03" }, //白祈好感度+1
-            { text: "你是誰?", next: "inner03" }  //白祈好感度沒有增加
+            { text: "……我們是不是在哪裡見過？（壓下想靠近他的衝動)", next: "inner03", affection: { baiqi: 2 } }, //白祈好感度+2
+            { text: "為什麼……我會覺得你很熟悉？（忍不住向他走近）", next: "inner03", affection: { baiqi: 1 } }, //白祈好感度+1
+            { text: "你是誰?", next: "inner03",affection: { baiqi: 0 } }  //白祈好感度沒有增加
         ]
     },
 
@@ -482,9 +482,9 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male01.webp",
         choices: [
-            { text: "……好，我準備走向你。", next: "inner03" }, //炎燼好感度+2
-            { text: "你憑什麼命令我？", next: "inner03" }, //炎燼好感度沒有增加
-            { text: "我自己可以站著。", next: "inner03" }  //炎燼好感度+1
+            { text: "……好，我準備走向你。", next: "inner03", affection: { yanzhen: 2 } }, //炎燼好感度+2
+            { text: "你憑什麼命令我？", next: "inner03", affection: { yanzhen: 0 } }, //炎燼好感度沒有增加
+            { text: "我自己可以站著。", next: "inner03", affection: { yanzhen: 1 } }  //炎燼好感度+1
         ]
     },
 
@@ -500,9 +500,9 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male02.webp",
         choices: [
-            { text: "……謝謝你，我確實有點不舒服。", next: "inner03" }, //墨行好感度+2
-            { text: "你一直在看著我?", next: "inner03" }, //墨行好感度+1         
-            { text: "我還撐得住。",  next: "inner03" } //墨行好感度沒有增加
+            { text: "……謝謝你，我確實有點不舒服。", next: "inner03", affection: { moxing: 2 } }, //墨行好感度+2
+            { text: "你一直在看著我?", next: "inner03", affection: { moxing: 1 } }, //墨行好感度+1         
+            { text: "我還撐得住。",  next: "inner03", affection: { moxing: 0 } } //墨行好感度沒有增加
         ]
     },
 
@@ -518,10 +518,26 @@ const storyNodes = {
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
-        characterImg: "image/male03.webp",
+        characterImg: "image/male04.webp",
         choices: [
-            { text: "爺爺你好，能跟我說說什麼是靈力和靈氣膜嗎？", next: "restart" },
+            { text: "爺爺你好，能跟我說說什麼是靈力和靈氣膜嗎？", next: "inner04" },
         ]
+    },
+
+    inner04: {
+        bgm: "inner",
+        speaker: "character",
+        text: [
+            "此時，一個和藹的老爺爺突然出現，微笑看著你。",
+            "小姑娘，你一定很疑惑吧？",
+            "這是因為你才剛覺醒靈力，",
+            "再加上你身上的靈氣膜曾被某股力量劃破，",
+            "所以你會比較難適應這裡的氣息。"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male03.webp",
+        next: "restart"
     },
 
     restart: {

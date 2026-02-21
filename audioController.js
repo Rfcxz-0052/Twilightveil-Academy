@@ -1,3 +1,4 @@
+// audioController.js
 const bgmMap = {
     surface: document.getElementById("bgmSurface"),
     inner: document.getElementById("bgmInner"),

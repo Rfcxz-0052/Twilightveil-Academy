@@ -16,6 +16,7 @@
             <div id="dialogBox" class="dialog-box">
                 <div id="storyText" class="story"></div>
                 <div id="choiceButtons" class="center-buttons"></div>
+                <div id="nextIndicator">▼ 點擊繼續 </div>
             </div>
         </div>
         <div id="characterImg" class="character-img"><img src="" alt="character"></div>
@@ -34,6 +35,10 @@
             <input type="range" min="0" max="1" step="0.01" id="seSlider">
             </label><br>
         </div>
+
+        <div id="affectionDisplay">
+            <!-- 好感度會自動更新 -->
+        </div>
     </div>
 
     <!-- BGM / SE 音源 -->
@@ -47,6 +52,7 @@
     <audio id="seattack02" src="audio/attack02.mp3"></audio>
     <audio id="seghost01" src="audio/ghost01.mp3"></audio>
 
+    <script src="affection.js"></script>
     <script src="storyData.js"></script>
     <script src="audioController.js"></script>
     <script src="engine.js"></script>

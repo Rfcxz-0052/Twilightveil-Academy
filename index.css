@@ -1,3 +1,4 @@
+/*index.css*/
 /* ==========================
    全局基本樣式
 ========================== */
@@ -456,5 +457,30 @@ body {
     .panel-section {
         padding-bottom: 8px;
         border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+}
+
+#nextIndicator {
+    display: none;
+    text-align: center;
+    font-size: 26px;
+    margin-top: 10px;
+    cursor: pointer;
+    animation: breathe 1.2s infinite ease-in-out;
+}
+
+/* 呼吸動畫 */
+@keyframes breathe {
+    0% {
+        opacity: 0.3;
+        transform: translateY(0px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(6px);
+    }
+    100% {
+        opacity: 0.3;
+        transform: translateY(0px);
     }
 }

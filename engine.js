@@ -1,6 +1,17 @@
+// engine.js
 let currentNode = "enter";
 let firstClick = true;
 const dialogBox = document.getElementById("dialogBox");
+
+// 更新側邊欄好感度
+function updateAffectionUI() {
+    const affectionDiv = document.getElementById("affectionDisplay");
+    if (!affectionDiv) return;
+
+    affectionDiv.innerHTML = Object.entries(affection)
+        .map(([char, score]) => `<p>${char}: ${score}</p>`)
+        .join('');
+}
 
 function showNode(nodeId) {
     const node = storyNodes[nodeId];
@@ -12,11 +23,8 @@ function showNode(nodeId) {
     if (!firstClick) switchBGM(node.bgm);
 
     const middleArea = document.querySelector(".middle-area");
-
-    // 所有節點文字+選項置中
     middleArea.classList.add("centered");
 
-    // 首頁 / restart → 對話框樣式
     if (nodeId === "enter" || nodeId === "restart") {
         dialogBox.classList.add("no-box");
     } else {
@@ -48,16 +56,59 @@ function showNode(nodeId) {
     const buttonsDiv = document.getElementById("choiceButtons");
     buttonsDiv.innerHTML = "";
 
-    node.choices.forEach(choice => {
-        const btn = document.createElement("button");
-        btn.innerText = choice.text;
-        btn.onclick = () => {
-            if (firstClick) { switchBGM(node.bgm); firstClick = false; }
-            currentNode = choice.next;
-            showNode(currentNode);
-        };
-        buttonsDiv.appendChild(btn);
-    });
+    if (node.choices && node.choices.length > 0) {
+        node.choices.forEach(choice => {
+            const btn = document.createElement("button");
+            btn.innerText = choice.text;
+            btn.onclick = () => {
+                // 加好感度
+                if (choice.affection) {
+                    for (const [char, value] of Object.entries(choice.affection)) {
+                        if (affection[char] !== undefined) {
+                            affection[char] += value;
+                        }
+                    }
+                }
+
+                // 更新側邊欄
+                updateAffectionUI();
+
+                if (firstClick) { switchBGM(node.bgm); firstClick = false; }
+                currentNode = choice.next;
+                showNode(currentNode);
+            };
+            buttonsDiv.appendChild(btn);
+        });
+    }
+
+    // ▼ 下一步提示控制
+    const nextIndicator = document.getElementById("nextIndicator");
+
+    if (nextIndicator) {
+
+        // 先清除舊事件（避免重複綁定）
+        nextIndicator.onclick = null;
+
+        // 如果沒有選項 → 顯示 ▼
+        if (!node.choices || node.choices.length === 0) {
+
+            nextIndicator.style.display = "block";
+
+            // 點擊 ▼ 跳到下一節點
+            nextIndicator.onclick = () => {
+                if (node.next) {
+                    currentNode = node.next;
+                    showNode(currentNode);
+                }
+            };
+
+        } else {
+            nextIndicator.style.display = "none";
+        }
+    }
+
+    // 更新好感度側邊欄
+    updateAffectionUI();
 }
 
 // 初始顯示
