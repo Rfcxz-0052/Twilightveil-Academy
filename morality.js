@@ -25,3 +25,12 @@ function changeMorality(type, value) {
 function getMoralityBalance() {
     return morality.light - morality.dark;
 }
+
+/**
+ * 重置善惡值
+ */
+function resetMorality() {
+    morality.light = 0;
+    morality.dark = 0;
+    updateMoralityUI(); // 同步更新側邊欄
+}

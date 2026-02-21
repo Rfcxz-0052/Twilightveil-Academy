@@ -536,7 +536,7 @@ const storyNodes = {
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
-        characterImg: "image/male03.webp",
+        characterImg: "image/male04.webp",
         next: "restart"
     },
 

@@ -341,8 +341,8 @@ body {
         height: 100vh;          /* 撐滿螢幕 */
         justify-content: space-between; /* 讓元素上下均分 */
         align-items: center;
-        gap: 5px;
-        padding: 5px 0;
+        gap: 3px;
+        padding: 3px 0;
     }
 
     /* 對話框 + 故事文字 + 選項區 */
@@ -405,7 +405,7 @@ body {
     .player-img,
     .character-img {
         order: 2;
-        height: 40%;      /* 比中間對話區塊（35%）更高 */
+        height: 35%;      /* 比中間對話區塊（35%）更高 */
         width: 55%;       /* 比之前更寬 */
         max-width: 90vw;  /* 防止超出螢幕 */
         display: flex;
