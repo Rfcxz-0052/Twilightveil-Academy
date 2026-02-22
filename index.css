@@ -64,7 +64,7 @@ body {
    對話框
 ========================== */
 .dialog-box {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.3);
     border-radius: 12px;
     padding: 20px;
     width: 100%;
@@ -334,6 +334,7 @@ body {
     .story-container {
         flex-direction: column;
         height: 100vh;
+        width: 100%;
         justify-content: space-between;
         align-items: center;
         padding: 0;
@@ -343,12 +344,11 @@ body {
     /* 對話框 + 故事文字 + 選項區 */
     .middle-area {
         order: 1;
-        height: 42%;              /* 黃金比例 */
+        height: 38%;
         width: 92%;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 6px;
     }
 
     .dialog-box {
@@ -363,24 +363,20 @@ body {
 
     /* 故事文字再縮小一點 */
     .story {
-        font-size: clamp(18px, 5.2vw, 22px);
-        line-height: 1.5;
-        font-weight: bold;
-        margin-bottom: 8px;
+        font-size: clamp(15px, 4.8vw, 19px);
+        line-height: 1.4;
+        margin-bottom: 6px;
     }
 
     /* 選項按鈕容器 */
     .center-buttons {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;                       
-        align-items: center;
+        gap: 6px;
     }
 
     .center-buttons button {
-        font-size: clamp(16px, 4.5vw, 20px);               
-        padding: 7px 12px;              /* ← 稍微壓縮 */
+        font-size: clamp(13px, 4vw, 17px);               
+        padding: 6px 10px;              /* ← 稍微壓縮 */
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
@@ -395,18 +391,16 @@ body {
     .center-buttons button:nth-child(2) { animation-delay: 0.4s; }
     .center-buttons button:nth-child(3) { animation-delay: 0.6s; }
 
-    /* 玩家 & 角色圖片（重點調整！） */
+    /* 玩家 & 角色圖片 */
     .player-img,
     .character-img {
         order: 2;
-        height: 48%;                    /* ← 從 35% 降到 32%，解決人物出現時的捲動 */
-        width: 60%;                     /* 稍微寬一點，讓角色更顯眼 */
-        max-width: 90vw;
+        height: 44%;                    
+        width: 65%;                     
+        max-width: 92vw;
         display: flex;
         justify-content: center;
         align-items: flex-end;
-        margin-top: 0;
-        margin-bottom: 4px;
     }
 
     .player-img img,
@@ -419,13 +413,12 @@ body {
     /* Footer */
     .site-footer {
         order: 3;
+        height: 6%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 0.55rem;
-        padding: 2px 0;
-        text-align: center;
-        width: 100%;
-        margin: 0 auto;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 6px;
+        background: rgba(0,0,0,0.5);
     }
 
     /* 側邊欄（保持不變） */

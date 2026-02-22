@@ -512,7 +512,7 @@ const storyNodes = {
         text: [
             "此時，一個和藹的老爺爺突然出現，微笑看著你。",
             "小姑娘，別理那三個莽撞的臭小子",
-            "你剛來這裡，一定產生很多疑惑吧？",
+            "你剛來這裡，一定有很多疑惑吧？",
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
@@ -527,15 +527,15 @@ const storyNodes = {
         speaker: "character",
         text: [
             "我是學院的引路人，專門引領剛進來的覺醒者",
-            "你才剛覺醒靈力，",
-            "再加上你身上的靈氣膜曾被某股力量劃破，",
+            "你剛覺醒靈力，",
+            "再加上你身上的界膜曾被某股力量劃破，",
             "所以你會比較難適應這裡的氣息。"
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male04.webp",
         choices: [
-            { text: "爺爺你能跟我說說什麼是靈力和靈氣膜嗎？", next: "inner05" },
+            { text: "爺爺你能跟我說說什麼是靈力和界膜嗎？", next: "inner05" },
         ]
     },
 
@@ -546,15 +546,13 @@ const storyNodes = {
             "先說說界膜吧!它是每一個人出生天然擁有的",
             "可以區隔人還活著的表世界，和亡者所在的裡世界",
             "所以界膜可以防止活人被一般的鬼魂所傷",
-            "爺爺，這樣我是來到地獄了嗎?",
+            "爺爺，那我這是來到地獄了嗎?",
             "不，這裡是與冥界，也就是你說的地獄的交際處"
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male04.webp",
-        choices: [
-            { text: "交際處?", next: "inner06" },
-        ]
+        next: "inner06"
     },
 
     inner06: {
@@ -577,9 +575,9 @@ const storyNodes = {
         speaker: "character",
         text: [
             "至於靈力，是被破除界膜後，才有可能覺醒",
-            "而醒你正是剛覺的狀態，需要學習如何穩定你的靈力",
-            "而且靈學院靈力漫佈，再加上你剛剛才剛滅掉一個鬼魂",
-            "需要穩定靈力，才不會暴走",
+            "靈學院靈力漫佈，再加上你剛剛才剛滅掉一個鬼魂",
+            "你需要學習如何穩定你的靈力",
+            "你的靈力才不會暴走"
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
