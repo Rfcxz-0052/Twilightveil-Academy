@@ -119,7 +119,7 @@ const storyNodes = {
         bgm: "suspense",
         speaker: "character",
         text: [
-            "(小瑛沒有回答你的問題，只是渴望的看著你)",
+            "(小英沒有回答你的問題，只是渴望的看著你)",
             "姐姐這麼晚了，一個人還在加班",
             "感覺好像很辛苦，我來替你工作好不好？",
             "你看著她渴望的眼神，覺得氣氛越來越奇怪，心裡有一絲不安。"
@@ -156,8 +156,8 @@ const storyNodes = {
         bgm: "suspense",
         speaker: "character",
         text: [
-            "女孩的語氣變得急切，眼神渴求你的身體。",
-            "不!我不想再等了，我等了好久好久了",
+            "小英的語氣變得急切，眼神渴求你的身體。",
+            "不!我在這裡等了好久好久了...",
             "姐姐不是常常抱怨要加班",
             "把妳的身體給我，姐姐就可以休息了",
         ],
@@ -252,9 +252,7 @@ const storyNodes = {
         background: "image/library.webp",
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
-        choices: [
-            { text: "你思考著...", next: "node12" },
-        ]
+        next: "node12"
     },
 
     node12: {
@@ -285,7 +283,8 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/ghost02.webp",
         choices: [
-            { text: "擋在小英前：你是誰？", next: "node14"}
+            { text: "擋在小英前：你是誰？", next: "node14", lightShadow: { light: 1 }},
+            { text: "你是誰？", next: "node14", lightShadow: { shadow: 1 } }
         ]
     },
 
@@ -300,7 +299,7 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/ghost02.webp",
         choices: [
-            { text: "爆發靈力，阻止他靠近", next: "node15" }
+            { text: "施展剛剛湧現的力量，阻止他靠近", next: "node15" }
         ]
     },
 
@@ -312,14 +311,14 @@ const storyNodes = {
             "男鬼惱羞成怒，指向小英。",
             "像她這種拼命讀書的，最有趣了。",
             "小英微微後退，但她的手心光芒閃動，彷彿準備出手。",
-            "不!你不能動她!"
         ],
         background: "image/library.webp",
         playerImg: "image/player.webp",
         characterImg: "image/ghost02.webp",
         choices: [
-            { text: "你繼續施展靈力，阻擋男鬼靠近", next: "node17", lightShadow: { light: 2 }},
-            { text: "逃走，留下女孩", next: "node16", lightShadow: { shadow: 2 }}
+            { text: "不!你不能動她!(你獨自施展力量，消滅男鬼)", next: "node18", lightShadow: { shadow: 2 }},
+            { text: "你感覺到小英的力量與你共鳴", next: "node17", lightShadow: { light: 2 }},
+            { text: "逃走，留下女孩", next: "node16"}
         ]
     },
 
@@ -356,6 +355,7 @@ const storyNodes = {
         bgm: "surface",
         speaker: "character",
         text: [
+            "(男鬼被成功消滅了)",
             "小英低著頭，語氣比剛才平靜許多。",
             "「其實……我成績一直都很好。」",
             "「老師說，只要再撐一學期，就可以拿到推薦資格。」",

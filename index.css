@@ -338,22 +338,23 @@ body {
     /* 整體上下排列，撐滿螢幕 */
     .story-container {
         flex-direction: column;
-        height: 100vh;          /* 撐滿螢幕 */
+        height: 95vh;          /* 撐滿螢幕 */
         justify-content: space-between; /* 讓元素上下均分 */
         align-items: center;
-        gap: 3px;
-        padding: 3px 0;
+        gap: 0;
+        padding: 0;
+        overflow: hidden; 
     }
 
     /* 對話框 + 故事文字 + 選項區 */
     .middle-area {
         order: 1;
-        height: 45%;             /* 占螢幕高度 35% */
+        height: 45%;           
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 5px;
-        width: 90%;              /* 寬度縮小以符合手機 */
+        padding: 2px;
+        width: 90%;           
     }
 
     .dialog-box {
@@ -364,14 +365,14 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 10px;
+        padding: 5px;
         box-sizing: border-box;
     }
 
     /* 故事文字縮小 */
     .story {
         font-size: 16px;         /* 縮小字體 */
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     /* 選項按鈕容器 */
@@ -385,9 +386,9 @@ body {
 
     /* 選項按鈕 */
     .center-buttons button {
-        font-size: 16px;         /* 縮小文字 */
-        padding: 6px 10px;       /* 縮小內距 */
-        width: 100%;             /* 撐滿對話框 */
+        font-size: 16px;         
+        padding: 6px 10px;       
+        width: 100%;             
         max-width: 100%;
         box-sizing: border-box;
         white-space: normal;
@@ -411,7 +412,7 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 5px;
+        margin-top: 3px;
     }
 
     .player-img img,
@@ -425,7 +426,7 @@ body {
     .site-footer {
         order: 3;
         font-size: 0.55rem;               /* 縮小文字 */
-        padding: 4px 0;                   /* 內距縮小 */
+        padding: 2px 0;                   /* 內距縮小 */
         text-align: center;
         width: 90%;
         margin: 0 auto;                   /* 置中 */
@@ -463,8 +464,9 @@ body {
 #nextIndicator {
     display: none;
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
     margin-top: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
     animation: breathe 1.2s infinite ease-in-out;
 }
