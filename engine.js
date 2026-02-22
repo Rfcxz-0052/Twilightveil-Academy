@@ -38,9 +38,9 @@ function updateMoralityUI() {
 }
 
 function showNode(nodeId) {
-    if (nodeId === "restart") {
-    resetAffection();
-    resetMorality();
+    if (nodeId === "restart" || nodeId === "enter") {
+        resetAffection();
+        resetMorality();
     }
 
     const node = storyNodes[nodeId];
