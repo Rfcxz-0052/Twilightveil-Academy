@@ -60,15 +60,6 @@ body {
     transition: all 0.5s ease;
 }
 
-/* --------------------------
-   中心對齊 (首頁 + 所有節點)
---------------------------- */
-.middle-area.centered {
-    justify-content: center;  /* 垂直置中 */
-    align-items: center;      /* 水平置中 */
-    text-align: center;
-}
-
 /* ==========================
    對話框
 ========================== */
@@ -375,7 +366,7 @@ body {
 
     /* 故事文字再縮小一點 */
     .story {
-        font-size: 15px;                /* ← 從 16px 降到 15px */
+        font-size: 18px;                /* ← 從 16px 降到 15px */
         margin-bottom: 6px;
         line-height: 1.35;              /* 新增，讓中文更省空間 */
     }
@@ -390,7 +381,7 @@ body {
     }
 
     .center-buttons button {
-        font-size: 15px;                /* ← 從 16px 降到 15px */
+        font-size: 18px;                /* ← 從 16px 降到 15px */
         padding: 7px 12px;              /* ← 稍微壓縮 */
         width: 100%;
         max-width: 100%;
@@ -410,13 +401,14 @@ body {
     .player-img,
     .character-img {
         order: 2;
-        height: 32%;                    /* ← 從 35% 降到 32%，解決人物出現時的捲動 */
+        height: 50%;                    /* ← 從 35% 降到 32%，解決人物出現時的捲動 */
         width: 58%;                     /* 稍微寬一點，讓角色更顯眼 */
         max-width: 85vw;
         display: flex;
         justify-content: center;
         align-items: center;
         margin-top: 0;
+        margin-bottom: 10px;
     }
 
     .player-img img,
