@@ -298,7 +298,7 @@ body {
         order: 3;
         font-size: 0.65rem;
         padding: 4px 0;
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
         text-align: center;
         background: rgba(0, 0, 0, 0.5);
@@ -331,30 +331,34 @@ body {
 }
 
 /* ==========================
-   📱 手機版 RWD 完整整合（含側邊欄）
+   📱 手機版 RWD 完整整合（已優化單螢幕顯示）
 ========================== */
 @media (max-width: 768px) {
 
-    /* 整體上下排列，撐滿螢幕 */
+    body {
+    overflow-y: hidden;
+    }
+
+    /* 整體上下排列，100vh 確保不超出畫面 */
     .story-container {
         flex-direction: column;
-        height: 95vh;          /* 撐滿螢幕 */
-        justify-content: space-between; /* 讓元素上下均分 */
+        height: 100vh;                  /* ← 改成 100vh */
+        justify-content: space-between;
         align-items: center;
         gap: 0;
         padding: 0;
-        overflow: hidden; 
+        overflow: hidden;
     }
 
     /* 對話框 + 故事文字 + 選項區 */
     .middle-area {
         order: 1;
-        height: 45%;           
+        height: 43%;                    /* ← 從 45% 降到 43% */
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding: 2px;
-        width: 90%;           
+        padding: 5px;                   /* 微調置中 */
+        width: 90%;
     }
 
     .dialog-box {
@@ -365,14 +369,15 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 5px;
+        padding: 8px;                   /* ← 原本 5px，保持可讀性 */
         box-sizing: border-box;
     }
 
-    /* 故事文字縮小 */
+    /* 故事文字再縮小一點 */
     .story {
-        font-size: 16px;         /* 縮小字體 */
-        margin-bottom: 5px;
+        font-size: 15px;                /* ← 從 16px 降到 15px */
+        margin-bottom: 6px;
+        line-height: 1.35;              /* 新增，讓中文更省空間 */
     }
 
     /* 選項按鈕容器 */
@@ -380,15 +385,14 @@ body {
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;                       /* ← 從 8px 縮小 */
         align-items: center;
     }
 
-    /* 選項按鈕 */
     .center-buttons button {
-        font-size: 16px;         
-        padding: 6px 10px;       
-        width: 100%;             
+        font-size: 15px;                /* ← 從 16px 降到 15px */
+        padding: 7px 12px;              /* ← 稍微壓縮 */
+        width: 100%;
         max-width: 100%;
         box-sizing: border-box;
         white-space: normal;
@@ -402,17 +406,17 @@ body {
     .center-buttons button:nth-child(2) { animation-delay: 0.4s; }
     .center-buttons button:nth-child(3) { animation-delay: 0.6s; }
 
-    /* 玩家 & 角色圖片 */
+    /* 玩家 & 角色圖片（重點調整！） */
     .player-img,
     .character-img {
         order: 2;
-        height: 35%;      /* 比中間對話區塊（35%）更高 */
-        width: 55%;       /* 比之前更寬 */
-        max-width: 90vw;  /* 防止超出螢幕 */
+        height: 32%;                    /* ← 從 35% 降到 32%，解決人物出現時的捲動 */
+        width: 58%;                     /* 稍微寬一點，讓角色更顯眼 */
+        max-width: 85vw;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 3px;
+        margin-top: 0;
     }
 
     .player-img img,
@@ -425,21 +429,19 @@ body {
     /* Footer */
     .site-footer {
         order: 3;
-        font-size: 0.55rem;               /* 縮小文字 */
-        padding: 2px 0;                   /* 內距縮小 */
+        font-size: 0.55rem;
+        padding: 2px 0;
         text-align: center;
-        width: 90%;
-        margin: 0 auto;                   /* 置中 */
+        width: 100%;
+        margin: 0 auto;
         background: rgba(0, 0, 0, 0.5);
         border-radius: 6px;
     }
 
-    /* -------------------------
-       側邊欄 RWD
-    ------------------------- */
+    /* 側邊欄（保持不變） */
     .sidebar {
-        width: 200px;                     /* 縮小側邊欄寬度 */
-        left: -220px;                     /* 初始隱藏 */
+        width: 200px;
+        left: -220px;
         padding: 15px;
         gap: 15px;
     }
@@ -450,7 +452,7 @@ body {
 
     .sidebar-toggle {
         top: 10px;
-        right: -35px;                     /* 按鈕靠近側邊欄 */
+        right: -35px;
         font-size: 18px;
         padding: 6px 10px;
     }
