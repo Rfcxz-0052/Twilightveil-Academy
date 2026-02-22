@@ -344,7 +344,7 @@ body {
     /* 對話框 + 故事文字 + 選項區 */
     .middle-area {
         order: 1;
-        height: 43%;                    /* ← 從 45% 降到 43% */
+        height: 40%;                    /* ← 從 45% 降到 43% */
         justify-content: center;
         align-items: center;
         text-align: center;
@@ -360,15 +360,15 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 8px;                 
+        padding: 6px 10px;                 
         box-sizing: border-box;
     }
 
     /* 故事文字再縮小一點 */
     .story {
-        font-size: 20px;                
+        font-size: clamp(18px, 5vw, 22px);
+        line-height: 1.5;  
         margin-bottom: 6px;
-        line-height: 1.35;              /* 新增，讓中文更省空間 */
     }
 
     /* 選項按鈕容器 */
@@ -381,7 +381,7 @@ body {
     }
 
     .center-buttons button {
-        font-size: 20px;               
+        font-size: clamp(16px, 4.5vw, 20px);               
         padding: 7px 12px;              /* ← 稍微壓縮 */
         width: 100%;
         max-width: 100%;
@@ -401,7 +401,7 @@ body {
     .player-img,
     .character-img {
         order: 2;
-        height: 50%;                    /* ← 從 35% 降到 32%，解決人物出現時的捲動 */
+        height: 48%;                    /* ← 從 35% 降到 32%，解決人物出現時的捲動 */
         width: 58%;                     /* 稍微寬一點，讓角色更顯眼 */
         max-width: 85vw;
         display: flex;
