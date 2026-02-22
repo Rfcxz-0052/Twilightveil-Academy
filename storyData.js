@@ -73,8 +73,8 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male.webp",
         choices: [
-            { text: "翻開書查看", next: "node03" },
-            { text: "不碰，放回原處", next: "node03" } //白祈好感度+1
+            { text: "翻開書查看", next: "node03", lightShadow: { shadow: 1 } },   // 好奇心偏影
+            { text: "不碰，放回原處", next: "node03", affection: { baiqi: 1 }, lightShadow: { light: 1 } } //白祈好感度+1、克制偏光
         ]
     },
 
@@ -165,8 +165,8 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "這不是你的命運，你要守護自己的努力(你警惕看著她)", next: "node08" },
-            { text: "繼續往後退，看看四周哪裡可以逃跑", next: "node09" }
+            { text: "這不是你的命運，你要守護自己的努力(你警惕看著她)", next: "node08", lightShadow: { light: 2 } },
+            { text: "繼續往後退，看看四周哪裡可以逃跑", next: "node09", lightShadow: { shadow: 1 } }
         ]
     },
 
@@ -183,8 +183,8 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "慢慢地靠近小英", next: "node10", morality: { light: 1 } },  //善意值+1
-            { text: "對小英的哀求，你沒有理會，只是一心想著離開", next: "node09", morality: { dark: 1 } } //黑暗值+1
+            { text: "慢慢地靠近小英", next: "node10"},
+            { text: "對小英的哀求，你沒有理會，只是一心想著離開", next: "node09"}
         ]
     },
 
@@ -285,7 +285,7 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/ghost02.webp",
         choices: [
-            { text: "擋在小英前：你是誰？", next: "node14", morality: { light: 1 } } //善意值+1
+            { text: "擋在小英前：你是誰？", next: "node14"}
         ]
     },
 
@@ -318,8 +318,8 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/ghost02.webp",
         choices: [
-            { text: "你繼續施展靈力，阻擋男鬼靠近", next: "node17" },
-            { text: "逃走，留下女孩", next: "node16", morality: { dark: 3 }} //黑暗值 +3
+            { text: "你繼續施展靈力，阻擋男鬼靠近", next: "node17", lightShadow: { light: 2 }},
+            { text: "逃走，留下女孩", next: "node16", lightShadow: { shadow: 2 }}
         ]
     },
 
@@ -464,8 +464,8 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male.webp",
         choices: [
-            { text: "……我們是不是在哪裡見過？（壓下想靠近他的衝動)", next: "inner03", affection: { baiqi: 2 } }, //白祈好感度+2
-            { text: "為什麼……我會覺得你很熟悉？（忍不住向他走近）", next: "inner03", affection: { baiqi: 1 } }, //白祈好感度+1
+            { text: "……我們是不是在哪裡見過？（壓下想靠近他的衝動)", next: "inner03", affection: { baiqi: 2 }, lightShadow: { light: 1 } }, //白祈好感度+2
+            { text: "為什麼……我會覺得你很熟悉？（忍不住向他走近）", next: "inner03", affection: { baiqi: 1 }, lightShadow: { shadow: 1 } }, //白祈好感度+1
             { text: "你是誰?", next: "inner03",affection: { baiqi: 0 } }  //白祈好感度沒有增加
         ]
     },
@@ -482,9 +482,9 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male01.webp",
         choices: [
-            { text: "……好，我準備走向你。", next: "inner03", affection: { yanzhen: 2 } }, //炎燼好感度+2
+            { text: "……好，我準備走向你。", next: "inner03", affection: { yanzhen: 2 }, lightShadow: { shadow: 1 } }, //炎燼好感度+2
             { text: "你憑什麼命令我？", next: "inner03", affection: { yanzhen: 0 } }, //炎燼好感度沒有增加
-            { text: "我自己可以站著。", next: "inner03", affection: { yanzhen: 1 } }  //炎燼好感度+1
+            { text: "我自己可以站著。", next: "inner03", affection: { yanzhen: 1 }, lightShadow: { light: 1 } }  //炎燼好感度+1
         ]
     },
 
@@ -500,9 +500,9 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male02.webp",
         choices: [
-            { text: "……謝謝你，我確實有點不舒服。", next: "inner03", affection: { moxing: 2 } }, //墨行好感度+2
+            { text: "……謝謝你，我確實有點不舒服。", next: "inner03", affection: { moxing: 2 }, lightShadow: { light: 1 } }, //墨行好感度+2
             { text: "你一直在看著我?", next: "inner03", affection: { moxing: 1 } }, //墨行好感度+1         
-            { text: "我還撐得住。",  next: "inner03", affection: { moxing: 0 } } //墨行好感度沒有增加
+            { text: "我還撐得住。",  next: "inner03", affection: { moxing: 0 }, lightShadow: { shadow: 1 } } //墨行好感度沒有增加
         ]
     },
 

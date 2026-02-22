@@ -25,22 +25,22 @@ function updateAffectionUI() {
             .join(''); 
 }
 
-function updateMoralityUI() {
-    const moralityDiv = document.getElementById("moralityDisplay");
-    if (!moralityDiv) return;
+function updateLightShadowUI() {
+    const lsDiv = document.getElementById("lightShadowDisplay");
+    if (!lsDiv) return;
 
-    moralityDiv.innerHTML = `
-        <h3>⚖️ 善惡傾向</h3>
-        <p>🌿 善意：${morality.light}</p>
-        <p>🌑 黑暗：${morality.dark}</p>
-        <p>✨ 傾向值：${getMoralityBalance()}</p>
+    lsDiv.innerHTML = `
+        <h3>🌗 光影值</h3>
+        <p>✨ 光之值：${lightShadow.light}</p>
+        <p>🌑 影之值：${lightShadow.shadow}</p>
+        <p>⚖️ 傾向值：${getLightShadowBalance()}</p>
     `;
 }
 
 function showNode(nodeId) {
     if (nodeId === "restart" || nodeId === "enter") {
         resetAffection();
-        resetMorality();
+        resetLightShadow();
     }
 
     const node = storyNodes[nodeId];
@@ -99,10 +99,9 @@ function showNode(nodeId) {
                     }
                 }
 
-                // 加善惡值
-                if (choice.morality) {
-                    for (const [type, value] of Object.entries(choice.morality)) {
-                        changeMorality(type, value);
+                if (choice.lightShadow) {
+                    for (const [type, value] of Object.entries(choice.lightShadow)) {
+                        changeLightShadow(type, value);
                     }
                 }
 
@@ -145,7 +144,7 @@ function showNode(nodeId) {
 
     // 更新好感度側邊欄
     updateAffectionUI();
-    updateMoralityUI();
+    updateLightShadowUI();
 }
 
 // 初始顯示
