@@ -64,7 +64,7 @@ body {
    對話框
 ========================== */
 .dialog-box {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     padding: 20px;
     width: 100%;
@@ -73,7 +73,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     transition: all 0.2s ease;
     backdrop-filter: blur(8px);
 }
@@ -362,7 +362,7 @@ body {
     /* 🔹 對話區（下半部） */
     .middle-area {
         order: 2;
-        height: 38vh;      /* 下半 38% */
+        height: 45vh;      /* 下半 38% */
         width: 95%;
         display: flex;
         justify-content: center;
@@ -403,15 +403,8 @@ body {
 
     /* 🔹 Footer 固定底部細條 */
     .site-footer {
-        order: 3;
-        height: 3vh;
-        font-size: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(0,0,0,0.5);
+        display: none;
     }
-}
 
     /* 側邊欄（保持不變） */
     .sidebar {
@@ -436,6 +429,7 @@ body {
         padding-bottom: 8px;
         border-bottom: 1px solid rgba(255,255,255,0.2);
     }
+}
 
 #nextIndicator {
     display: none;
