@@ -617,7 +617,7 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/male04.webp",
         choices: [
-            { text: "(感覺靈力平息後)爺爺，我能回去自己的世界嗎?太晚了，我的母親還在等我回家", next: "inner05" },
+            { text: "(感覺靈力平息後)爺爺，我能回去自己的世界嗎?太晚了，我的母親還在等我回家", next: "inner10" },
         ]
     },
 
