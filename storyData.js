@@ -582,8 +582,99 @@ const storyNodes = {
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male04.webp",
+        choices: [
+            { text: "爺爺，請問該如何控制我的靈力呢?", next: "inner08" },
+        ]
+    },
+
+    inner08: {
+        bgm: "inner",
+        speaker: "player",
+        text: [
+            "先坐下打坐，閉上眼睛感受妳身體裡的力量",
+            "然後深呼吸，在呼吸之間平穩你的心神",
+            "告訴自己，危機已過去",
+            "這樣你的靈力就可以平息下來了"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male04.webp",
+        choices: [
+            { text: "(感覺靈力平息後)爺爺，我能回去自己的世界嗎?太晚了，我的母親還在等我回家", next: "inner09" },
+        ]
+    },
+
+    inner09: {
+        bgm: "inner",
+        speaker: "player",
+        text: [
+            "哈哈!是個有孝心的好孩子",
+            "別擔心，在這裡時間是靜止的",
+            "不過你這樣回去，你身上的靈力會吸引鬼魂的覬覦",
+            "我身邊這三位臭小子，分別是白祈、炎燼和墨行，你選一位護送你回去吧!"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male04.webp",
+        choices: [
+            { text: "(感覺靈力平息後)爺爺，我能回去自己的世界嗎?太晚了，我的母親還在等我回家", next: "inner05" },
+        ]
+    },
+
+    inner10: {
+        bgm: "inner",
+        speaker: "player",
+        text: [
+            "(我的眼神掃過爺爺話語所指的三位男子)",
+            "那就麻煩你了!"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male02.webp",
+        choices: [
+            { text: "白祈先生", next: "inner11_1", affection: { baiqi: 1 } },
+            { text: "炎燼先生", next: "inner11_2", affection: { yanzhen: 1 } },      
+            { text: "墨行先生",  next: "inner11_3", affection: { moxing: 1 } } 
+        ]
+    },
+
+    inner11_1: {
+        bgm: "inner",
+        speaker: "character",
+        text: [
+            "嗯!走吧",
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male.webp",
         next: "restart"
     },
+
+    inner11_2: {
+        bgm: "inner",
+        speaker: "character",
+        text: [
+            "要不是看在老頭子的面子上，我才懶得帶新人",
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male01.webp",
+        next: "restart"
+    },
+
+    inner11_3: {
+        bgm: "inner",
+        speaker: "character",
+        text: [
+            "別客氣，叫我墨行就好，我會安全護送你到家的",
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male02.webp",
+        next: "restart"
+    },
+
+    // 第三章 紅傘女
 
     restart: {
         bgm: "surface",
