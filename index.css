@@ -64,7 +64,7 @@ body {
    對話框
 ========================== */
 .dialog-box {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 20px;
     width: 100%;
@@ -342,8 +342,8 @@ body {
         /* 🔹 角色圖區（上半部） */
     .player-img,
     .character-img {
-        order: 1;
-        height: 55vh;      /* 上半 55% */
+        order: 2;
+        height: 33vh;      /* 上半 55% */
         width: 80%;
         max-width: 95vw;
         display: flex;
@@ -361,8 +361,8 @@ body {
 
     /* 🔹 對話區（下半部） */
     .middle-area {
-        order: 2;
-        height: 45vh;      /* 下半 38% */
+        order: 1;
+        height: 33vh;      /* 下半 38% */
         width: 95%;
         display: flex;
         justify-content: center;
@@ -381,7 +381,7 @@ body {
     }
 
     .story {
-        font-size: clamp(15px, 4.5vw, 18px);
+        font-size: clamp(14px, 4vw, 16px);
         line-height: 1.4;
         margin: 0;
     }
@@ -391,7 +391,7 @@ body {
     }
 
     .center-buttons button {
-        font-size: clamp(14px, 4vw, 16px);
+        font-size: clamp(12px, 3.5vw, 14px);
         padding: 8px;
         width: 100%;
         white-space: normal;
