@@ -44,10 +44,19 @@ body {
     transition: all 0.5s ease;
 }
 
-.player-img img, .character-img img {
+.player-img img,
+.character-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;  /* 保持比例 */
+    object-fit: cover;
+    transition: opacity 0.25s ease;
+}
+
+.fade-out {
+    opacity: 0;
+}
+.fade-in {
+    opacity: 1;
 }
 
 .middle-area {

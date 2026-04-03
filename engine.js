@@ -1,4 +1,19 @@
 // engine.js
+const preloadImages = [
+  "image/player.webp",
+  "image/male.webp",
+  "image/male01.webp",
+  "image/male02.webp",
+  "image/male04.webp",
+  "image/girl01.webp",
+  "image/ghost02.webp"
+];
+
+preloadImages.forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
+
 let currentNode = "enter";
 let firstClick = true;
 
@@ -37,6 +52,19 @@ function updateLightShadowUI() {
     `;
 }
 
+// 🔥 圖片切換動畫
+function changeImage(imgElement, newSrc) {
+    if (!newSrc) return; // 🔥 防呆（一定要有）
+
+    imgElement.classList.add("fade-out");
+
+    setTimeout(() => {
+        imgElement.src = newSrc;
+        imgElement.classList.remove("fade-out");
+        imgElement.classList.add("fade-in");
+    }, 120);
+}
+
 function showNode(nodeId) {
     if (nodeId === "restart" || nodeId === "enter") {
         resetAffection();
@@ -68,15 +96,29 @@ function showNode(nodeId) {
     const playerImgDiv = document.getElementById("playerImg");
     const characterImgDiv = document.getElementById("characterImg");
 
+    const playerImg = playerImgDiv.querySelector("img");
+    const characterImg = characterImgDiv.querySelector("img");
+
     if (node.speaker === "player") {
         playerImgDiv.style.display = "flex";
-        playerImgDiv.querySelector("img").src = node.playerImg;
+
+        if (node.playerImg) {
+            changeImage(playerImg, node.playerImg);
+        }
+
         characterImgDiv.style.display = "none";
+
     } else if (node.speaker === "character") {
         characterImgDiv.style.display = "flex";
-        characterImgDiv.querySelector("img").src = node.characterImg;
+
+        if (node.characterImg) {
+            changeImage(characterImg, node.characterImg);
+        }
+
         playerImgDiv.style.display = "none";
+
     } else {
+        // 🔥 這段你剛剛沒有，加上去
         playerImgDiv.style.display = "none";
         characterImgDiv.style.display = "none";
     }
