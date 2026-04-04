@@ -36,8 +36,8 @@ body {
 .player-img, .character-img {
     width: 35%;         /* 比之前更寬 */
     max-width: 500px;   /* 防止過大 */
-    height: 90vh;
-    max-height: 700px;
+    height: auto;
+    max-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,9 +46,10 @@ body {
 
 .player-img img,
 .character-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    object-position: bottom;
     transition: opacity 0.25s ease;
 }
 
