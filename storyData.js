@@ -374,8 +374,25 @@ const storyNodes = {
         text: [
             "她輕輕笑了一下。",
             "我連畢業照都想好要怎麼拍了。",
-            "結果，那天之後，我再也沒有走出圖書館。",
-            "姐姐，你說……如果那天我早一點離開，是不是就不一樣了？",
+            "結果，那天我本來只是想再多讀一點……",
+            "離開圖書館時，已經很晚了……整棟樓都沒有燈。",
+            "我以為只有我一個人。"
+        ],
+        background: "image/library.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/girl01.webp",
+        next: "node19b"
+    },
+
+    node19b: {
+        bgm: "suspense",
+        se: "foot",
+        speaker: "character",
+        text: [
+            "可是……好像有腳步聲，一直跟在我後面。",
+            "我一回頭——",
+            "……就什麼都不記得了。",
+            "姐姐，你說……如果那天我早一點離開，是不是就不一樣了？"
         ],
         background: "image/library.webp",
         playerImg: "image/player.webp",

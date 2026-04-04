@@ -11,6 +11,7 @@ const seMap = {
     attack01: document.getElementById("seattack01"),
     attack02: document.getElementById("seattack02"),
     ghost01: document.getElementById("seghost01"),
+    foot: document.getElementById("sefoot"),
 };
 
 let currentBGM = null;
