@@ -594,13 +594,14 @@ const storyNodes = {
             "先坐下打坐，閉上眼睛感受妳身體裡的力量",
             "然後深呼吸，在呼吸之間平穩你的心神",
             "告訴自己，危機已過去",
-            "這樣你的靈力就可以平息下來了"
+            "這樣你的靈力就可以平息下來了",
+            "(我按照爺爺的指示，感覺靈力平息後)"
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male04.webp",
         choices: [
-            { text: "(感覺靈力平息後)爺爺，我能回去自己的世界嗎?太晚了，我的母親還在等我回家", next: "inner09" },
+            { text: "爺爺，我能回去自己的世界嗎?太晚了，我的母親還在等我回家", next: "inner09" },
         ]
     },
 
@@ -616,9 +617,7 @@ const storyNodes = {
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male04.webp",
-        choices: [
-            { text: "(感覺靈力平息後)爺爺，我能回去自己的世界嗎?太晚了，我的母親還在等我回家", next: "inner10" },
-        ]
+        next: "inner10"
     },
 
     inner10: {

@@ -6,7 +6,13 @@ const preloadImages = [
   "image/male02.webp",
   "image/male04.webp",
   "image/girl01.webp",
-  "image/ghost02.webp"
+  "image/ghost02.webp",
+
+    // 🔥 背景圖
+  "image/DuskCampus.webp",
+  "image/SurfaceWorld.webp",
+  "image/library.webp",
+  "image/InnerWorld.webp"
 ];
 
 preloadImages.forEach(src => {
