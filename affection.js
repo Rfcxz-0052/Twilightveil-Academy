@@ -33,3 +33,5 @@ function resetAffection() {
         affection[key] = 0;
     });
 }
+
+export { affection, changeAffection, getAffection, resetAffection };

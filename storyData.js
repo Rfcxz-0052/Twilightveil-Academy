@@ -701,3 +701,5 @@ const storyNodes = {
         choices: [{ text: "重新開始遊戲", next: "start" }]
     }
 };
+
+export default storyNodes;
