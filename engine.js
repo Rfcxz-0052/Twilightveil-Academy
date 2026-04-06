@@ -1,7 +1,7 @@
 // engine.js
 import storyNodes from './storyData.js';
 import { affection, resetAffection } from './affection.js';
-import { lightShadow, resetLightShadow, changeLightShadow, getLightShadowBalance } from './lightShadow.js';
+import { lightShadow, resetLightShadow, changeLightShadow, getLightShadowBalance, getShadowText } from './lightShadow.js';
 import { seMap, playSE, stopSE, switchBGM } from './audioController.js';
 
 // 🔥 預載圖片
@@ -59,6 +59,7 @@ export function showNode(nodeId) {
         resetAffection();
         resetLightShadow();
     }
+
     const node = storyNodes[nodeId];
     if (!node) return;
 
@@ -73,7 +74,17 @@ export function showNode(nodeId) {
     dialogBox.classList.toggle("no-box", nodeId==="enter" || nodeId==="restart");
 
     const storyDiv = document.getElementById("storyText");
-    storyDiv.innerHTML = node.text.map(l => `<p>${l}</p>`).join('');
+
+    // 🔥 處理光影替換
+    let textArray = [...node.text];
+    if (typeof getShadowText === "function") {
+        const feedback = getShadowText(lightShadow, nodeId);
+        textArray = textArray.map(line =>
+            line.replace("{shadowText1}", feedback.shadowText1)
+        );
+    }
+
+    storyDiv.innerHTML = textArray.map(l => `<p>${l}</p>`).join('');
 
     const playerDiv = document.getElementById("playerImg");
     const charDiv = document.getElementById("characterImg");
@@ -98,7 +109,7 @@ export function showNode(nodeId) {
         node.choices.forEach(choice=>{
             const btn=document.createElement("button");
             btn.innerText=choice.text;
-            btn.onclick=()=>{
+            btn.onclick=()=> {
                 if(choice.affection) for(const [c,v] of Object.entries(choice.affection)) affection[c]+=v;
                 if(choice.lightShadow) for(const [t,v] of Object.entries(choice.lightShadow)) changeLightShadow(t,v);
                 updateAffectionUI();
@@ -115,10 +126,10 @@ export function showNode(nodeId) {
         nextInd.onclick=null;
         if(!node.choices?.length){
             nextInd.style.display="block";
-            nextInd.onclick=()=>{
+            nextInd.onclick=()=> {
                 if(node.next){ currentNode=node.next; showNode(currentNode); }
             };
-        }else nextInd.style.display="none";
+        } else nextInd.style.display="none";
     }
 
     updateAffectionUI();
