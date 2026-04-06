@@ -8,8 +8,9 @@ import { seMap, playSE, stopSE, switchBGM } from './audioController.js';
 const preloadImages = [
     "image/player.webp", "image/male.webp", "image/male01.webp",
     "image/male02.webp", "image/male04.webp", "image/girl01.webp",
-    "image/ghost02.webp", "image/DuskCampus.webp",
-    "image/SurfaceWorld.webp", "image/library.webp", "image/InnerWorld.webp"
+    "image/ghost02.webp", "image/DuskCampus.webp", "image/DarkCampus.webp",
+    "image/SurfaceWorld.webp", "image/library.webp", "image/InnerWorld.webp",
+    "image/nightmarket01.webp", "image/nightmarket02.webp"
 ];
 preloadImages.forEach(src => new Image().src = src);
 
