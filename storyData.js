@@ -386,7 +386,7 @@ const storyNodes = {
     },
 
     node19b: {
-        bgm: "suspense",
+        bgm: "surface",
         se: "foot",
         speaker: "character",
         text: [
