@@ -114,7 +114,13 @@ export function showNode(nodeId) {
                 if(choice.affection) for(const [c,v] of Object.entries(choice.affection)) affection[c]+=v;
                 if(choice.lightShadow) for(const [t,v] of Object.entries(choice.lightShadow)) changeLightShadow(t,v);
                 updateAffectionUI();
-                if(firstClick){ switchBGM(node.bgm); firstClick=false; }
+                if(firstClick){ 
+                    const nextNode = storyNodes[choice.next];
+                    if(nextNode?.bgm){
+                        switchBGM(nextNode.bgm);
+                    }
+                    firstClick=false; 
+                }
                 currentNode=choice.next;
                 showNode(currentNode);
             };

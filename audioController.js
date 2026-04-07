@@ -31,10 +31,22 @@ export function setSEVolume(value){
 }
 
 export function switchBGM(name){
-    const target=bgmMap[name];
-    if(!target||target===currentBGM)return;
-    if(currentBGM)currentBGM.pause();
-    target.currentTime=0; target.play(); currentBGM=target;
+    const target = bgmMap[name];
+    if(!target) return;
+
+    // ✅ 如果是同一首，就不要動
+    if(target === currentBGM) return;
+
+    if(currentBGM){
+        currentBGM.pause();
+    }
+
+    // ✅ 只有「新BGM」才從頭播放
+    target.currentTime = 0;
+    target.volume = bgmVolume;
+    target.play();
+
+    currentBGM = target;
 }
 
 export function playSE(name){
