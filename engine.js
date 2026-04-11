@@ -1,5 +1,4 @@
 // engine.js
-
 import storyNodes from './story/storyData.js';
 import {
     affection,
@@ -21,6 +20,21 @@ import {
     stopSE,
     switchBGM
 } from './audioController.js';
+
+const DOM = {};
+
+window.addEventListener("DOMContentLoaded", () => {
+    DOM.body = document.getElementById("gameBody");
+    DOM.storyText = document.getElementById("storyText");
+    DOM.choiceButtons = document.getElementById("choiceButtons");
+    DOM.nextIndicator = document.getElementById("nextIndicator");
+    DOM.playerImg = document.getElementById("playerImg");
+    DOM.characterImg = document.getElementById("characterImg");
+    DOM.sidebar = document.getElementById("sidebar");
+    DOM.toggleSidebar = document.getElementById("toggleSidebar");
+    DOM.affectionDisplay = document.getElementById("affectionDisplay");
+    DOM.lightShadowDisplay = document.getElementById("lightShadowDisplay");
+});
 
 // ======================
 // 🧠 UI 控制
