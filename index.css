@@ -190,8 +190,8 @@ body[data-ui="game"] #homeUI {
     transition: all 0.3s ease;
     min-width: 200px;
     white-space: nowrap;
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1 !important;
+    transform: none !important;
     animation: fadeInUp 0.5s forwards;
 }
 

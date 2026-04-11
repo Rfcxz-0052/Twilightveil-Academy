@@ -1,11 +1,5 @@
-// engine.js
 import storyNodes from './story/storyData.js';
-import {
-    affection,
-    changeAffection,
-    resetAffection
-} from './affection.js';
-
+import { affection, changeAffection, resetAffection } from './affection.js';
 import {
     lightShadow,
     changeLightShadow,
@@ -13,31 +7,17 @@ import {
     getLightShadowBalance,
     getShadowText
 } from './lightShadow.js';
-
-import {
-    seMap,
-    playSE,
-    stopSE,
-    switchBGM
-} from './audioController.js';
-
-const DOM = {};
-
-window.addEventListener("DOMContentLoaded", () => {
-    DOM.body = document.getElementById("gameBody");
-    DOM.storyText = document.getElementById("storyText");
-    DOM.choiceButtons = document.getElementById("choiceButtons");
-    DOM.nextIndicator = document.getElementById("nextIndicator");
-    DOM.playerImg = document.getElementById("playerImg");
-    DOM.characterImg = document.getElementById("characterImg");
-    DOM.sidebar = document.getElementById("sidebar");
-    DOM.toggleSidebar = document.getElementById("toggleSidebar");
-    DOM.affectionDisplay = document.getElementById("affectionDisplay");
-    DOM.lightShadowDisplay = document.getElementById("lightShadowDisplay");
-});
+import { seMap, playSE, stopSE, switchBGM } from './audioController.js';
 
 // ======================
-// 🧠 UI 控制
+// 🎮 狀態
+// ======================
+let currentNode = "start";
+let textIndex = 0;
+let isChoosing = false;
+
+// ======================
+// 🧠 UI
 // ======================
 function setUI(mode) {
     document.body.setAttribute("data-ui", mode);
@@ -45,124 +25,144 @@ function setUI(mode) {
 
 export function goHome() {
     setUI("home");
+    resetAffection();
+    resetLightShadow();
 }
 
+// ======================
+// 🚀 start
+// ======================
 export function startGame() {
     setUI("game");
-    currentNode = "start";
-
     showNode("start");
 }
 
 // ======================
-// 🎮 狀態
+// 🎮 continue
 // ======================
-export let currentNode = "start"; 
+export function handleContinue() {
+    const node = storyNodes[currentNode];
+    if (!node) return;
 
-// ======================
-// 🧹 特殊節點
-// ======================
-function handleSpecialNode(nodeId) {
-    if (nodeId === "__HOME__") {
-        resetAffection();
-        resetLightShadow();
-        goHome();
-        return true;
+    if (isChoosing) return;
+
+    // 📖 還沒讀完
+    if (textIndex < node.text.length - 1) {
+        textIndex++;
+        renderText(node);
+        updateContinueBtn(node);
+        return;
     }
-    return false;
+
+    // 🎯 顯示選項（只一次）
+    if (node.choices?.length) {
+        showChoices(node);
+        isChoosing = true;
+
+        document.getElementById("continueBtn").style.display = "none";
+        return;
+    }
+
+    // ▶ next
+    if (node.next) {
+        showNode(node.next);
+    }
 }
 
 // ======================
-// 💖 UI 更新
+// 📖 text
 // ======================
-export const characterNames = {
-    baiqi: "白祈",
-    yanzhen: "炎燼",
-    moxing: "墨行"
-};
+function renderText(node) {
+    const storyDiv = document.getElementById("storyText");
 
-export function updateAffectionUI() {
-    const div = document.getElementById("affectionDisplay");
-    if (!div) return;
+    let line = node.text[textIndex];
 
-    div.innerHTML =
-        `<h3>❤️ 好感度</h3>` +
-        Object.entries(affection)
-            .map(([c, v]) => `<p>${characterNames[c] || c}：${v}</p>`)
-            .join('');
-}
+    if (typeof getShadowText === "function") {
+        const feedback = getShadowText(lightShadow, currentNode);
+        line = line.replace("{shadowText1}", feedback.shadowText1);
+    }
 
-export function updateLightShadowUI() {
-    const div = document.getElementById("lightShadowDisplay");
-    if (!div) return;
-
-    div.innerHTML = `
-        <h3>🌗 光影值</h3>
-        <p>✨ 光之值：${lightShadow.light}</p>
-        <p>🌑 影之值：${lightShadow.shadow}</p>
-        <p>⚖️ 傾向值：${getLightShadowBalance()}</p>
-    `;
+    storyDiv.innerHTML = `<p>${line}</p>`;
 }
 
 // ======================
-// 🖼️ 圖片切換
+// 🎯 choices
 // ======================
-export function changeImage(imgElement, newSrc) {
-    if (!newSrc) return;
+function showChoices(node) {
+    const btnDiv = document.getElementById("choiceButtons");
+    btnDiv.innerHTML = "";
 
-    imgElement.classList.add("fade-out");
+    node.choices.forEach(choice => {
+        const btn = document.createElement("button");
+        btn.innerText = choice.text;
 
-    setTimeout(() => {
-        imgElement.src = newSrc;
-        imgElement.classList.remove("fade-out");
-        imgElement.classList.add("fade-in");
-    }, 120);
+        btn.onclick = () => {
+
+            if (choice.affection) {
+                for (const [k, v] of Object.entries(choice.affection)) {
+                    changeAffection(k, v);
+                }
+            }
+
+            if (choice.lightShadow) {
+                for (const [k, v] of Object.entries(choice.lightShadow)) {
+                    changeLightShadow(k, v);
+                }
+            }
+
+            updateUI();
+            showNode(choice.next);
+        };
+
+        btnDiv.appendChild(btn);
+    });
 }
 
 // ======================
-// 🎬 核心：顯示節點
+// 🎬 show node（核心修正版）
 // ======================
 export function showNode(nodeId) {
 
-    if (handleSpecialNode(nodeId)) return;
+    if (nodeId === "__HOME__") {
+        goHome();
+        return;
+    }
 
     const node = storyNodes[nodeId];
     if (!node) return;
 
-    // 🔊 SE
+    currentNode = nodeId;
+    textIndex = 0;
+    isChoosing = false;
+
+    renderText(node);
+
+    document.getElementById("choiceButtons").innerHTML = "";
+
+    updateUI();
+    updateContinueBtn(node);
+
+    // 🔊 audio
     Object.keys(seMap).forEach(k => stopSE(k));
     if (node.se) playSE(node.se);
 
-    // 🌄 背景
-    document.getElementById("gameBody").style.backgroundImage =
-        `url('${node.background}')`;
-
-    // 🎵 BGM
     if (node.bgm !== undefined) {
         switchBGM(node.bgm);
     }
 
+    // 🌄 bg
+    document.getElementById("gameBody").style.backgroundImage =
+        `url('${node.background}')`;
+
     setUI("game");
 
-    // ======================
-    // 📖 文字
-    // ======================
-    const storyDiv = document.getElementById("storyText");
+    // 📖 text
+    renderText(node);
 
-    let textArray = [...node.text];
+    // 🧹 清空選項（只做一次）
+    document.getElementById("choiceButtons").innerHTML = "";
 
-    if (typeof getShadowText === "function") {
-        const feedback = getShadowText(lightShadow, nodeId);
-        textArray = textArray.map(line =>
-            line.replace("{shadowText1}", feedback.shadowText1)
-        );
-    }
-
-    storyDiv.innerHTML = textArray.map(l => `<p>${l}</p>`).join('');
-
-    // ======================
-    // 🧍 角色圖片
-    // ======================
+    // 🧍 sprite
     const playerDiv = document.getElementById("playerImg");
     const charDiv = document.getElementById("characterImg");
 
@@ -172,89 +172,72 @@ export function showNode(nodeId) {
     if (node.speaker === "player") {
         playerDiv.style.display = "flex";
         charDiv.style.display = "none";
-        if (node.playerImg) changeImage(playerImg, node.playerImg);
+        if (node.playerImg) playerImg.src = node.playerImg;
 
     } else if (node.speaker === "character") {
         charDiv.style.display = "flex";
         playerDiv.style.display = "none";
-        if (node.characterImg) changeImage(charImg, node.characterImg);
+        if (node.characterImg) charImg.src = node.characterImg;
+    }
 
+    renderText(node);
+    updateUI();
+
+    updateContinueBtn(node);
+}
+
+
+
+// ======================
+// 🎯 btn logic
+// ======================
+function updateContinueBtn(node) {
+    const btn = document.getElementById("continueBtn");
+
+    const endText = textIndex >= node.text.length - 1;
+
+    if (!endText) {
+        btn.style.display = "block";
     } else {
-        playerDiv.style.display = "none";
-        charDiv.style.display = "none";
+        btn.style.display = "block"; // 最後一句也先保留（還沒進選項）
     }
-
-    // ======================
-    // 🔘 選項
-    // ======================
-    const btnDiv = document.getElementById("choiceButtons");
-    btnDiv.innerHTML = "";
-
-    if (node.choices?.length) {
-        node.choices.forEach(choice => {
-            const btn = document.createElement("button");
-            btn.innerText = choice.text;
-
-            btn.onclick = () => {
-
-                // 💖 好感度
-                if (choice.affection) {
-                    for (const [c, v] of Object.entries(choice.affection)) {
-                        changeAffection(c, v);
-                    }
-                }
-
-                // 🌗 光影
-                if (choice.lightShadow) {
-                    for (const [t, v] of Object.entries(choice.lightShadow)) {
-                        changeLightShadow(t, v);
-                    }
-                }
-
-                updateAffectionUI();
-                updateLightShadowUI();
-
-                currentNode = choice.next;
-                showNode(currentNode);
-            };
-
-            btnDiv.appendChild(btn);
-        });
-    }
-
-    // ======================
-    // ▶ next
-    // ======================
-    const nextInd = document.getElementById("nextIndicator");
-
-    if (nextInd) {
-        nextInd.onclick = null;
-
-        if (!node.choices?.length) {
-            nextInd.style.display = "block";
-            nextInd.onclick = () => {
-                if (node.next) {
-                    currentNode = node.next;
-                    showNode(currentNode);
-                }
-            };
-        } else {
-            nextInd.style.display = "none";
-        }
-    }
-
-    updateAffectionUI();
-    updateLightShadowUI();
 }
 
 // ======================
-// 🎛️ UI 綁定
+// 💖 UI
 // ======================
-document.getElementById("toggleSidebar").onclick = () => {
-    document.getElementById("sidebar").classList.toggle("active");
-};
+function updateUI() {
+    const a = document.getElementById("affectionDisplay");
+    const l = document.getElementById("lightShadowDisplay");
 
+    if (a) {
+        a.innerHTML =
+            `<h3>❤️ 好感度</h3>` +
+            Object.entries(affection)
+                .map(([k, v]) => `<p>${k}: ${v}</p>`)
+                .join('');
+    }
+
+    if (l) {
+        l.innerHTML = `
+            <h3>🌗 光影</h3>
+            <p>光:${lightShadow.light}</p>
+            <p>影:${lightShadow.shadow}</p>
+            <p>平衡:${getLightShadowBalance()}</p>
+        `;
+    }
+}
+
+// ======================
+// 🎛️ bind
+// ======================
 window.addEventListener("DOMContentLoaded", () => {
-    const btn = document.getElementById("startBtn");
-    if (btn) btn.addEventListener("click", startGame);
+
+    document.getElementById("startBtn").onclick = startGame;
+
+    document.getElementById("continueBtn")
+        ?.addEventListener("click", handleContinue);
+
+    document.getElementById("toggleSidebar")
+        .onclick = () => document.getElementById("sidebar").classList.toggle("active");
 });
