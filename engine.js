@@ -1,12 +1,29 @@
 // engine.js
 
 import storyNodes from './storyData.js';
-import { affection, resetAffection } from './affection.js';
-import { lightShadow, resetLightShadow, changeLightShadow, getLightShadowBalance, getShadowText } from './lightShadow.js';
-import { seMap, playSE, stopSE, switchBGM } from './audioController.js';
+import {
+    affection,
+    changeAffection,
+    resetAffection
+} from './affection.js';
+
+import {
+    lightShadow,
+    changeLightShadow,
+    resetLightShadow,
+    getLightShadowBalance,
+    getShadowText
+} from './lightShadow.js';
+
+import {
+    seMap,
+    playSE,
+    stopSE,
+    switchBGM
+} from './audioController.js';
 
 // ======================
-// 🧠 UI 控制（獨立層）
+// 🧠 UI 控制
 // ======================
 function setUI(mode) {
     document.body.setAttribute("data-ui", mode);
@@ -16,57 +33,33 @@ export function goHome() {
     setUI("home");
 }
 
-let audioUnlocked = false;
 export function startGame() {
     setUI("game");
     currentNode = "start";
-
     firstClick = false;
 
     showNode("start");
 
     const node = storyNodes["start"];
-    if (node?.bgm) {
-        switchBGM(node.bgm);
-    }
+    if (node?.bgm) switchBGM(node.bgm);
 }
 
 // ======================
-// 🎮 遊戲狀態
+// 🎮 狀態
 // ======================
 export let currentNode = "start";
 export let firstClick = true;
 
 // ======================
-// 🔥 預載圖片
-// ======================
-const preloadImages = [
-    "image/player.webp", "image/male.webp", "image/male01.webp",
-    "image/male02.webp", "image/male04.webp", "image/girl01.webp",
-    "image/ghost02.webp", "image/DuskCampus.webp", "image/DarkCampus.webp",
-    "image/SurfaceWorld.webp", "image/library.webp", "image/InnerWorld.webp",
-    "image/nightmarket01.webp", "image/nightmarket02.webp"
-];
-preloadImages.forEach(src => new Image().src = src);
-
-// ======================
-// 🎭 UI DOM
-// ======================
-const dialogBox = document.getElementById("dialogBox");
-
-// ======================
-// 🧹 特殊節點處理（關鍵）
+// 🧹 特殊節點
 // ======================
 function handleSpecialNode(nodeId) {
-
-    // 🔁 回首頁 + 重置數值
     if (nodeId === "__HOME__") {
         resetAffection();
         resetLightShadow();
         goHome();
         return true;
     }
-
     return false;
 }
 
@@ -83,9 +76,10 @@ export function updateAffectionUI() {
     const div = document.getElementById("affectionDisplay");
     if (!div) return;
 
-    div.innerHTML = `<h3>❤️ 好感度</h3>` +
+    div.innerHTML =
+        `<h3>❤️ 好感度</h3>` +
         Object.entries(affection)
-            .map(([c, s]) => `<p>${characterNames[c] || c}：${s}</p>`)
+            .map(([c, v]) => `<p>${characterNames[c] || c}：${v}</p>`)
             .join('');
 }
 
@@ -121,7 +115,6 @@ export function changeImage(imgElement, newSrc) {
 // ======================
 export function showNode(nodeId) {
 
-    // ⚠️ UI 特殊處理（先攔截）
     if (handleSpecialNode(nodeId)) return;
 
     const node = storyNodes[nodeId];
@@ -138,7 +131,6 @@ export function showNode(nodeId) {
     // 🎵 BGM
     if (!firstClick) switchBGM(node.bgm);
 
-    // 🧱 UI狀態（故事中固定 game）
     setUI("game");
 
     // ======================
@@ -194,12 +186,14 @@ export function showNode(nodeId) {
 
             btn.onclick = () => {
 
+                // 💖 好感度
                 if (choice.affection) {
                     for (const [c, v] of Object.entries(choice.affection)) {
-                        affection[c] += v;
+                        changeAffection(c, v);
                     }
                 }
 
+                // 🌗 光影
                 if (choice.lightShadow) {
                     for (const [t, v] of Object.entries(choice.lightShadow)) {
                         changeLightShadow(t, v);
@@ -209,6 +203,7 @@ export function showNode(nodeId) {
                 updateAffectionUI();
                 updateLightShadowUI();
 
+                // 🎵 初次BGM
                 if (firstClick) {
                     const nextNode = storyNodes[choice.next];
                     if (nextNode?.bgm) switchBGM(nextNode.bgm);
@@ -224,7 +219,7 @@ export function showNode(nodeId) {
     }
 
     // ======================
-    // ▶ next 指示器
+    // ▶ next
     // ======================
     const nextInd = document.getElementById("nextIndicator");
 
@@ -244,15 +239,12 @@ export function showNode(nodeId) {
         }
     }
 
-    // ======================
-    // 📊 UI更新
-    // ======================
     updateAffectionUI();
     updateLightShadowUI();
 }
 
 // ======================
-// 🎛️ 側邊欄
+// 🎛️ UI 綁定
 // ======================
 document.getElementById("toggleSidebar").onclick = () => {
     document.getElementById("sidebar").classList.toggle("active");
