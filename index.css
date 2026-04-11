@@ -17,6 +17,46 @@ body {
     flex-direction: column;
 }
 
+body[data-ui="home"] #gameUI {
+    display: none;
+}
+
+body[data-ui="game"] #homeUI {
+    display: none;
+}
+
+#homeUI {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+
+    background: url("image/DuskCampus.webp") center/cover no-repeat;
+    color: black;
+}
+
+#homeUI h1 {
+    font-size: 48px;
+}
+
+#homeUI h3 {
+    font-size: 24px;
+    opacity: 0.9;
+}
+
+#homeUI button {
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(162, 52, 212, 0.9);
+    color: yellow;
+}
+
 /* ==========================
    故事區塊
 ========================== */
@@ -86,15 +126,6 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     transition: all 0.2s ease;
     backdrop-filter: blur(8px);
-}
-
-/* 首頁 / restart 完全隱藏對話框，但保留內容 */
-.dialog-box.no-box {
-    display: contents;
-    background: none;
-    box-shadow: none;
-    padding: 0;
-    width: auto;
 }
 
 /* ==========================

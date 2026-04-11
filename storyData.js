@@ -1,13 +1,6 @@
 // storyData.js
 const storyNodes = {
     // 第一章 靈力覺醒的契機
-    enter: {
-        bgm: "surface",
-        text: ["歡迎來到暮影學院!", "光與影的交際處"],
-        background: "image/DuskCampus.webp",
-        choices: [{ text: "進入遊戲", next: "start" }]
-    },
-
     start: {
         bgm: "surface",
         speaker: "player",
@@ -36,7 +29,7 @@ const storyNodes = {
         characterImg: "image/male.webp",
         choices: [
             { text: "加班完成工作", next: "node01" },
-            { text: "不加班，交給明天再處理", next: "restart" }
+            { text: "不加班，交給明天再處理", next: "__HOME__" }
         ]
     },
 
@@ -55,7 +48,7 @@ const storyNodes = {
         characterImg: "image/male.webp",
         choices: [
             { text: "走向聲音來源查看", next: "node02" },
-            { text: "太可怕了，先收拾東西回家吧", next: "restart" }
+            { text: "太可怕了，先收拾東西回家吧", next: "__HOME__" }
         ]
     },
 
@@ -202,7 +195,7 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "被小英搶奪身體，你失去了意識...", next: "restart" }
+            { text: "被小英搶奪身體，你失去了意識...", next: "__HOME__" }
         ]
     },
 
@@ -238,7 +231,7 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "小英進入你的身體，你的意識漸漸消失了...", next: "restart" }
+            { text: "小英進入你的身體，你的意識漸漸消失了...", next: "__HOME__" }
         ]
     },
 
@@ -333,7 +326,7 @@ const storyNodes = {
         playerImg: "image/player.webp",
         characterImg: "image/girl01.webp",
         choices: [
-            { text: "回到遊戲首頁", next: "restart" }
+            { text: "回到遊戲首頁", next: "__HOME__" }
         ]
     },
 
@@ -676,7 +669,7 @@ const storyNodes = {
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male01.webp",
-        next: "restart"
+        next: "__HOME__"
     },
 
     inner11_3: {
@@ -688,7 +681,7 @@ const storyNodes = {
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male02.webp",
-        next: "restart"
+        next: "__HOME__"
     },
 
     // 第三章 紅傘女
@@ -713,17 +706,9 @@ const storyNodes = {
         background: "image/nightmarket01.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male.webp",
-        next: "restart"
+        next: "__HOME__"
     },
 
-    restart: {
-        bgm: "surface",
-        text: [""],
-        background: "image/DuskCampus.webp",
-        playerImg: "image/player.webp",
-        characterImg: "image/male.webp",
-        choices: [{ text: "重新開始遊戲", next: "start" }]
-    }
 };
 
 export default storyNodes;
