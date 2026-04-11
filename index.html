@@ -64,11 +64,11 @@
 
         <!-- 模組化 JS -->
         <script type="module">
-            import './affection.js';
-            import './lightShadow.js';
-            import './storyData.js';
+            import { startGame } from './engine.js';
             import { setBGMVolume, setSEVolume } from './audioController.js';
-            import { showNode } from './engine.js';
+
+            document.getElementById("startBtn")
+                .addEventListener("click", startGame);
 
             // 音量滑桿
             const bgmSlider = document.getElementById('bgmSlider');
@@ -80,8 +80,6 @@
             bgmSlider.addEventListener('input', e => setBGMVolume(e.target.value));
             seSlider.addEventListener('input', e => setSEVolume(e.target.value));
 
-            // 初始化遊戲顯示
-            showNode("enter");
         </script>
 
         <div class="footer">

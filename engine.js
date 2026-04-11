@@ -1,6 +1,6 @@
 // engine.js
 
-import storyNodes from './storyData.js';
+import storyNodes from './story/storyData.js';
 import {
     affection,
     changeAffection,
@@ -36,19 +36,14 @@ export function goHome() {
 export function startGame() {
     setUI("game");
     currentNode = "start";
-    firstClick = false;
 
     showNode("start");
-
-    const node = storyNodes["start"];
-    if (node?.bgm) switchBGM(node.bgm);
 }
 
 // ======================
 // 🎮 狀態
 // ======================
-export let currentNode = "start";
-export let firstClick = true;
+export let currentNode = "start"; 
 
 // ======================
 // 🧹 特殊節點
@@ -129,7 +124,9 @@ export function showNode(nodeId) {
         `url('${node.background}')`;
 
     // 🎵 BGM
-    if (!firstClick) switchBGM(node.bgm);
+    if (node.bgm !== undefined) {
+        switchBGM(node.bgm);
+    }
 
     setUI("game");
 
@@ -202,13 +199,6 @@ export function showNode(nodeId) {
 
                 updateAffectionUI();
                 updateLightShadowUI();
-
-                // 🎵 初次BGM
-                if (firstClick) {
-                    const nextNode = storyNodes[choice.next];
-                    if (nextNode?.bgm) switchBGM(nextNode.bgm);
-                    firstClick = false;
-                }
 
                 currentNode = choice.next;
                 showNode(currentNode);
