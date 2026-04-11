@@ -15,6 +15,76 @@ body {
 
     display: flex;
     flex-direction: column;
+    padding-bottom: 40px;
+}
+
+body[data-ui="home"] #gameUI {
+    display: none;
+}
+
+body[data-ui="game"] #homeUI {
+    display: none;
+}
+
+#homeUI {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+
+    background: url("image/DuskCampus.webp") center/cover no-repeat;
+    z-index: 10;
+}
+
+#homeUI h1 {
+    font-size: 48px;
+}
+
+#homeUI h3 {
+    font-size: 24px;
+    opacity: 0.9;
+}
+
+#homeUI button {
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(162, 52, 212, 0.9);
+    color: yellow;
+
+    transition: all 0.3s ease;
+    min-width: 200px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+}
+
+#homeUI button:nth-child(1) { animation-delay: 0.2s; }
+#homeUI button:nth-child(2) { animation-delay: 0.4s; }
+#homeUI button:nth-child(3) { animation-delay: 0.6s; }
+
+#homeUI button:hover {
+    background-color: rgb(62, 9, 66);
+    transform: scale(1.05);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ==========================
@@ -86,15 +156,6 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     transition: all 0.2s ease;
     backdrop-filter: blur(8px);
-}
-
-/* 首頁 / restart 完全隱藏對話框，但保留內容 */
-.dialog-box.no-box {
-    display: contents;
-    background: none;
-    box-shadow: none;
-    padding: 0;
-    width: auto;
 }
 
 /* ==========================
@@ -197,248 +258,21 @@ body {
     padding-bottom: 10px;
 }
 
-.site-footer {
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    text-align: center;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 8px 0;
+
     background: rgba(0, 0, 0, 0.6);
-}
+    color: white;
 
-/* ==========================
-   平板版 RWD (769px ~ 1024px)
-========================== */
-@media (min-width: 769px) and (max-width: 1024px) {
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 12px;
 
-    /* 故事區塊整體上下排列 */
-    .story-container {
-        flex-direction: column;
-        height: 100vh;          /* 撐滿整個螢幕 */
-        justify-content: space-between; /* 上下分配空間 */
-        align-items: center;
-        gap: 10px;
-        padding: 10px 0;
-    }
-
-    /* 中間對話區塊 + 故事文字 + 選項 */
-    .middle-area {
-        order: 1;
-        height: 45%;             /* 占屏幕高度約 45% */
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 10px;
-        width: 90%;
-    }
-
-    .dialog-box {
-        width: 100%;
-        max-width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 15px;
-        box-sizing: border-box;
-    }
-
-    .story {
-        font-size: 20px;         /* 字體略大於手機版 */
-        margin-bottom: 15px;
-    }
-
-    .center-buttons {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .center-buttons button {
-        font-size: 16px;
-        padding: 8px 14px;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        white-space: normal;
-        text-align: center;
-        opacity: 0;
-        transform: translateY(10px);
-        animation: fadeInUp 0.5s forwards;
-    }
-
-    .center-buttons button:nth-child(1) { animation-delay: 0.2s; }
-    .center-buttons button:nth-child(2) { animation-delay: 0.4s; }
-    .center-buttons button:nth-child(3) { animation-delay: 0.6s; }
-
-    /* 玩家 & 角色圖片 */
-    .player-img,
-    .character-img {
-        order: 2;
-        height: 50%;            /* 占屏幕高度約 50% */
-        width: 50%;             /* 適度寬度 */
-        max-width: 90vw;        /* 防止超出屏幕 */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5px;
-    }
-
-    .player-img img,
-    .character-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    /* Footer */
-    .site-footer {
-        order: 3;
-        font-size: 0.65rem;
-        padding: 4px 0;
-        width: 100%;
-        margin: 0 auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 6px;
-    }
-
-    /* 側邊欄 */
-    .sidebar {
-        width: 220px;
-        left: -240px;
-        padding: 15px;
-        gap: 15px;
-    }
-
-    .sidebar.active {
-        left: 0;
-    }
-
-    .sidebar-toggle {
-        top: 10px;
-        right: -38px;
-        font-size: 20px;
-        padding: 6px 12px;
-    }
-
-    .panel-section {
-        padding-bottom: 8px;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-}
-
-/* ==========================
-   📱 手機版 RWD 完整整合（已優化單螢幕顯示）
-========================== */
-@media (max-width: 768px) {
-
-    body {
-        overflow: hidden;
-    }
-
-    .story-container {
-        flex-direction: column;
-        height: 100vh;
-        width: 100%;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 0;
-    }
-
-        /* 🔹 角色圖區（上半部） */
-    .player-img,
-    .character-img {
-        order: 2;
-        height: 33vh;      /* 上半 55% */
-        width: 80%;
-        max-width: 95vw;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        margin: 0;
-    }
-
-    .player-img img,
-    .character-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    /* 🔹 對話區（下半部） */
-    .middle-area {
-        order: 1;
-        height: 33vh;      /* 下半 38% */
-        width: 95%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-    }
-
-    .dialog-box {
-        width: 100%;
-        height: 100%;
-        padding: 12px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* 讓文字+選項撐開 */
-        backdrop-filter: blur(6px);
-    }
-
-    .story {
-        font-size: clamp(16px, 4vw, 18px);
-        line-height: 1.4;
-        margin: 0;
-    }
-
-    .center-buttons {
-        gap: 8px;
-    }
-
-    .center-buttons button {
-        font-size: clamp(14px, 3.5vw, 16px);
-        padding: 8px;
-        width: 100%;
-        white-space: normal;
-    }
-
-    .center-buttons button:nth-child(1) { animation-delay: 0.2s; }
-    .center-buttons button:nth-child(2) { animation-delay: 0.4s; }
-    .center-buttons button:nth-child(3) { animation-delay: 0.6s; }
-
-    /* 🔹 Footer 固定底部細條 */
-    .site-footer {
-        display: none;
-    }
-
-    /* 側邊欄（保持不變） */
-    .sidebar {
-        width: 200px;
-        left: -226px;
-        padding: 15px;
-        gap: 15px;
-    }
-
-    .sidebar.active {
-        left: 0;
-    }
-
-    .sidebar-toggle {
-        top: 10px;
-        right: -35px;
-        font-size: 18px;
-        padding: 6px 10px;
-    }
-
-    .panel-section {
-        padding-bottom: 8px;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
+    z-index: 99999; /* 超高層級 */
+    pointer-events: none; /* 避免擋到點擊 UI */
 }
 
 #nextIndicator {

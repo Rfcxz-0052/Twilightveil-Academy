@@ -7,75 +7,84 @@
     <link rel="stylesheet" href="index.css">
     <link rel="icon" href="image/favicon.ico" type="image/x-icon">
 </head>
-<body id="gameBody">
 
-    <!-- 故事區塊 -->
-    <div class="story-container">
-        <div id="playerImg" class="player-img"><img src="" alt="player"></div>
-        <div class="middle-area">
-            <div id="dialogBox" class="dialog-box">
-                <div id="storyText" class="story"></div>
-                <div id="choiceButtons" class="center-buttons"></div>
-                <div id="nextIndicator">▼ 點擊繼續 </div>
+<body id="gameBody" data-ui="home">
+
+    <!-- 🔵 首頁 UI -->
+    <div id="homeUI">
+        <h1>歡迎來到暮影學院!</h1>
+        <h3>光與影的交際處</h3>
+        <button id="startBtn">進入遊戲</button>
+    </div>
+
+    <!-- 🎮 遊戲 UI -->
+    <div id="gameUI">
+        <!-- 故事區塊 -->
+        <div class="story-container">
+            <div id="playerImg" class="player-img"><img src="" alt="player"></div>
+            <div class="middle-area">
+                <div id="dialogBox" class="dialog-box">
+                    <div id="storyText" class="story"></div>
+                    <div id="choiceButtons" class="center-buttons"></div>
+                    <div id="nextIndicator">▼ 點擊繼續 </div>
+                </div>
             </div>
+            <div id="characterImg" class="character-img"><img src="" alt="character"></div>
         </div>
-        <div id="characterImg" class="character-img"><img src="" alt="character"></div>
     </div>
 
-    <!-- 側邊欄 -->
-    <div id="sidebar" class="sidebar">
-        <button id="toggleSidebar" class="sidebar-toggle">☰</button>
-        <div class="panel-section">
-            <h3>聲音設定</h3>
-            <label>音樂
-            <input type="range" min="0" max="1" step="0.01" id="bgmSlider">
-            </label><br>
-            <label>音效
-            <input type="range" min="0" max="1" step="0.01" id="seSlider">
-            </label><br>
+        <!-- 側邊欄 -->
+        <div id="sidebar" class="sidebar">
+            <button id="toggleSidebar" class="sidebar-toggle">☰</button>
+            <div class="panel-section">
+                <h3>聲音設定</h3>
+                <label>音樂
+                <input type="range" min="0" max="1" step="0.01" id="bgmSlider">
+                </label><br>
+                <label>音效
+                <input type="range" min="0" max="1" step="0.01" id="seSlider">
+                </label><br>
+            </div>
+            <div id="affectionDisplay"></div>
+            <div id="lightShadowDisplay"></div>
         </div>
-        <div id="affectionDisplay"></div>
-        <div id="lightShadowDisplay"></div>
-    </div>
 
-    <!-- BGM / SE 音源 -->
-    <audio id="bgmSurface" src="audio/surface.mp3" loop></audio>
-    <audio id="bgmInner" src="audio/inner.mp3" loop></audio>
-    <audio id="bgmSuspense" src="audio/suspense.mp3" loop></audio>
-    <audio id="bgmred" src="audio/red.mp3" loop></audio>
+        <!-- BGM / SE 音源 -->
+        <audio id="bgmSurface" src="audio/surface.mp3" loop></audio>
+        <audio id="bgmInner" src="audio/inner.mp3" loop></audio>
+        <audio id="bgmSuspense" src="audio/suspense.mp3" loop></audio>
+        <audio id="bgmred" src="audio/red.mp3" loop></audio>
 
-    <audio id="seghost" src="audio/ghost.mp3"></audio>
-    <audio id="sepage" src="audio/page.mp3"></audio>
-    <audio id="seattack01" src="audio/attack01.mp3"></audio>
-    <audio id="seattack02" src="audio/attack02.mp3"></audio>
-    <audio id="seghost01" src="audio/ghost01.mp3"></audio>
-    <audio id="sefoot" src="audio/foot.mp3"></audio>
+        <audio id="seghost" src="audio/ghost.mp3"></audio>
+        <audio id="sepage" src="audio/page.mp3"></audio>
+        <audio id="seattack01" src="audio/attack01.mp3"></audio>
+        <audio id="seattack02" src="audio/attack02.mp3"></audio>
+        <audio id="seghost01" src="audio/ghost01.mp3"></audio>
+        <audio id="sefoot" src="audio/foot.mp3"></audio>
 
-    <!-- 模組化 JS -->
-    <script type="module">
-        import './affection.js';
-        import './lightShadow.js';
-        import './storyData.js';
-        import { setBGMVolume, setSEVolume } from './audioController.js';
-        import { showNode } from './engine.js';
+        <!-- 模組化 JS -->
+        <script type="module">
+            import { startGame } from './engine.js';
+            import { setBGMVolume, setSEVolume } from './audioController.js';
 
-        // 音量滑桿
-        const bgmSlider = document.getElementById('bgmSlider');
-        const seSlider = document.getElementById('seSlider');
+            document.getElementById("startBtn")
+                .addEventListener("click", startGame);
 
-        bgmSlider.value = localStorage.getItem("bgmVolume") || 0.4;
-        seSlider.value = localStorage.getItem("seVolume") || 1.0;
+            // 音量滑桿
+            const bgmSlider = document.getElementById('bgmSlider');
+            const seSlider = document.getElementById('seSlider');
 
-        bgmSlider.addEventListener('input', e => setBGMVolume(e.target.value));
-        seSlider.addEventListener('input', e => setSEVolume(e.target.value));
+            bgmSlider.value = localStorage.getItem("bgmVolume") || 0.4;
+            seSlider.value = localStorage.getItem("seVolume") || 1.0;
 
-        // 初始化遊戲顯示
-        showNode("enter");
-    </script>
+            bgmSlider.addEventListener('input', e => setBGMVolume(e.target.value));
+            seSlider.addEventListener('input', e => setSEVolume(e.target.value));
 
-    <footer class="site-footer">
-        © 2026 Lin Rui-An 本作品內容僅供求職及學習展示使用，未經授權禁止商業使用或轉載。
-    </footer>
+        </script>
+
+        <div class="footer">
+            © 2026 Lin Rui-An 本作品內容僅供求職及學習展示使用，未經授權禁止商業使用或轉載。
+        </div>
 
 </body>
 </html>
