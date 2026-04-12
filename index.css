@@ -253,6 +253,8 @@ body[data-ui="game"] #homeUI { display: none; }
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 
     margin-bottom: 0;
+    height: 180px;          /* 固定高度（你可調 180~260） */
+    justify-content: space-between;
 }
 
 /* 文字 */
