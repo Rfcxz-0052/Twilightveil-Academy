@@ -34,19 +34,38 @@
     </div>
 
         <!-- 側邊欄 -->
-        <div id="sidebar" class="sidebar">
-            <button id="toggleSidebar" class="sidebar-toggle">☰</button>
-            <div class="panel-section">
-                <h3>聲音設定</h3>
-                <label>音樂
-                <input type="range" min="0" max="1" step="0.01" id="bgmSlider">
-                </label><br>
-                <label>音效
-                <input type="range" min="0" max="1" step="0.01" id="seSlider">
-                </label><br>
+        <div id="sidebarWrapper" class="sidebar-wrapper">
+            <div id="sidebar" class="sidebar">
+                <button id="toggleSidebar" class="sidebar-toggle">☰</button>
+                <div class="panel-section">
+                    <h3>聲音設定</h3>
+                    <label>音樂
+                    <input type="range" min="0" max="1" step="0.01" id="bgmSlider">
+                    </label><br>
+                    <label>音效
+                    <input type="range" min="0" max="1" step="0.01" id="seSlider">
+                    </label><br>
+                </div>
+                <div id="affectionDisplay"></div>
+                <div id="lightShadowDisplay"></div>
+                <div class="panel-save">
+                    <h3>存檔</h3>
+                    <button id="saveBtn">💾 存檔選單</button>
+                </div>
             </div>
-            <div id="affectionDisplay"></div>
-            <div id="lightShadowDisplay"></div>
+        </div>
+
+        <!-- 💾 存檔視窗 -->
+        <div id="saveModal" class="save-modal hidden">
+            <div class="save-panel">
+
+                <button id="closeSaveModal" class="close-btn">✕</button>
+
+                <h3>存檔系統</h3>
+
+                <div id="saveSlots"></div>
+
+            </div>
         </div>
 
         <!-- BGM / SE 音源 -->
@@ -62,13 +81,10 @@
         <audio id="seghost01" src="audio/ghost01.mp3"></audio>
         <audio id="sefoot" src="audio/foot.mp3"></audio>
 
+        <script type="module" src="./engine.js"></script>
         <!-- 模組化 JS -->
         <script type="module">
-            import { startGame } from './engine.js';
             import { setBGMVolume, setSEVolume } from './audioController.js';
-
-            document.getElementById("startBtn")
-                .addEventListener("click", startGame);
 
             // 音量滑桿
             const bgmSlider = document.getElementById('bgmSlider');

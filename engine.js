@@ -1,5 +1,6 @@
+//engine.js
 import storyNodes from './story/storyData.js';
-import { affection, changeAffection, resetAffection } from './affection.js';
+import { affection, changeAffection, resetAffection, affectionNameMap } from './affection.js';
 import {
     lightShadow,
     changeLightShadow,
@@ -8,6 +9,17 @@ import {
     getShadowText
 } from './lightShadow.js';
 import { seMap, playSE, stopSE, switchBGM } from './audioController.js';
+import {
+    saveSlot,
+    loadSlot,
+    clearSlot,
+    clearAllSaves
+} from './saveSystem.js';
+
+// ======================
+// 💾 常數設定
+// ======================
+const SAVE_KEY = "moonShadow_save";
 
 // ======================
 // 🎮 狀態
@@ -15,10 +27,114 @@ import { seMap, playSE, stopSE, switchBGM } from './audioController.js';
 let currentNode = "start";
 let textIndex = 0;
 let isChoosing = false;
+let isTyping = false;
+let skipTyping = false;
+
+// ======================
+// 💾 存檔用
+// ======================
+function getGameState() {
+    return {
+        currentNode,
+        textIndex,
+        chapter: storyNodes[currentNode]?.bgm || "未知章節",
+        text: storyNodes[currentNode]?.text?.[textIndex] || "",
+        affection: { ...affection },
+        lightShadow: { ...lightShadow }
+    };
+}
+
+export function loadGameData() {
+    const data = loadSlot(1);
+    if (!data) return;
+
+    currentNode = data.currentNode;
+    textIndex = data.textIndex;
+
+    // 1️⃣ 先清空舊狀態（關鍵）
+    resetAffection();
+    resetLightShadow();
+
+    // 2️⃣ 再還原存檔狀態
+    for (const key in affection) {
+        affection[key] = data.affection?.[key] ?? 0;
+    }
+
+    for (const key in lightShadow) {
+        lightShadow[key] = data.lightShadow?.[key] ?? 0;
+    }
+
+    setUI("game");
+    showNode(currentNode);
+    updateUI();
+}
 
 // ======================
 // 🧠 UI
 // ======================
+function openSaveModal() {
+    document.getElementById("saveModal").classList.remove("hidden");
+    renderSaveSlots();
+}
+
+function closeSaveModal() {
+    document.getElementById("saveModal").classList.add("hidden");
+}
+
+function renderSaveSlots() {
+    const container = document.getElementById("saveSlots");
+    container.innerHTML = "";
+    if (!container) return;
+
+    const all = JSON.parse(localStorage.getItem("moonShadow_slots")) || {};
+
+    for (let i = 1; i <= 5; i++) {
+        const data = all[i];
+
+        const div = document.createElement("div");
+        div.className = "save-slot";
+
+        div.innerHTML = `
+            <div>📦 存檔 ${i}</div>
+
+            <button class="save-btn">保存</button>
+            <button class="load-btn">讀取</button>
+            <button class="clear-btn">刪除</button>
+
+            <div class="save-info">
+                ${data ? `章節：${data.chapter}<br>${data.text}` : "空存檔"}
+            </div>
+        `;
+
+        // 💾 存檔
+        div.querySelector(".save-btn").onclick = () => {
+            saveSlot(i, getGameState());
+            renderSaveSlots();
+        };
+
+        // 📥 讀檔
+        div.querySelector(".load-btn").onclick = () => {
+            const data = loadSlot(i);
+            if (!data) return;
+
+            currentNode = data.currentNode;
+            textIndex = data.textIndex;
+
+            showNode(currentNode);
+            updateUI();
+            closeSaveModal();
+        };
+
+        // 🗑 刪除
+        div.querySelector(".clear-btn").onclick = () => {
+            clearSlot(i);
+            renderSaveSlots();
+        };
+
+        container.appendChild(div);
+    }
+}
+
 function setUI(mode) {
     document.body.setAttribute("data-ui", mode);
 }
@@ -38,51 +154,82 @@ export function startGame() {
 }
 
 // ======================
+// ✨ 打字機
+// ======================
+async function typeWriter(text) {
+    const storyDiv = document.getElementById("storyText");
+    const continueBtn = document.getElementById("continueBtn");
+
+    storyDiv.innerHTML = "";
+    continueBtn.style.display = "none";
+
+    isTyping = true;
+    skipTyping = false;
+
+    const p = document.createElement("p");
+    storyDiv.appendChild(p);
+
+    for (let char of text) {
+        if (skipTyping) {
+            p.textContent = text;
+            break;
+        }
+
+        p.textContent += char;
+
+        if (Math.random() < 0.25) {
+            playSE("sepage");
+        }
+
+        await new Promise(res => setTimeout(res, 60));
+    }
+
+    isTyping = false;
+    continueBtn.style.display = "block";
+}
+
+// ======================
 // 🎮 continue
 // ======================
 export function handleContinue() {
     const node = storyNodes[currentNode];
     if (!node) return;
 
-    if (isChoosing) return;
-
-    // 📖 還沒讀完
-    if (textIndex < node.text.length - 1) {
-        textIndex++;
-        renderText(node);
-        updateContinueBtn(node);
+    if (isTyping) {
+        skipTyping = true;
         return;
     }
 
-    // 🎯 顯示選項（只一次）
+    if (isChoosing) return;
+
+    if (textIndex < node.text.length - 1) {
+        textIndex++;
+        renderText(node);
+        return;
+    }
+
     if (node.choices?.length) {
         showChoices(node);
         isChoosing = true;
-
         document.getElementById("continueBtn").style.display = "none";
         return;
     }
 
-    // ▶ next
     if (node.next) {
         showNode(node.next);
     }
 }
 
 // ======================
-// 📖 text
+// 📖 render text
 // ======================
-function renderText(node) {
-    const storyDiv = document.getElementById("storyText");
-
+async function renderText(node) {
     let line = node.text[textIndex];
 
-    if (typeof getShadowText === "function") {
-        const feedback = getShadowText(lightShadow, currentNode);
-        line = line.replace("{shadowText1}", feedback.shadowText1);
-    }
+    const feedback = getShadowText(lightShadow, currentNode);
+    line = line.replace("{shadowText1}", feedback.shadowText1);
 
-    storyDiv.innerHTML = `<p>${line}</p>`;
+    await typeWriter(line);
 }
 
 // ======================
@@ -119,7 +266,7 @@ function showChoices(node) {
 }
 
 // ======================
-// 🎬 show node（核心修正版）
+// 🎬 show node
 // ======================
 export function showNode(nodeId) {
 
@@ -135,14 +282,8 @@ export function showNode(nodeId) {
     textIndex = 0;
     isChoosing = false;
 
-    renderText(node);
-
     document.getElementById("choiceButtons").innerHTML = "";
 
-    updateUI();
-    updateContinueBtn(node);
-
-    // 🔊 audio
     Object.keys(seMap).forEach(k => stopSE(k));
     if (node.se) playSE(node.se);
 
@@ -150,19 +291,9 @@ export function showNode(nodeId) {
         switchBGM(node.bgm);
     }
 
-    // 🌄 bg
     document.getElementById("gameBody").style.backgroundImage =
         `url('${node.background}')`;
 
-    setUI("game");
-
-    // 📖 text
-    renderText(node);
-
-    // 🧹 清空選項（只做一次）
-    document.getElementById("choiceButtons").innerHTML = "";
-
-    // 🧍 sprite
     const playerDiv = document.getElementById("playerImg");
     const charDiv = document.getElementById("characterImg");
 
@@ -180,31 +311,14 @@ export function showNode(nodeId) {
         if (node.characterImg) charImg.src = node.characterImg;
     }
 
-    renderText(node);
+    setUI("game");
     updateUI();
 
-    updateContinueBtn(node);
-}
-
-
-
-// ======================
-// 🎯 btn logic
-// ======================
-function updateContinueBtn(node) {
-    const btn = document.getElementById("continueBtn");
-
-    const endText = textIndex >= node.text.length - 1;
-
-    if (!endText) {
-        btn.style.display = "block";
-    } else {
-        btn.style.display = "block"; // 最後一句也先保留（還沒進選項）
-    }
+    renderText(node);
 }
 
 // ======================
-// 💖 UI
+// 💖 UI 更新
 // ======================
 function updateUI() {
     const a = document.getElementById("affectionDisplay");
@@ -214,8 +328,8 @@ function updateUI() {
         a.innerHTML =
             `<h3>❤️ 好感度</h3>` +
             Object.entries(affection)
-                .map(([k, v]) => `<p>${k}: ${v}</p>`)
-                .join('');
+                .map(([k, v]) => `<p>${affectionNameMap[k] || k}: ${v}</p>`)
+                .join('')
     }
 
     if (l) {
@@ -229,15 +343,65 @@ function updateUI() {
 }
 
 // ======================
-// 🎛️ bind
+// 🎛️ 綁定
 // ======================
 window.addEventListener("DOMContentLoaded", () => {
 
-    document.getElementById("startBtn").onclick = startGame;
+    // ======================
+    // 🎮 基本按鈕
+    // ======================
+    const saveBtn = document.getElementById("saveBtn");
+    const closeBtn = document.getElementById("closeSaveModal");
+    const saveModal = document.getElementById("saveModal");
 
+    if (saveBtn) saveBtn.onclick = openSaveModal;
+    if (closeBtn) closeBtn.onclick = closeSaveModal;
+
+    if (saveModal) {
+        saveModal.onclick = (e) => {
+            if (e.target.id === "saveModal") {
+                closeSaveModal();
+            }
+        };
+    }
+
+    document.getElementById("startBtn").onclick = startGame;
     document.getElementById("continueBtn")
         ?.addEventListener("click", handleContinue);
 
     document.getElementById("toggleSidebar")
-        .onclick = () => document.getElementById("sidebar").classList.toggle("active");
+        .onclick = () =>
+            document.getElementById("sidebarWrapper").classList.toggle("active");
+
+    document.getElementById("storyText")
+        .addEventListener("click", () => {
+            if (isTyping) skipTyping = true;
+        });
+
+    // ======================
+    // 💾 存檔系統
+    // ======================
+    document.getElementById("saveModal").onclick = (e) => {
+        if (e.target.id === "saveModal") {
+            closeSaveModal();
+        }
+    };
+    document.getElementById("closeSaveModal").onclick = closeSaveModal;
+
+    // ======================
+    // 🔊 音量控制
+    // ======================
+    const bgmSlider = document.getElementById('bgmSlider');
+    const seSlider = document.getElementById('seSlider');
+
+    bgmSlider.value = localStorage.getItem("bgmVolume") || 0.4;
+    seSlider.value = localStorage.getItem("seVolume") || 1.0;
+
+    bgmSlider.addEventListener('input', e =>
+        setBGMVolume(e.target.value)
+    );
+
+    seSlider.addEventListener('input', e =>
+        setSEVolume(e.target.value)
+    );
 });

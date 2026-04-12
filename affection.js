@@ -6,6 +6,12 @@ const affection = {
     moxing: 0   // 墨行
 };
 
+const affectionNameMap = {
+    baiqi: "白祈",
+    yanzhen: "炎燼",
+    moxing: "墨行"
+};
+
 /**
  * 增加 / 減少好感度（唯一入口）
  */
@@ -37,5 +43,6 @@ export {
     affection,
     changeAffection,
     getAffection,
-    resetAffection
+    resetAffection,
+    affectionNameMap
 };

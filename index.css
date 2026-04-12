@@ -1,31 +1,106 @@
 /*index.css*/
 /* ==========================
-   全局基本樣式
+   🌍 全局設定
 ========================== */
 body {
     margin: 0;
-    padding: 0;
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
-    background-size: cover;
-    background-position: center;
+
     font-family: sans-serif;
     color: rgb(7, 7, 7);
 
     display: flex;
     flex-direction: column;
-    padding-bottom: 40px;
+
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 0;
 }
 
-body[data-ui="home"] #gameUI {
-    display: none;
+/* UI 切換 */
+body[data-ui="home"] #gameUI { display: none; }
+body[data-ui="game"] #homeUI { display: none; }
+
+
+/* ==========================
+   🎬 動畫系統（統一）
+========================== */
+
+/* 淡入 */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s forwards;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
 }
 
-body[data-ui="game"] #homeUI {
-    display: none;
+/* 上方滑入（標題） */
+.slide-down {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideDown 0.6s forwards;
+}
+@keyframes slideDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
+/* 下方浮入（按鈕） */
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s forwards;
+}
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 淡出（畫面切換） */
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+@keyframes fadeOut {
+    to { opacity: 0; }
+}
+
+/* 呼吸動畫 */
+.breathe {
+    animation: breathe 1.2s infinite ease-in-out;
+}
+@keyframes breathe {
+    0% { opacity: 0.3; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(6px); }
+    100% { opacity: 0.3; transform: translateY(0); }
+}
+
+
+/* ==========================
+   🖱️ 互動系統（統一）
+========================== */
+.hover-scale {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: translateY(0) scale(1.05);
+}
+
+.press:active {
+    transform: translateY(2px) scale(0.98);
+}
+
+
+/* ==========================
+   🏠 首頁 UI
+========================== */
 #homeUI {
     position: fixed;
     top: 0;
@@ -38,80 +113,105 @@ body[data-ui="game"] #homeUI {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
     gap: 20px;
+
+    text-align: center;
 
     background: url("image/DuskCampus.webp") center/cover no-repeat;
     z-index: 10;
 }
 
+/* 標題 */
 #homeUI h1 {
     font-size: 48px;
+
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideDown 0.8s forwards;
+    animation-delay: 0.2s;
+
+    text-shadow: 0 0 12px rgba(112, 111, 112, 0.9);
 }
 
+/* 副標 */
 #homeUI h3 {
     font-size: 24px;
-    opacity: 0.9;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: slideDown 0.8s forwards;
+    animation-delay: 0.4s;
+
+    text-shadow: 0 0 6px rgba(112, 111, 112, 0.9);
 }
 
+/* 首頁按鈕 */
 #homeUI button {
     padding: 12px 24px;
     font-size: 18px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
+
     background: rgba(162, 52, 212, 0.9);
     color: yellow;
 
-    transition: all 0.3s ease;
-    min-width: 200px;
-    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    text-shadow: 0 0 5px rgba(255,255,0,0.8);
+
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 0.5s forwards;
-}
+    animation: fadeUp 0.5s forwards;
+    animation-delay: 0.6s;
 
-#homeUI button:nth-child(1) { animation-delay: 0.2s; }
-#homeUI button:nth-child(2) { animation-delay: 0.4s; }
-#homeUI button:nth-child(3) { animation-delay: 0.6s; }
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
 
 #homeUI button:hover {
     background-color: rgb(62, 9, 66);
-    transform: scale(1.05);
+    transform: translateY(0) scale(1.05);
 }
 
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+#homeUI button:active {
+    transform: translateY(2px) scale(0.98);
+}
+
+#gameUI {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
 }
 
 /* ==========================
-   故事區塊
+   🎮 遊戲主畫面
 ========================== */
 .story-container {
-    flex: 1;   /* 撐開 */
+    flex: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    height: 100vh;
     justify-content: center;
+
     width: 100%;
     max-width: 1200px;
-    min-height: 75vh;
+
     gap: 20px;
-    transition: all 0.5s ease;
+
     margin: 0 auto;
+    padding-bottom: 40px;
 }
 
+/* 角色圖片 */
 .player-img, .character-img {
-    width: 35%;         /* 比之前更寬 */
-    max-width: 500px;   /* 防止過大 */
-    height: auto;
+    width: 35%;
+    max-width: 500px;
     max-height: 90vh;
+
     display: flex;
     justify-content: center;
-    align-items: center;
-    transition: all 0.5s ease;
+    align-items: flex-end;
 }
 
 .player-img img,
@@ -120,57 +220,54 @@ body[data-ui="game"] #homeUI {
     height: 85%;
     object-fit: contain;
     object-position: bottom;
+
     transition: opacity 0.25s ease;
 }
 
-.fade-out {
-    opacity: 0;
-}
-.fade-in {
-    opacity: 1;
-}
-
+/* 中間區 */
 .middle-area {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    transition: all 0.5s ease;
+    justify-content: flex-end;
+    align-items: stretch;
 }
 
+
 /* ==========================
-   對話框
+   💬 對話框
 ========================== */
 .dialog-box {
-    background-color: rgba(255, 255, 255, 0.1);
+    background: rgba(3, 3, 3, 0.4);
     border-radius: 12px;
     padding: 20px;
+
     width: 100%;
-    max-width: 600px;
+    max-width: none;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: all 0.2s ease;
+
     backdrop-filter: blur(8px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+    margin-bottom: 0;
 }
 
-/* ==========================
-   故事文字
-========================== */
+/* 文字 */
 .story {
     font-size: 20px;
     margin-bottom: 20px;
-    color: #111;
     font-weight: bold;
-    text-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
+
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
+
 /* ==========================
-   選項按鈕
+   🎯 選項按鈕（劇情）
 ========================== */
 .center-buttons {
     display: flex;
@@ -182,71 +279,120 @@ body[data-ui="game"] #homeUI {
 .center-buttons button {
     padding: 12px 20px;
     font-size: 16px;
-    cursor: pointer;
+
     border: none;
     border-radius: 8px;
-    background-color: rgba(162, 52, 212, 0.85);
+    cursor: pointer;
+
+    background: rgba(162, 52, 212, 0.85);
     color: rgb(235, 232, 74);
-    transition: all 0.3s ease;
+
     min-width: 200px;
-    white-space: nowrap;
-    opacity: 1 !important;
-    transform: none !important;
-    animation: fadeInUp 0.5s forwards;
+
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s forwards;
+
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.center-buttons button:nth-child(1) { animation-delay: 0.2s; }
-.center-buttons button:nth-child(2) { animation-delay: 0.4s; }
-.center-buttons button:nth-child(3) { animation-delay: 0.6s; }
+/* 延遲 */
+.center-buttons button:nth-of-type(1) { animation-delay: 0.2s; }
+.center-buttons button:nth-of-type(2) { animation-delay: 0.4s; }
+.center-buttons button:nth-of-type(3) { animation-delay: 0.6s; }
 
 .center-buttons button:hover {
     background-color: rgb(62, 9, 66);
-    transform: scale(1.05);
+    transform: translateY(0) scale(1.05);
 }
 
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.center-buttons button:active {
+    transform: translateY(2px) scale(0.98);
+}
+
+
+/* ==========================
+   ▶️ 繼續提示
+========================== */
+#continueBtn {
+    margin-top: 12px;
+
+    cursor: pointer;
+
+    /* ✨ 無框透明風格 */
+    background: transparent;
+    border: none;
+
+    /* ✨ 字變大 */
+    font-size: 22px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 2px;
+
+    /* ✨ 提示感更強 */
+    text-shadow: 0 0 8px rgba(0,0,0,0.8);
+
+    /* 動畫 */
+    animation: breathe 1.2s infinite ease-in-out;
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 /* ==========================
-   側邊欄
+   📊 側邊欄
 ========================== */
-.sidebar {
+.sidebar-wrapper {
     position: fixed;
     top: 0;
-    left: -280px; /* 初始隱藏 */
-    width: 250px;
+    left: 0;
+
+    width: 260px;
+
     height: 100%;
+
+    transform: translateX(-240px);
+    transition: transform 0.4s ease;
+
+    z-index: 1000;
+}
+
+.sidebar-wrapper.active {
+    transform: translateX(0);
+}
+
+.sidebar {
+    top: o;
+    width: 220px;
+    height: 100%;
+    font-size: 12px;
+
     background: rgba(0,0,0,0.9);
     color: white;
-    padding: 20px;
-    transition: left 0.4s ease;
-    z-index: 1000;
+
+    padding: 12px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+    padding: 12px;
+    z-index: 1000;
 }
 
-.sidebar.active {
-    left: 0;
-}
-
-/* 按鈕在 sidebar 內 */
 .sidebar-toggle {
     position: absolute;
     top: 20px;
-    right: -40px;
+    right: -30px;
     font-size: 22px;
     padding: 8px 12px;
+
     border-radius: 8px;
-    background: rgba(0,0,0,0.8);
-    color: white;
     border: none;
     cursor: pointer;
-    transition: 0.3s ease;
+
+    background: rgba(0,0,0,0.8);
+    color: white;
+    z-index: 2000;
+
+    transition: background 0.3s ease;
 }
 
 .sidebar-toggle:hover {
@@ -258,12 +404,110 @@ body[data-ui="game"] #homeUI {
     padding-bottom: 10px;
 }
 
+.sidebar h3 {
+    font-size: 14px;
+    margin: 6px 0;
+}
+
+.sidebar label {
+    font-size: 12px;
+}
+
+.panel-save button {
+    padding: 6px 8px;
+    font-size: 12px;
+    margin: 2px 0;
+    width: 100%;
+}
+
+input[type="range"] {
+    width: 100%;
+    transform: scale(0.9);
+}
+
+#affectionDisplay p,
+#lightShadowDisplay p {
+    margin: 2px 0;
+    font-size: 12px;
+}
+
+/* ==========================
+   💾 存檔視窗 UI
+========================== */
+
+.save-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: rgba(0,0,0,0.65);
+
+    display: flex;
+    justify-content: flex-start;
+
+    z-index: 9999;
+}
+
+.save-panel {
+    width: 260px;
+    height: 100%;
+
+    background: rgba(10,10,10,0.95);
+    color: white;
+
+    padding: 10px;
+
+    overflow-y: auto;
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+
+/* 關閉按鈕 */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background: transparent;
+    border: none;
+
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* 存檔格 */
+.save-slot {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 10px 0;
+}
+
+.save-slot button {
+    margin-right: 6px;
+    font-size: 12px;
+}
+
+.save-info {
+    font-size: 11px;
+    opacity: 0.8;
+    margin-top: 6px;
+}
+
+/* ==========================
+   📌 Footer
+========================== */
 .footer {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
 
+    width: 100%;
     background: rgba(0, 0, 0, 0.6);
     color: white;
 
@@ -271,32 +515,6 @@ body[data-ui="game"] #homeUI {
     padding: 8px 12px;
     font-size: 12px;
 
-    z-index: 99999; /* 超高層級 */
-    pointer-events: none; /* 避免擋到點擊 UI */
-}
-
-#nextIndicator {
-    display: none;
-    text-align: center;
-    font-size: 16px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    animation: breathe 1.2s infinite ease-in-out;
-}
-
-/* 呼吸動畫 */
-@keyframes breathe {
-    0% {
-        opacity: 0.3;
-        transform: translateY(0px);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(6px);
-    }
-    100% {
-        opacity: 0.3;
-        transform: translateY(0px);
-    }
+    z-index: 99999;
+    pointer-events: none;
 }
