@@ -203,6 +203,19 @@ body[data-ui="game"] #homeUI { display: none; }
     padding-bottom: 40px;
 }
 
+.story-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.6),
+        rgba(0,0,0,0.1),
+        transparent
+    );
+    pointer-events: none;
+}
+
 /* 角色圖片 */
 .player-img, .character-img {
     width: 35%;
@@ -531,4 +544,85 @@ input[type="range"] {
 
     z-index: 99999;
     pointer-events: none;
+}
+
+/* ==========================
+   📱 手機版 VN 排版
+========================== */
+@media (max-width: 768px) {
+
+    html, body {
+        height: 100%;
+        overflow: hidden; /* 🚫 禁止整頁滾動 */
+    }
+
+    /* 整體改成疊層 */
+    .story-container {
+        position: relative;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100dvh;
+        padding-bottom: 0;
+        gap: 0;
+    }
+
+    /* 人物圖變大 */
+    .player-img,
+    .character-img {
+        width: 100%;
+        max-width: none;
+        max-height: 100vh;
+    }
+
+    .player-img img,
+    .character-img img {
+        width: 110%;   /* 👈 放大重點 */
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* 中間區變成疊層容器 */
+    .middle-area {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    /* 💬 對話框浮在人物上 */
+    .dialog-box {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 16px 16px 0 0;
+
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(10px);
+
+        padding: 14px;
+
+        /* 👇 關鍵：讓它貼底浮起來 */
+        margin: 0;
+        box-sizing: border-box; /* ⭐避免 padding 撐爆 */
+    }
+
+    /* 文字縮小一點比較好讀 */
+    .story {
+        font-size: 16px;
+    }
+
+    /* 選項按鈕 */
+    .center-buttons button {
+        font-size: 14px;
+        min-width: 160px;
+    }
+
+    /* continue 按鈕更像手機 VN */
+    #continueBtn {
+        font-size: 18px;
+    }
+
+    .footer { display: none; }
 }
