@@ -48,14 +48,15 @@ export function loadGameData() {
     const data = loadSlot(1);
     if (!data) return;
 
-    currentNode = data.currentNode;
-    textIndex = data.textIndex;
+    applySaveData(data);
+}
 
-    // 1️⃣ 先清空舊狀態（關鍵）
+function applySaveData(data) {
+    // 🔥 清空
     resetAffection();
     resetLightShadow();
 
-    // 2️⃣ 再還原存檔狀態
+    // 🔥 還原數值
     for (const key in affection) {
         affection[key] = data.affection?.[key] ?? 0;
     }
@@ -63,6 +64,10 @@ export function loadGameData() {
     for (const key in lightShadow) {
         lightShadow[key] = data.lightShadow?.[key] ?? 0;
     }
+
+    // 🔥 還原劇情
+    currentNode = data.currentNode;
+    textIndex = data.textIndex;
 
     setUI("game");
     showNode(currentNode);
@@ -117,18 +122,8 @@ function renderSaveSlots() {
             const data = loadSlot(i);
             if (!data) return;
 
-            currentNode = data.currentNode;
-            textIndex = data.textIndex;
-
-            showNode(currentNode);
-            updateUI();
+            applySaveData(data);
             closeSaveModal();
-        };
-
-        // 🗑 刪除
-        div.querySelector(".clear-btn").onclick = () => {
-            clearSlot(i);
-            renderSaveSlots();
         };
 
         container.appendChild(div);
