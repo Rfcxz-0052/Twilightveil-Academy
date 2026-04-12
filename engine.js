@@ -74,6 +74,29 @@ function applySaveData(data) {
     updateUI();
 }
 
+function autoResizeDialog() {
+    const box = document.getElementById("dialogBox");
+    const story = document.getElementById("storyText");
+    const choices = document.getElementById("choiceButtons");
+    const continueBtn = document.getElementById("continueBtn");
+
+    if (!box || !story || !continueBtn) return;
+
+    const storyH = story.scrollHeight;
+    const choiceH = choices ? choices.scrollHeight : 0;
+    const continueH = continueBtn.scrollHeight;
+
+    const totalHeight = storyH + choiceH + continueH + 60;
+
+    box.style.maxHeight = totalHeight + "px";
+}
+
+function safeResize() {
+    requestAnimationFrame(() => {
+        autoResizeDialog();
+    });
+}
+
 // ======================
 // 🧠 UI
 // ======================
@@ -171,6 +194,9 @@ async function typeWriter(text) {
         }
 
         p.textContent += char;
+        requestAnimationFrame(() => {
+            autoResizeDialog();
+        });
 
         if (Math.random() < 0.25) {
             playSE("sepage");
@@ -181,6 +207,9 @@ async function typeWriter(text) {
 
     isTyping = false;
     continueBtn.style.display = "block";
+    requestAnimationFrame(() => {
+        safeResize();
+    });
 }
 
 // ======================
@@ -225,6 +254,7 @@ async function renderText(node) {
     line = line.replace("{shadowText1}", feedback.shadowText1);
 
     await typeWriter(line);
+    safeResize();
 }
 
 // ======================
@@ -257,6 +287,10 @@ function showChoices(node) {
         };
 
         btnDiv.appendChild(btn);
+    });
+
+    requestAnimationFrame(() => {
+    safeResize();
     });
 }
 

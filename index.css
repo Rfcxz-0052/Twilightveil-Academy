@@ -248,7 +248,12 @@ body[data-ui="game"] #homeUI { display: none; }
     display: flex;
     flex-direction: column;
 
-    height: 240px;
+    overflow: hidden;
+
+    /* ✨ 改成動畫 max-height */
+    max-height: 260px;
+
+    transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 
     backdrop-filter: blur(8px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
