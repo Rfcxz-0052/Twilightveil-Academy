@@ -214,6 +214,7 @@ body[data-ui="game"] #homeUI { display: none; }
         transparent
     );
     pointer-events: none;
+    z-index: 1;
 }
 
 /* 角色圖片 */
@@ -244,6 +245,9 @@ body[data-ui="game"] #homeUI { display: none; }
     flex-direction: column;
     justify-content: flex-end;
     align-items: stretch;
+
+    position: relative;
+    z-index: 20;
 }
 
 
@@ -261,10 +265,8 @@ body[data-ui="game"] #homeUI { display: none; }
     display: flex;
     flex-direction: column;
 
-    overflow: hidden;
-
-    /* ✨ 改成動畫 max-height */
-    max-height: 260px;
+    max-height: none;
+    overflow: visible; 
 
     transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -527,26 +529,6 @@ input[type="range"] {
 }
 
 /* ==========================
-   📌 Footer
-========================== */
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-
-    text-align: center;
-    padding: 8px 12px;
-    font-size: 12px;
-
-    z-index: 99999;
-    pointer-events: none;
-}
-
-/* ==========================
    📱 手機版 VN 排版
 ========================== */
 @media (max-width: 768px) {
@@ -562,7 +544,9 @@ input[type="range"] {
         flex-direction: column;
         justify-content: flex-end;
         align-items: center;
-        height: 100dvh;
+        min-height: 100dvh;
+        height: 100vh; 
+
         padding-bottom: 0;
         gap: 0;
     }
@@ -584,11 +568,14 @@ input[type="range"] {
 
     /* 中間區變成疊層容器 */
     .middle-area {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        z-index: 10;
+
+        z-index: 50;
+
+        padding-bottom: env(safe-area-inset-bottom);
     }
 
     /* 💬 對話框浮在人物上 */
@@ -626,6 +613,4 @@ input[type="range"] {
     #continueBtn {
         font-size: 18px;
     }
-
-    .footer { display: none; }
 }

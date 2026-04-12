@@ -74,29 +74,6 @@ function applySaveData(data) {
     updateUI();
 }
 
-function autoResizeDialog() {
-    const box = document.getElementById("dialogBox");
-    const story = document.getElementById("storyText");
-    const choices = document.getElementById("choiceButtons");
-    const continueBtn = document.getElementById("continueBtn");
-
-    if (!box || !story || !continueBtn) return;
-
-    const storyH = story.scrollHeight;
-    const choiceH = choices ? choices.scrollHeight : 0;
-    const continueH = continueBtn.scrollHeight;
-
-    const totalHeight = storyH + choiceH + continueH + 60;
-
-    box.style.maxHeight = totalHeight + "px";
-}
-
-function safeResize() {
-    requestAnimationFrame(() => {
-        autoResizeDialog();
-    });
-}
-
 // ======================
 // 🧠 UI
 // ======================
@@ -194,9 +171,6 @@ async function typeWriter(text) {
         }
 
         p.textContent += char;
-        requestAnimationFrame(() => {
-            autoResizeDialog();
-        });
 
         if (Math.random() < 0.25) {
             playSE("sepage");
@@ -207,9 +181,7 @@ async function typeWriter(text) {
 
     isTyping = false;
     continueBtn.style.display = "block";
-    requestAnimationFrame(() => {
-        safeResize();
-    });
+    refreshUI();
 }
 
 // ======================
@@ -254,7 +226,6 @@ async function renderText(node) {
     line = line.replace("{shadowText1}", feedback.shadowText1);
 
     await typeWriter(line);
-    safeResize();
 }
 
 // ======================
@@ -288,10 +259,7 @@ function showChoices(node) {
 
         btnDiv.appendChild(btn);
     });
-
-    requestAnimationFrame(() => {
-    safeResize();
-    });
+    refreshUI();
 }
 
 // ======================
@@ -344,6 +312,7 @@ export function showNode(nodeId) {
     updateUI();
 
     renderText(node);
+    refreshUI();
 }
 
 // ======================
@@ -368,6 +337,15 @@ function updateUI() {
             <p>影:${lightShadow.shadow}</p>
             <p>平衡:${getLightShadowBalance()}</p>
         `;
+    }
+}
+
+function refreshUI() {
+    updateUI();
+
+    const continueBtn = document.getElementById("continueBtn");
+    if (continueBtn) {
+        continueBtn.style.display = isTyping || isChoosing ? "none" : "block";
     }
 }
 
@@ -402,10 +380,9 @@ window.addEventListener("DOMContentLoaded", () => {
         .onclick = () =>
             document.getElementById("sidebarWrapper").classList.toggle("active");
 
-    document.getElementById("storyText")
-        .addEventListener("click", () => {
-            if (isTyping) skipTyping = true;
-        });
+    document.addEventListener("click", () => {
+        if (isTyping) skipTyping = true;
+    });
 
     // ======================
     // 💾 存檔系統
@@ -433,4 +410,19 @@ window.addEventListener("DOMContentLoaded", () => {
     seSlider.addEventListener('input', e =>
         setSEVolume(e.target.value)
     );
+
+    // ======================
+    // 🎮 VN 點擊任意繼續（核心手感）
+    // ======================
+    document.addEventListener("click", (e) => {
+
+        // 點到按鈕不觸發（避免選項/介面誤觸）
+        if (e.target.closest("button, input, .sidebar, .save-modal")) return;
+
+        // 如果正在選項畫面 → 不允許跳劇情
+        if (isChoosing) return;
+
+        // 點擊繼續（打字中會變 skip）
+        handleContinue();
+    });
 });
