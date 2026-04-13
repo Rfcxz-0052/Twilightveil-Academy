@@ -88,8 +88,8 @@ function closeSaveModal() {
 
 function renderSaveSlots() {
     const container = document.getElementById("saveSlots");
-    container.innerHTML = "";
     if (!container) return;
+    container.innerHTML = "";
 
     const all = JSON.parse(localStorage.getItem("moonShadow_slots")) || {};
 
@@ -124,6 +124,16 @@ function renderSaveSlots() {
 
             applySaveData(data);
             closeSaveModal();
+        };
+
+        // 🗑️ 刪除存檔
+        div.querySelector(".clear-btn").onclick = () => {
+            clearSlot(i);
+
+            // 🔥 強制重新抓 localStorage（避免快取問題）
+            setTimeout(() => {
+                renderSaveSlots();
+            }, 50);
         };
 
         container.appendChild(div);
