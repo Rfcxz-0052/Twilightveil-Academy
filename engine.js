@@ -390,10 +390,6 @@ window.addEventListener("DOMContentLoaded", () => {
         .onclick = () =>
             document.getElementById("sidebarWrapper").classList.toggle("active");
 
-    document.addEventListener("click", () => {
-        if (isTyping) skipTyping = true;
-    });
-
     // ======================
     // 💾 存檔系統
     // ======================
@@ -431,6 +427,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
         // 如果正在選項畫面 → 不允許跳劇情
         if (isChoosing) return;
+
+        if (isTyping) {
+            skipTyping = true;
+            return; // ❗阻止進入 handleContinue
+        }
 
         // 點擊繼續（打字中會變 skip）
         handleContinue();
