@@ -1,21 +1,16 @@
 //engine.js
 import storyNodes from './story/storyData.js';
 import { affection, changeAffection, resetAffection, affectionNameMap } from './affection.js';
-import {
-    lightShadow,
-    changeLightShadow,
-    resetLightShadow,
-    getLightShadowBalance,
-    getShadowText
-} from './lightShadow.js';
+import {lightShadow, changeLightShadow, resetLightShadow, getLightShadowBalance, getShadowText } from './lightShadow.js';
 import { seMap, playSE, stopSE, switchBGM } from './audioController.js';
-import {
-    saveSlot,
-    loadSlot,
-    clearSlot,
-    clearAllSaves
-} from './saveSystem.js';
+import {saveSlot, loadSlot, clearSlot, clearAllSaves } from './saveSystem.js';
 import { evaluate, resolveText } from './condition.js';
+import { characterConfig } from "./characterConfig.js";
+
+// ⏱️ 延遲工具
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 // ======================
 // 💾 常數設定
@@ -183,20 +178,34 @@ async function typeWriter(text) {
     const p = document.createElement("p");
     storyDiv.appendChild(p);
 
+    let buffer = "";
+
     for (let char of text) {
+
         if (skipTyping) {
             p.textContent = text;
             break;
         }
 
-        p.textContent += char;
+        buffer += char;
 
-        if (Math.random() < 0.25) {
-            playSE("sepage");
+        // 每 3 字更新一次
+        if (buffer.length % 3 === 0) {
+            p.textContent = buffer;
+
+            if (Math.random() < 0.1) {
+                playSE("sepage");
+            }
+
+            if (!skipTyping && Math.random() < 0.1) {
+                playSE("sepage");
+            }
+            await delay(30);
         }
-
-        await new Promise(res => setTimeout(res, 60));
     }
+
+    // 收尾（確保完整顯示）
+    p.textContent = text;
 
     isTyping = false;
     continueBtn.style.display = "block";
@@ -321,6 +330,49 @@ function showChoices(node) {
 }
 
 // ======================
+// 🎭 角色控制系統（🔥新增）
+// ======================
+function updateCharacters(node) {
+    const container = document.querySelector(".character-layer");
+    container.innerHTML = ""; // 🔥 每次重建
+
+    if (!node.characters) return;
+
+    const entries = Object.entries(node.characters);
+
+    entries.forEach(([charId, emotion], index) => {
+        const charData = characterConfig[charId];
+        if (!charData) return;
+
+        const imgSrc = charData[emotion] || charData.normal;
+
+        const div = document.createElement("div");
+        div.className = "character active";
+
+        // ✅ 改成平均分配
+        const total = entries.length;
+        const spacing = 100 / (total + 1);   // ⭐ 核心
+        const position = spacing * (index + 1);
+
+        div.style.left = `${position}%`;
+        div.style.transform = "translateX(-50%)";
+
+        const img = document.createElement("img");
+        img.src = imgSrc;
+
+        div.appendChild(img);
+
+        if (charId === node.speaker) {
+            div.classList.add("speaking");
+        } else {
+            div.classList.add("dim");
+        }
+
+        container.appendChild(div);
+    });
+}
+
+// ======================
 // 🎬 show node
 // ======================
 export function showNode(nodeId) {
@@ -352,24 +404,7 @@ export function showNode(nodeId) {
     document.getElementById("gameBody").style.backgroundImage =
         `url('${node.background}')`;
 
-    const playerDiv = document.getElementById("playerImg");
-    const charDiv = document.getElementById("characterImg");
-
-    const playerImg = playerDiv.querySelector("img");
-    const charImg = charDiv.querySelector("img");
-
-    playerDiv.style.opacity = "0";
-    charDiv.style.opacity = "0";
-
-    if (node.speaker === "player") {
-        playerDiv.style.opacity = "1";
-        if (node.playerImg) playerImg.src = node.playerImg;
-
-    } else if (node.speaker === "character") {
-        charDiv.style.opacity = "1";
-        if (node.characterImg) charImg.src = node.characterImg;
-    }
-
+    updateCharacters(node);
     setUI("game");
     updateUI();
 
