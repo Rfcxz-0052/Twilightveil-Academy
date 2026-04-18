@@ -67,7 +67,7 @@ const storyNodes = {
         characterImg: "image/male.webp",
         choices: [
             { text: "翻開書查看", next: "node03", lightShadow: { shadow: 1 } },   // 好奇心偏影
-            { text: "不碰，放回原處", next: "node03", affection: { baiqi: 1 }, lightShadow: { light: 1 } } //白祈好感度+1、克制偏光
+            { text: "不碰，放回原處", next: "node03", lightShadow: { light: 1 } } //克制偏光
         ]
     },
 
@@ -435,7 +435,9 @@ const storyNodes = {
         speaker: "player",
         text: [
             "突然周遭景色開始模糊，我的靈力開始湧現",
-            "我到了一個新地方，四周充滿古代的中式建築，周圍靈力滿佈。"
+            "我到了一個新地方，四周充滿古代的中式建築，周圍靈力滿佈。",
+            "(你總覺得……有東西在盯著你)",
+            "(但當你回頭時，什麼也沒有)"
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",

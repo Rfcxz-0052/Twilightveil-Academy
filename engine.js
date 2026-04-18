@@ -15,6 +15,7 @@ import {
     clearSlot,
     clearAllSaves
 } from './saveSystem.js';
+import { evaluate, resolveText } from './condition.js';
 
 // ======================
 // 💾 常數設定
@@ -29,6 +30,14 @@ let textIndex = 0;
 let isChoosing = false;
 let isTyping = false;
 let skipTyping = false;
+
+function getState() {
+    return {
+        affection: { ...affection },
+        lightShadow: { ...lightShadow },
+        currentNode
+    };
+}
 
 // ======================
 // 💾 存檔用
@@ -222,6 +231,23 @@ export function handleContinue() {
     }
 
     if (node.next) {
+
+        const state = getState();
+
+        // 1️⃣ function
+        if (typeof node.next === "function") {
+            showNode(node.next(state));
+            return;
+        }
+
+        // 2️⃣ cases DSL
+        if (typeof node.next === "object" && node.next.cases) {
+            const result = evaluateCases(node.next, state);
+            showNode(result);
+            return;
+        }
+
+        // 3️⃣ pure nodeId（🔥最重要）
         showNode(node.next);
     }
 }
@@ -246,8 +272,15 @@ function showChoices(node) {
     btnDiv.innerHTML = "";
 
     node.choices.forEach(choice => {
+        const state = getState();
+
+        if (choice.showIf && !evaluate(choice.showIf, state)) {
+            return;
+        }
+
         const btn = document.createElement("button");
-        btn.innerText = choice.text;
+
+        btn.innerText = resolveText(choice.text, state);
 
         btn.onclick = () => {
 
@@ -264,11 +297,26 @@ function showChoices(node) {
             }
 
             updateUI();
-            showNode(choice.next);
+            const state = getState();
+
+            let nextNode;
+
+            if (typeof choice.next === "function") {
+                nextNode = choice.next(state);
+            }
+            else if (typeof choice.next === "string") {
+                nextNode = choice.next; // ⭐直接當 nodeId
+            }
+            else {
+                nextNode = evaluate(choice.next, state);
+            }
+
+            showNode(nextNode);
         };
 
         btnDiv.appendChild(btn);
     });
+
     refreshUI();
 }
 
@@ -283,7 +331,10 @@ export function showNode(nodeId) {
     }
 
     const node = storyNodes[nodeId];
-    if (!node) return;
+    if (!node) {
+        console.error("找不到 node:", nodeId);
+        return;
+    }
 
     currentNode = nodeId;
     textIndex = 0;

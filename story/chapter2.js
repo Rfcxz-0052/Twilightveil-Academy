@@ -1,3 +1,5 @@
+import { affection } from "../affection.js";
+
 // chapter2
 const storyNodes = {
     // 第二章 進入裡世界
@@ -6,7 +8,7 @@ const storyNodes = {
         bgm: "inner",
         speaker: "player",
         text: [
-            "三股截然不同的靈壓同時逼近。",
+            "突然，三股截然不同的靈壓同時逼近。",
             "一熱、一靜、一冷。",
             "你抬頭，看見三道身影。你首先看向..."
         ],
@@ -157,20 +159,163 @@ const storyNodes = {
 
     inner08: {
         bgm: "inner",
-        speaker: "player",
+        speaker: "character",
         text: [
             "先坐下打坐，閉上眼睛感受妳身體裡的力量",
             "然後深呼吸，在呼吸之間平穩你的心神",
             "告訴自己，危機已過去",
-            "這樣你的靈力就可以平息下來了",
-            "(我按照爺爺的指示，感覺靈力平息後)"
+            "這樣你的靈力就可以平息下來了"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male04.webp",
+        next: "inner08_1"
+    },
+
+    inner08_1: {
+        bgm: "suspense",
+        speaker: "player",
+        text: [
+            "(胸口突然一陣劇痛)",
+            "……好痛……！",
+            "視線開始扭曲，周圍的景色像是被撕裂",
+            "那些聲音……是誰在哭？"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male04.webp",
+        next: "inner08_2"
+    },
+
+    inner08_2: {
+        bgm: "suspense",
+        speaker: "character",
+        text: [
+            "炎燼驚呼道:糟了，她的靈力要暴走了！"
         ],
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male04.webp",
         choices: [
-            { text: "爺爺，我能回去自己的世界嗎?太晚了，我的母親還在等我回家", next: "inner09" },
+            { text: "白祈沒有碰你，但默默觀察你的靈力狀況", next: "inner08_baiqi" },
+            { text: "炎燼強行壓制", next: "inner08_yanzhen" },
+            { text: "墨行安撫", next: "inner08_moxing" }
         ]
+    },
+
+    inner08_baiqi: {
+        bgm: "suspense",
+        speaker: "character",
+        text: [
+            "她不是失控，是在共鳴",
+            "你需要穩定心神，別讓這裡的靈影響你"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male.webp",
+        next: "inner09"
+    },
+
+    inner08_yanzhen: {
+        bgm: "suspense",
+        speaker: "character",
+        text: [
+            "控制不了就別亂用",
+            "這裡的殘靈直接滅了就好"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male01.webp",
+        next: "inner09"
+    },
+
+    inner08_moxing: {
+        bgm: "suspense",
+        speaker: "character",
+        text: [
+            "別緊張，深呼吸，慢慢來",
+            "這裡的靈只是想和你分享他們的過往"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male02.webp",
+        next: "inner09"
+    },
+
+    inner08_3: {
+        bgm: "suspense",
+        speaker: "player",
+        text: [
+            "無數不屬於我的記憶湧進腦海。",
+            "像是有人在我腦中翻找什麼。",
+            "我快分不清，那些到底是不是「我」的過去。"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male04.webp",
+        next: "inner08_4"
+    },
+
+    inner08_4: {
+        bgm: "suspense",
+        speaker: "player",
+        text: [
+            "但在混亂中，一個畫面突然浮現。",
+            "早上的餐桌，媽媽說今天會做我喜歡的菜。",
+            "她說：『晚上別加班太晚，記得早點回來吃飯。』"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male04.webp",
+        next: "inner08_5",
+    },
+
+    inner08_5: {
+        bgm: "suspense",
+        se: "ghost",
+        speaker: "player",
+        text: [
+            "那份想回家的念頭，被放大了。",
+            "像是有什麼東西，也在呼喚『孩子』這個詞。",
+            "視線邊緣出現一抹紅色。",
+            "像傘，又像血。",
+            "但下一瞬間又消失。"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male04.webp",
+        choices: [
+            {
+                text: "（咬牙）先回去……不能讓媽媽擔心。",
+                next: "inner08_6",
+                lightShadow: { light: 1 },
+                affection: {baiqi: 1, }
+            },
+            {
+                text: "……剛剛那個身影，是誰？",
+                next: "inner08_6",
+                lightShadow: { shadow: 1 },
+                affection: {moxing: 1 }
+            },
+            {
+                text: "（強行壓下所有記憶）穩住靈力。",
+                next: "inner08_6",
+                lightShadow: { shadow: 1 },
+                affection: {yanzhen: 1 }                
+            }
+        ]
+    },
+
+    inner08_6: {
+        bgm: "inner",
+        speaker: "player",
+        text: [
+            "爺爺，我能回去自己的世界嗎?太晚了，我的母親還在等我回家"
+        ],
+        background: "image/InnerWorld.webp",
+        playerImg: "image/player.webp",
+        characterImg: "image/male04.webp",
+        next: "inner09"
     },
 
     inner09: {
