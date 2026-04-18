@@ -358,14 +358,15 @@ export function showNode(nodeId) {
     const playerImg = playerDiv.querySelector("img");
     const charImg = charDiv.querySelector("img");
 
+    playerDiv.style.opacity = "0";
+    charDiv.style.opacity = "0";
+
     if (node.speaker === "player") {
-        playerDiv.style.display = "flex";
-        charDiv.style.display = "none";
+        playerDiv.style.opacity = "1";
         if (node.playerImg) playerImg.src = node.playerImg;
 
     } else if (node.speaker === "character") {
-        charDiv.style.display = "flex";
-        playerDiv.style.display = "none";
+        charDiv.style.opacity = "1";
         if (node.characterImg) charImg.src = node.characterImg;
     }
 

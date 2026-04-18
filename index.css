@@ -226,6 +226,9 @@ body[data-ui="game"] #homeUI { display: none; }
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: 0;
 }
 
 .player-img img,
