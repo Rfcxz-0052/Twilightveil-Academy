@@ -112,7 +112,7 @@ const storyNodes = {
             "沒有人注意到她。",
             "除了你。"
         ],
-        background: "image/nightmarket01.webp",
+        background: "image/nightmarket02.webp",
         next: "red_03"
     },
 
@@ -143,7 +143,7 @@ const storyNodes = {
             "夜市啊……人很多，你應該會比較安心一點。",
             "如果覺得不舒服，記得跟我說。"
         ],
-        background: "image/DarkCampus.webp",
+        background: "image/nightmarket02.webp",
         next: "red_m03"
     }, 
 
@@ -160,7 +160,7 @@ const storyNodes = {
             "你先別走那邊。",
             "那裡的氣息，有點不對。"
         ],
-        background: "image/nightmarket01.webp",
+        background: "image/nightmarket02.webp",
         choices: [
             { text: "你感覺到了什麼？", next: "red_m04", lightShadow: { light: 1 } },
             { text: "只是夜市而已吧？", next: "red_m04", lightShadow: { shadow: 1 } }
@@ -182,7 +182,7 @@ const storyNodes = {
             "……",
             "也比較不容易被發現。"
         ],
-        background: "image/DarkCampus.webp",
+        background: "image/nightmarket02.webp",
         next: "red_m05"
     },
 
@@ -199,7 +199,7 @@ const storyNodes = {
             "人群之中，一個撐著紅傘的女人。",
             "她沒有影子。"
         ],
-        background: "image/DarkCampus.webp",
+        background: "image/nightmarket02.webp",
         next: "red_m06"
     },
 
@@ -216,7 +216,7 @@ const storyNodes = {
             "她的狀態……不像是惡意。",
             "比較像是……在找什麼。"
         ],
-        background: "image/DarkCampus.webp",
+        background: "image/nightmarket02.webp",
         next: "red_03"
     },
 
@@ -249,7 +249,7 @@ const storyNodes = {
             "這種地方最麻煩。",
             "……氣息全混在一起。"
         ],
-        background: "image/DarkCampus.webp",
+        background: "image/nightmarket02.webp",
         next: "red_y03"
     },
     
@@ -264,7 +264,7 @@ const storyNodes = {
         text: [
             "……找到了。"
         ],
-        background: "image/DarkCampus.webp",
+        background: "image/nightmarket02.webp",
         choices: [
             { text: "找到什麼？", next: "red_y04", lightShadow: { light: 1 } },
             { text: "你要做什麼？", next: "red_y04", lightShadow: { shadow: 1 } }
@@ -284,7 +284,7 @@ const storyNodes = {
             "看到了嗎？",
             "那種靈壓，不會錯。"
         ],
-        background: "image/DarkCampus.webp",
+        background: "image/nightmarket02.webp",
         next: "red_y05"
     },
 
@@ -301,7 +301,7 @@ const storyNodes = {
             "拖越久，越容易出事。",
             "我去處理掉。"
         ],
-        background: "image/DarkCampus.webp",
+        background: "image/nightmarket02.webp",
         choices: [
             { text: "等等，她好像沒有惡意", next: "red_y06", lightShadow: { light: 1 } },
             { text: "交給你了", next: "red_03", lightShadow: { shadow: 1 } }
@@ -321,7 +321,7 @@ const storyNodes = {
             "她是靈。",
             "這就夠了。"
         ],
-        background: "image/DarkCampus.webp",
+        background: "image/nightmarket01.webp",
         next: "red_03"
     },
 
@@ -331,7 +331,7 @@ const storyNodes = {
 
         characters: {
             player: "normal",
-            red: "normal",
+            red: "normal"
         },
         text: [
             "她卻越走越靠近你",
@@ -339,7 +339,7 @@ const storyNodes = {
             "小姑娘，剛剛與我共鳴的是你嗎?",
             "她撐著紅傘，你看不清她。"
         ],
-        background: "image/nightmarket01.webp",
+        background: "image/nightmarket02.webp",
         next: "__HOME__"
     },    
 
