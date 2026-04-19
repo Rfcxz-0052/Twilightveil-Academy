@@ -5,7 +5,6 @@ export const characterConfig = {
     },
     xiaoying: {
         normal: "image/girl01.webp",
-        //sad: "image/girl_sad.webp"
     },
     ghost: {
         normal: "image/ghost02.webp"
@@ -21,5 +20,8 @@ export const characterConfig = {
     },
     moxing: {
         normal: "image/male02.webp"
+    },
+    red: {
+        normal: "image/red01.webp"
     }
 };

@@ -200,7 +200,7 @@ body[data-ui="game"] #homeUI { display: none; }
     gap: 20px;
 
     margin: 0 auto;
-    padding-bottom: 40px;
+    padding-bottom: 0;
 }
 
 .story-container::after {
@@ -228,8 +228,7 @@ body[data-ui="game"] #homeUI { display: none; }
 
 .character {
     position: absolute;
-    bottom: 0;
-    width: 40%;
+    bottom: 100px;
     transition: all 0.3s ease;
 }
 
@@ -259,8 +258,8 @@ body[data-ui="game"] #homeUI { display: none; }
 }
 
 .character img {
-    width: 70%;
-    height: 70%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     object-position: bottom;
 }
@@ -565,7 +564,6 @@ input[type="range"] {
         overflow: hidden; /* 🚫 禁止整頁滾動 */
     }
 
-    /* 整體改成疊層 */
     .story-container {
         position: relative;
         flex-direction: column;
@@ -579,7 +577,7 @@ input[type="range"] {
     }
 
     .character {
-        width: 80%;
+        width: 30%;
         left: 50%;
         transform: translateX(-50%) translateY(40px) scale(0.95);
     }
@@ -625,9 +623,8 @@ input[type="range"] {
 
         padding: 14px;
 
-        /* 👇 關鍵：讓它貼底浮起來 */
         margin: 0;
-        box-sizing: border-box; /* ⭐避免 padding 撐爆 */
+        box-sizing: border-box;
     }
 
     /* 文字縮小一點比較好讀 */

@@ -351,7 +351,7 @@ function updateCharacters(node) {
 
         // ✅ 改成平均分配
         const total = entries.length;
-        const spacing = 100 / (total + 1);   // ⭐ 核心
+        const spacing = 100 / (total + 1);
         const position = spacing * (index + 1);
 
         div.style.left = `${position}%`;

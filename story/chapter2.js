@@ -325,6 +325,7 @@ const storyNodes = {
 
         characters: {
             player: "normal",
+            red: "normal"
         },
         text: [
             "視線邊緣出現一抹紅色。",
@@ -439,7 +440,7 @@ const storyNodes = {
             "要不是看在老頭子的面子上，我才懶得帶新人",
         ],
         background: "image/InnerWorld.webp",
-        next: "__HOME__"
+        next: "red_y01"
     },
 
     inner11_3: {
@@ -456,7 +457,7 @@ const storyNodes = {
         background: "image/InnerWorld.webp",
         playerImg: "image/player.webp",
         characterImg: "image/male02.webp",
-        next: "__HOME__"
+        next: "red_m01"
     },
 };
 
