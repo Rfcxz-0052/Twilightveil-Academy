@@ -331,7 +331,7 @@ const storyNodes = {
 
         characters: {
             player: "normal",
-            baiqi: "normal",
+            red: "normal",
         },
         text: [
             "她卻越走越靠近你",
