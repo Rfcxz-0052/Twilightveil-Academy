@@ -8,7 +8,7 @@ const storyNodes = {
         bgm: "inner",
         speaker: "player",
 
-        characters: {
+        characters: {           
             baiqi: "normal",
             yanzhen: "normal",
             moxing: "normal",
