@@ -228,16 +228,7 @@ body[data-ui="game"] #homeUI { display: none; }
 .character {
     position: absolute;
     bottom: 0;
-    transition: all 0.3s ease;
-}
-
-/* 左右站位 */
-.player {
-    left: 0;
-}
-
-.npc {
-    right: 0;
+    transition: all 0.35s ease;
 }
 
 /* 顯示狀態 */
@@ -246,12 +237,10 @@ body[data-ui="game"] #homeUI { display: none; }
     transform: translateY(0) scale(1);
 }
 
-/* 發話高亮 */
 .character.speaking {
     filter: brightness(1.1);
 }
 
-/* 未發話變暗 */
 .character.dim {
     filter: brightness(0.5);
 }
@@ -571,21 +560,9 @@ input[type="range"] {
         gap: 0;
     }
 
-    .character {
-        width: 35%;
-        left: 50%;
-        bottom: 200px;
-        transform: translateX(-50%) translateY(40px) scale(0.95);
-    }
-
-    .player {
-        left: 50%;
-        transform: translateX(-50%) translateY(40px);
-    }
-
-    .npc {
-        left: 50%;
-        transform: translateX(-50%) translateY(40px);
+     .character {
+        width: 42%;
+        bottom: 180px;
     }
 
     .character.active {

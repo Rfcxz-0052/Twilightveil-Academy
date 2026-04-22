@@ -334,42 +334,132 @@ function showChoices(node) {
 // ======================
 function updateCharacters(node) {
     const container = document.querySelector(".character-layer");
-    container.innerHTML = ""; // 🔥 每次重建
+    container.innerHTML = "";
 
     if (!node.characters) return;
 
     const entries = Object.entries(node.characters);
 
-    entries.forEach(([charId, emotion], index) => {
-        const charData = characterConfig[charId];
-        if (!charData) return;
+    // 🎯 決定誰是前排
+    let frontId = node.front || node.speaker;
 
-        const imgSrc = charData[emotion] || charData.normal;
+    // ❗ 如果 speaker 不存在 → fallback
+    if (!node.characters[frontId]) {
+        frontId = entries[0][0];
+    }
 
-        const div = document.createElement("div");
-        div.className = "character active";
+    // 🎯 分組
+    const front = [];
+    const back = [];
 
-        // ✅ 改成平均分配
-        const total = entries.length;
-        const spacing = 100 / (total + 1);
-        const position = spacing * (index + 1);
-
-        div.style.left = `${position}%`;
-        div.style.transform = "translateX(-50%)";
-
-        const img = document.createElement("img");
-        img.src = imgSrc;
-
-        div.appendChild(img);
-
-        if (charId === node.speaker) {
-            div.classList.add("speaking");
+    entries.forEach(([charId, emotion]) => {
+        if (charId === frontId) {
+            front.push([charId, emotion]);
         } else {
-            div.classList.add("dim");
+            back.push([charId, emotion]);
         }
-
-        container.appendChild(div);
     });
+
+    // ======================
+    // 🧠 隊形模板（核心🔥）
+    // ======================
+    const formations = {
+        1: {
+            front: [{ left: 50, scale: 1.05 }],
+            back: []
+        },
+        2: {
+            front: [{ left: 50, scale: 1.05 }],
+            back: [
+                { left: 25, scale: 0.85 }
+            ]
+        },
+        3: {
+            front: [{ left: 50, scale: 1.1 }],
+            back: [
+                { left: 25, scale: 0.85 },
+                { left: 75, scale: 0.85 }
+            ]
+        },
+        4: {
+            front: [{ left: 60, scale: 1.1 }],
+            back: [
+                { left: 20, scale: 0.8 },
+                { left: 40, scale: 0.85 },
+                { left: 75, scale: 0.8 }
+            ]
+        },
+        5: {
+            front: [{ left: 50, scale: 1.1 }],
+            back: [
+                { left: 10, scale: 0.75 },
+                { left: 30, scale: 0.85 },
+                { left: 70, scale: 0.85 },
+                { left: 90, scale: 0.75 }
+            ]
+        }
+    };
+
+    const total = entries.length;
+    const layout = formations[Math.min(total, 5)];
+
+    // ======================
+    // 🟡 後排
+    // ======================
+    back.forEach(([charId, emotion], index) => {
+        const config = layout.back[index] || {
+            left: 50,
+            scale: 0.8
+        };
+
+        createCharacter(container, charId, emotion, {
+            left: config.left,
+            scale: config.scale,
+            z: 1,
+            speaking: false
+        });
+    });
+
+    // ======================
+    // 🔵 前排
+    // ======================
+    front.forEach(([charId, emotion], index) => {
+        const config = layout.front[index] || { left: 50, scale: 1.1 };
+
+        createCharacter(container, charId, emotion, {
+            left: config.left,
+            scale: config.scale,
+            z: 3,
+            speaking: true
+        });
+    });
+}
+
+function createCharacter(container, charId, emotion, options) {
+    const charData = characterConfig[charId];
+    if (!charData) return;
+
+    const imgSrc = charData[emotion] || charData.normal;
+
+    const div = document.createElement("div");
+    div.className = "character";
+
+    div.style.left = `${options.left}%`;
+    div.style.transform = `translateX(-50%) scale(${options.scale})`;
+    div.style.zIndex = options.z;
+
+    const img = document.createElement("img");
+    img.src = imgSrc;
+
+    div.appendChild(img);
+
+    if (options.speaking) {
+        div.classList.add("speaking");
+    } else {
+        div.classList.add("dim");
+    }
+
+    container.appendChild(div);
 }
 
 // ======================
