@@ -377,16 +377,16 @@ function updateCharacters(node) {
         3: {
             front: [{ left: 50, scale: 1.1 }],
             back: [
-                { left: 25, scale: 0.85 },
-                { left: 75, scale: 0.85 }
+                { left: 20, scale: 0.85 },
+                { left: 80, scale: 0.85 }
             ]
         },
         4: {
-            front: [{ left: 60, scale: 1.1 }],
+            front: [{ left: 65, scale: 1.1 }],
             back: [
-                { left: 20, scale: 0.8 },
+                { left: 15, scale: 0.8 },
                 { left: 40, scale: 0.85 },
-                { left: 75, scale: 0.8 }
+                { left: 85, scale: 0.8 }
             ]
         },
         5: {
