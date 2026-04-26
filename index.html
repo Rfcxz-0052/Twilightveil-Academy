@@ -98,22 +98,8 @@
         <audio id="seattack02" src="./audio/attack02.mp3"></audio>
         <audio id="seghost01" src="./audio/ghost01.mp3"></audio>
         <audio id="sefoot" src="./audio/foot.mp3"></audio>
+        <audio id="senightmarket" src="./audio/nightmarket.mp3"></audio>
 
         <script type="module" src="./engine.js"></script>
-        <!-- 模組化 JS -->
-        <script type="module">
-            import { setBGMVolume, setSEVolume } from './audioController.js';
-
-            // 音量滑桿
-            const bgmSlider = document.getElementById('bgmSlider');
-            const seSlider = document.getElementById('seSlider');
-
-            bgmSlider.value = localStorage.getItem("bgmVolume") || 0.4;
-            seSlider.value = localStorage.getItem("seVolume") || 1.0;
-
-            bgmSlider.addEventListener('input', e => setBGMVolume(e.target.value));
-            seSlider.addEventListener('input', e => setSEVolume(e.target.value));
-
-        </script>
 </body>
 </html>

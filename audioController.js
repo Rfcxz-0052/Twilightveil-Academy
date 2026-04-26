@@ -2,7 +2,8 @@
 export const bgmMap = {
     surface: document.getElementById("bgmSurface"),
     inner: document.getElementById("bgmInner"),
-    suspense: document.getElementById("bgmSuspense")
+    suspense: document.getElementById("bgmSuspense"),
+    red: document.getElementById("bgmred"),
 };
 
 export const seMap = {
@@ -11,7 +12,8 @@ export const seMap = {
     attack01: document.getElementById("seattack01"),
     attack02: document.getElementById("seattack02"),
     ghost01: document.getElementById("seghost01"),
-    foot: document.getElementById("sefoot")
+    foot: document.getElementById("sefoot"),
+    nightmarket: document.getElementById("senightmarket"),
 };
 
 let currentBGM = null;

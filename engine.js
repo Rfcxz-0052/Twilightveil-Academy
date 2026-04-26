@@ -2,7 +2,7 @@
 import storyNodes from './story/storyData.js';
 import { affection, changeAffection, resetAffection, affectionNameMap } from './affection.js';
 import {lightShadow, changeLightShadow, resetLightShadow, getLightShadowBalance, getShadowText } from './lightShadow.js';
-import { seMap, playSE, stopSE, switchBGM } from './audioController.js';
+import { seMap, playSE, stopSE, switchBGM, setBGMVolume, setSEVolume } from './audioController.js';
 import {saveSlot, loadSlot, clearSlot, clearAllSaves } from './saveSystem.js';
 import { evaluate, resolveText } from './condition.js';
 import { characterConfig } from "./characterConfig.js";

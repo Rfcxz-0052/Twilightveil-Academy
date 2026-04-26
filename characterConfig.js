@@ -23,5 +23,8 @@ export const characterConfig = {
     },
     red: {
         normal: "image/red01.webp"
-    }
+    },
+    redchild: {
+        normal: "image/redchild.webp"
+    },
 };
