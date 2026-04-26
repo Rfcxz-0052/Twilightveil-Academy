@@ -23,7 +23,7 @@ const storyNodes = {
         choices: [
             { text: "一頭紅色短髮，氣場強勢，彷彿理所當然要妳站到他身邊的男子", next: "inner01", affection: { yanzhen: 2 } }, //炎燼好感度+1
             { text: "一頭黑色短髮，目光溫柔，像是在擔心妳是否害怕的男子", next: "inner02", affection: { moxing: 2}  }, //墨行好感度+1
-            { text: "一頭銀白色長髮，他的目光冷淡，卻讓你產生一種莫名的熟悉感。" , next: "inner00", affection: { baiqi: 1 } } //白祈好感度+1
+            { text: "一頭銀白色長髮，他的目光冷淡，卻讓你產生一種莫名的熟悉感。" , next: "inner00", affection: { baiqi: 2 } } //白祈好感度+1
         ]
     },
 
@@ -292,20 +292,24 @@ const storyNodes = {
     inner08_3: {
         bgm: "suspense",
         speaker: "player",
+        characters: {
+            player: "normal",
+        },
         text: [
             "無數不屬於我的記憶湧進腦海。",
             "像是有人在我腦中翻找什麼。",
             "我快分不清，那些到底是不是「我」的過去。"
         ],
         background: "image/InnerWorld.webp",
-        playerImg: "image/player.webp",
-        characterImg: "image/male04.webp",
         next: "inner08_4"
     },
 
     inner08_4: {
         bgm: "suspense",
         speaker: "player",
+        characters: {
+            player: "normal",
+        },
         text: [
             "但在混亂中，一個畫面突然浮現。",
             "早上的餐桌，媽媽說今天會做我喜歡的菜。",
@@ -314,8 +318,6 @@ const storyNodes = {
             "像是有什麼東西，也在呼喚『孩子』這個詞。"
         ],
         background: "image/InnerWorld.webp",
-        playerImg: "image/player.webp",
-        characterImg: "image/male04.webp",
         next: "inner08_5",
     },
 
@@ -386,30 +388,545 @@ const storyNodes = {
             "我身邊這三位臭小子，分別是白祈、炎燼和墨行，你選一位護送你回去吧!"
         ],
         background: "image/InnerWorld.webp",
-        playerImg: "image/player.webp",
-        characterImg: "image/male04.webp",
-        next: "inner10"
+        next: "inner10_interaction"
     },
 
-    inner10: {
+    inner10_interaction: {
         bgm: "inner",
         speaker: "player",
-
         characters: {
+            player: "normal",
             baiqi: "normal",
             yanzhen: "normal",
-            moxing: "normal",
+            moxing: "normal"
         },
         text: [
-            "(我的眼神掃過爺爺話語所指的三位男子)",
-            "那就麻煩你了!"
+            "三人的氣息各不相同。",
+            "一個冷靜、一個炙熱、一個溫柔。",
+            "你不只是感受到他們的力量——",
+            "還感覺到，他們在看你。",
+            "像是在等你選擇。"
         ],
         background: "image/InnerWorld.webp",
         choices: [
-            { text: "白祈先生", next: "inner11_1", affection: { baiqi: 1 } },
-            { text: "炎燼先生", next: "inner11_2", affection: { yanzhen: 1 } },      
-            { text: "墨行先生",  next: "inner11_3", affection: { moxing: 1 } } 
+            { text: "走向白祈", next: "bond_baiqi_1" },
+            { text: "走向炎燼", next: "bond_yanzhen_1" },
+            { text: "走向墨行", next: "bond_moxing_1" }
         ]
+    },
+
+    bond_baiqi_1: {
+        bgm: "inner",
+        speaker: "baiqi",
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+        },
+        text: [
+            "……別靠太近。",
+            "妳的靈力還不穩。",
+            "這裡的殘靈，會優先盯上妳這種狀態。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "bond_baiqi_2"
+    },
+
+    bond_baiqi_2: {
+        bgm: "inner",
+        speaker: "player",
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+        },
+        text: [
+            "你是在提醒我……還是在擔心我？"
+        ],
+        background: "image/InnerWorld.webp",
+        choices: [
+            {
+                text: "試著靠近他",
+                next: "bond_baiqi_close",
+                affection: { baiqi: 2 },
+                lightShadow: { shadow: 1 }
+            },
+            {
+                text: "停下來觀察他",
+                next: "bond_baiqi_watch",
+                affection: { baiqi: 1 },
+                lightShadow: { light: 1 }
+            }
+        ]
+    },
+
+    bond_baiqi_close: {
+        bgm: "inner",
+        speaker: "baiqi",
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+        },
+        text: [
+            "……我說過了。",
+            "別靠太近。",
+            "（但他沒有後退）",
+            "……至少，現在站在我這邊。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "bond_return"
+    },
+
+    bond_baiqi_watch: {
+        bgm: "inner",
+        speaker: "baiqi",
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+        },
+        text: [
+            "……還算冷靜。",
+            "記住這種距離。",
+            "這裡，不是妳可以隨便靠近的地方。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "bond_return"
+    },
+
+    bond_yanzhen_1: {
+        bgm: "inner",
+        speaker: "yanzhen",
+        characters: {
+            player: "normal",
+            yanzhen: "normal"
+        },
+        text: [
+            "終於肯過來了？",
+            "剛剛那種狀態，還敢亂動。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "bond_yanzhen_2"
+    },
+
+    bond_yanzhen_2: {
+        bgm: "inner",
+        speaker: "player",
+        characters: {
+            player: "normal",
+            yanzhen: "normal"
+        },
+        text: [
+            "你一直在看我？"
+        ],
+        background: "image/InnerWorld.webp",
+        choices: [
+            {
+                text: "挑釁他",
+                next: "bond_yanzhen_provoke",
+                affection: { yanzhen: 2 },
+                lightShadow: { shadow: 1 }
+            },
+            {
+                text: "承認有點不安",
+                next: "bond_yanzhen_soft",
+                affection: { yanzhen: 1 },
+                lightShadow: { light: 1 }
+            }
+        ]
+    },
+
+    bond_yanzhen_provoke: {
+        bgm: "inner",
+        speaker: "yanzhen",
+        characters: {
+            player: "normal",
+            yanzhen: "normal"
+        },
+        text: [
+            "……呵。",
+            "還敢頂嘴。",
+            "比剛剛那副快倒的樣子好多了。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "bond_return"
+    },
+
+    bond_yanzhen_soft: {
+        bgm: "inner",
+        speaker: "yanzhen",
+        characters: {
+            player: "normal",
+            yanzhen: "normal"
+        },
+        text: [
+            "怕就站我這邊。",
+            "我會清掉所有靠近妳的東西。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "bond_return"
+    },
+
+    bond_moxing_1: {
+        bgm: "inner",
+        speaker: "moxing",
+        characters: {
+            player: "normal",
+            moxing: "normal"
+        },
+        text: [
+            "還好妳過來了。",
+            "剛剛那種共鳴……其實很危險。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "bond_moxing_2"
+    },
+
+    bond_moxing_2: {
+        bgm: "inner",
+        speaker: "player",
+        characters: {
+            player: "normal",
+            moxing: "normal"
+        },
+        text: [
+            "共鳴……？"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "bond_moxing_3"
+    },
+
+    bond_moxing_3: {
+        bgm: "inner",
+        speaker: "moxing",
+        characters: {
+            player: "normal",
+            moxing: "normal"
+        },
+        text: [
+            "妳會感受到他們的情緒。",
+            "如果太深……會分不清是誰的。",
+            "所以——"
+        ],
+        background: "image/InnerWorld.webp",
+        choices: [
+            {
+                text: "讓他握住你的手",
+                next: "bond_moxing_touch",
+                affection: { moxing: 2 },
+                lightShadow: { light: 1 }
+            },
+            {
+                text: "自己穩住情緒",
+                next: "bond_moxing_hold",
+                affection: { moxing: 1 }
+            }
+        ]
+    },
+
+    bond_moxing_touch: {
+        bgm: "inner",
+        speaker: "moxing",
+        characters: {
+            player: "normal",
+            moxing: "normal"
+        },
+        text: [
+            "……手很冷。",
+            "別一個人撐。",
+            "我會幫妳分擔一點。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "bond_return"
+    },
+
+    bond_moxing_hold: {
+        bgm: "inner",
+        speaker: "moxing",
+        characters: {
+            player: "normal",
+            moxing: "normal"
+        },
+        text: [
+            "不錯。",
+            "但真的撐不住的時候，記得找我。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "bond_return"
+    },
+
+    bond_return: {
+        bgm: "inner",
+        speaker: "player",
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+            yanzhen: "normal",
+            moxing: "normal"
+        },
+        text: [
+            "你重新看向三人。",
+            "心裡，好像已經有答案了。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner10_confirm"
+    },
+
+    inner10_confirm: {
+        bgm: "inner",
+        speaker: "player",
+
+        text: [
+            "那就麻煩你了。"
+        ],
+        background: "image/InnerWorld.webp",
+
+        next: () => {
+            const { baiqi, yanzhen, moxing } = affection;
+
+            if (baiqi > yanzhen && baiqi > moxing) {
+                return "inner11_1";
+            } else if (yanzhen > baiqi && yanzhen > moxing) {
+                return "inner11_2";
+            } else if (moxing > baiqi && moxing > yanzhen) {
+                return "inner11_3";
+            } else {
+                return "inner11_tie"; // ⭐ 平手
+            }
+        }
+    },
+
+    inner11_tie: {
+        bgm: "suspense",
+        speaker: "player",
+
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+            yanzhen: "normal",
+            moxing: "normal"
+        },
+
+        text: [
+            "你還沒開口——",
+            "三股力量，已經同時靠近你。",
+            "像是誰都不打算讓步。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_2"
+    },
+
+    inner11_tie_2: {
+        bgm: "suspense",
+        speaker: "yanzhen",
+
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+            yanzhen: "normal",
+            moxing: "normal"
+        },
+
+        text: [
+            "「她跟我走。」",
+            "炎燼語氣毫不猶豫。",
+            "「她現在的狀態，不適合被情緒牽動。」"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_3"
+    },
+
+    inner11_tie_3: {
+        bgm: "suspense",
+        speaker: "moxing",
+
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+            yanzhen: "normal",
+            moxing: "normal"
+        },
+
+        text: [
+            "「你這樣只會讓她更失控。」",
+            "墨行輕聲反駁。",
+            "「她需要的是安撫，不是壓制。」"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_4"
+    },
+
+    inner11_tie_4: {
+        bgm: "suspense",
+        speaker: "baiqi",
+
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+            yanzhen: "normal",
+            moxing: "normal"
+        },
+
+        text: [
+            "「……都錯。」",
+            "白祈的聲音很低。",
+            "「她現在的狀態，是『共鳴未穩定』。」",
+            "「你們兩個，只會干擾她。」"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_5"
+    },
+
+    inner11_tie_5: {
+        bgm: "suspense",
+        speaker: "player",
+
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+            yanzhen: "normal",
+            moxing: "normal"
+        },
+
+        text: [
+            "三種聲音，同時壓在你身上。",
+            "胸口，再次開始發熱。",
+            "不只是靈力——",
+            "還有情緒。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_6"
+    },
+
+    inner11_tie_6: {
+        bgm: "suspense",
+        speaker: "player",
+
+        characters: {
+            player: "normal",
+        },
+
+        text: [
+            "心跳開始失控。",
+            "不是我的情緒。",
+            "也不是他們的——",
+            "而是全部混在一起。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_7"
+    },
+
+    inner11_tie_7: {
+        bgm: "suspense",
+        se: "ghost",
+        speaker: "player",
+
+        characters: {
+            player: "normal",
+            red: "normal"
+        },
+
+        text: [
+            "——「孩子……」",
+            "那個聲音，再次出現。",
+            "比剛剛更近。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_8"
+    },
+
+    inner11_tie_8: {
+        bgm: "suspense",
+        speaker: "player",
+
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+            yanzhen: "normal",
+            moxing: "normal"
+        },
+
+        text: [
+            "「……不對。」",
+            "白祈瞬間變了臉色。",
+            "「這不是她的情緒。」"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_9"
+    },
+
+    inner11_tie_9: {
+        bgm: "suspense",
+        speaker: "yanzhen",
+
+        characters: {
+            player: "normal",
+            yanzhen: "normal"
+        },
+
+        text: [
+            "「有東西在靠近。」",
+            "炎燼皺眉。",
+            "「而且已經鎖定她了。」"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_10"
+    },
+
+    inner11_tie_10: {
+        bgm: "suspense",
+        speaker: "moxing",
+
+        characters: {
+            player: "normal",
+            moxing: "normal"
+        },
+
+        text: [
+            "「來不及了……」",
+            "「她已經被『牽上』了。」"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_11"
+    },
+
+    inner11_tie_11: {
+        bgm: "red",
+        se: "ghost",
+        speaker: "player",
+
+        characters: {
+            player: "normal",
+            red: "normal"
+        },
+
+        text: [
+            "紅色，從視線邊緣蔓延。",
+            "像傘。",
+            "也像血。",
+            "——然後，一切被吞沒。"
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner11_tie_split"
+    },
+
+    inner11_tie_split: {
+        bgm: "red",
+        speaker: "player",
+
+        text: [
+            "失控的共鳴撕裂了空間——",
+            "有人抓住了你。"
+        ],
+        background: "image/InnerWorld.webp",
+
+        next: () => {
+            const { baiqi, yanzhen, moxing } = affection;
+
+            // 平手情況 → 用隨機 or 微差值
+            const rand = Math.random();
+
+            if (rand < 0.33) return "inner11_1";
+            if (rand < 0.66) return "inner11_2";
+            return "inner11_3";
+        }
     },
 
     inner11_1: {
@@ -424,8 +941,6 @@ const storyNodes = {
             "嗯!走吧",
         ],
         background: "image/InnerWorld.webp",
-        playerImg: "image/player.webp",
-        characterImg: "image/male.webp",
         next: "red_b01"
     },
 
@@ -456,8 +971,6 @@ const storyNodes = {
             "別客氣，叫我墨行就好，我會安全護送你到家的",
         ],
         background: "image/InnerWorld.webp",
-        playerImg: "image/player.webp",
-        characterImg: "image/male02.webp",
         next: "red_m01"
     },
 };
