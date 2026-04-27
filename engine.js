@@ -4,7 +4,7 @@ import { affection, changeAffection, resetAffection, affectionNameMap } from './
 import {lightShadow, changeLightShadow, resetLightShadow, getLightShadowBalance, getShadowText } from './lightShadow.js';
 import { seMap, playSE, stopSE, switchBGM, setBGMVolume, setSEVolume } from './audioController.js';
 import {saveSlot, loadSlot, clearSlot, clearAllSaves } from './saveSystem.js';
-import { evaluate, resolveText } from './condition.js';
+import { evaluate, resolveText, resolveValue } from './condition.js';
 import { characterConfig } from "./characterConfig.js";
 
 // ⏱️ 延遲工具
@@ -226,7 +226,7 @@ export function handleContinue() {
 
     if (isChoosing) return;
 
-    if (textIndex < node.text.length - 1) {
+    if (node.text && textIndex < node.text.length - 1) {
         textIndex++;
         renderText(node);
         return;
@@ -243,21 +243,8 @@ export function handleContinue() {
 
         const state = getState();
 
-        // 1️⃣ function
-        if (typeof node.next === "function") {
-            showNode(node.next(state));
-            return;
-        }
-
-        // 2️⃣ cases DSL
-        if (typeof node.next === "object" && node.next.cases) {
-            const result = evaluateCases(node.next, state);
-            showNode(result);
-            return;
-        }
-
-        // 3️⃣ pure nodeId（🔥最重要）
-        showNode(node.next);
+        const nextNode = resolveValue(node.next, state);
+        showNode(nextNode);
     }
 }
 
@@ -265,7 +252,18 @@ export function handleContinue() {
 // 📖 render text
 // ======================
 async function renderText(node) {
+
+    // ✅ 防呆
+    if (!node.text || !node.text.length) {
+        handleContinue();
+        return;
+    }
+
     let line = node.text[textIndex];
+
+    const state = getState();
+
+    line = resolveText(line, state);
 
     const feedback = getShadowText(lightShadow, currentNode);
     line = line.replace("{shadowText1}", feedback.shadowText1);
@@ -308,17 +306,7 @@ function showChoices(node) {
             updateUI();
             const state = getState();
 
-            let nextNode;
-
-            if (typeof choice.next === "function") {
-                nextNode = choice.next(state);
-            }
-            else if (typeof choice.next === "string") {
-                nextNode = choice.next; // ⭐直接當 nodeId
-            }
-            else {
-                nextNode = evaluate(choice.next, state);
-            }
+            const nextNode = resolveValue(choice.next, state);
 
             showNode(nextNode);
         };
@@ -491,12 +479,40 @@ export function showNode(nodeId) {
         switchBGM(node.bgm);
     }
 
-    document.getElementById("gameBody").style.backgroundImage =
-        `url('${node.background}')`;
+    // ✅ 防呆 background
+    if (node.background) {
+        document.getElementById("gameBody").style.backgroundImage =
+            `url('${node.background}')`;
+    }
 
     updateCharacters(node);
     setUI("game");
     updateUI();
+
+    const state = getState();
+
+    // ======================
+    // 🔥 核心：無 text 節點支援
+    // ======================
+    if (!node.text || node.text.length === 0) {
+
+        if (node.next) {
+            const nextNode = resolveValue(node.next, state);
+
+            // 🔥 避免無限 loop
+            if (!nextNode) {
+                console.error("nextNode 無效:", nodeId);
+                return;
+            }
+
+            showNode(nextNode);
+            return;
+        }
+
+        // 如果連 next 都沒有
+        console.warn("空節點且沒有 next:", nodeId);
+        return;
+    }
 
     renderText(node);
     refreshUI();

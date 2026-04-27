@@ -38,6 +38,23 @@ export function evaluateCases(config, state) {
     return def;
 }
 
+// ✅ 統一解析（🔥核心）
+export function resolveValue(val, state) {
+
+    // function
+    if (typeof val === "function") {
+        return val(state);
+    }
+
+    // cases DSL
+    if (val && typeof val === "object" && Array.isArray(val.cases)) {
+        return evaluateCases(val, state);
+    }
+
+    // string（nodeId 或純文字）
+    return val;
+}
+
 // ✅ cases
 export function buildChoiceText(config, state) {
     const { cases = [], default: def } = config;

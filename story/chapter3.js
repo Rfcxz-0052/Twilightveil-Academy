@@ -13,7 +13,7 @@ const storyNodes = {
         text: [
             "白祈先生，我家要走過夜市才能到，謝謝你送我回家",
         ],
-        background: "image/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_b02"
     },
 
@@ -577,37 +577,37 @@ const storyNodes = {
 
         choices: [
             {
-                text: (state) => buildChoiceText({
-                    default: "讓母女見面",
+                text: {
                     cases: [
                         ["light >= 3", "溫柔引導她看見孩子"],
                         ["moxing >= 3", "在墨行的幫助下穩定她"],
                         ["baiqi >= 3", "在白祈的協助下讓她冷靜"]
-                    ]
-                }, state),
+                    ],
+                    default: "讓母女見面"
+                },
 
                 next: {
                     cases: [
-                        ["light >= 3 || moxing >= 3 || baiqi >= 3", "red_route_good"],
-                        ["true", "red_route_bad"]
-                    ]
+                        ["light >= 3 || moxing >= 3 || baiqi >= 3", "red_route_good"]
+                    ],
+                    default: "red_route_bad"
                 }
             },
 
             {
-                text: (state) => buildChoiceText({
-                    default: "阻止她暴走",
+                text: {
                     cases: [
                         ["shadow >= 3", "直接壓制她"],
                         ["yanzhen >= 3", "炎燼式鎮壓"]
-                    ]
-                }, state),
+                    ],
+                    default: "阻止她暴走"
+                },
 
                 next: {
                     cases: [
-                        ["shadow >= 3 || yanzhen >= 3", "red_route_bad"],
-                        ["true", "red_route_good"]
-                    ]
+                        ["shadow >= 3 || yanzhen >= 3", "red_route_bad"]
+                    ],
+                    default: "red_route_good"
                 }
             }
         ]
@@ -636,6 +636,10 @@ const storyNodes = {
     red_good_moxing: {
         bgm: "surface",
         speaker: "moxing",
+        characters: {
+            player: "normal",
+            moxing: "normal"
+        },
         background: "image/nightmarket02.webp",
         next: "red_epilogue_good",
         text: [
@@ -651,6 +655,10 @@ const storyNodes = {
     red_good_baiqi: {
         bgm: "surface",
         speaker: "baiqi",
+        characters: {
+            player: "normal",
+            baiqi: "normal"
+        },
         background: "image/nightmarket02.webp",
         next: "red_epilogue_good",
         text: [
@@ -665,6 +673,10 @@ const storyNodes = {
     red_good_yanzhen: {
         bgm: "surface",
         speaker: "yanzhen",
+        characters: {
+            player: "normal",
+            yanzhen: "normal"
+        },
         background: "image/nightmarket02.webp",
         next: "red_epilogue_good",
         text: [
@@ -678,6 +690,10 @@ const storyNodes = {
     red_bad_yanzhen: {
         bgm: "red",
         speaker: "yanzhen",
+        characters: {
+            player: "normal",
+            yanzhen: "normal"
+        },
         background: "image/nightmarket02.webp",
         next: "red_epilogue_bad",
         text: [
@@ -691,6 +707,10 @@ const storyNodes = {
     red_bad_baiqi: {
         bgm: "red",
         speaker: "baiqi",
+        characters: {
+            player: "normal",
+            baiqi: "normal"
+        },
         background: "image/nightmarket02.webp",
         next: "red_epilogue_bad",
         text: [
@@ -704,6 +724,10 @@ const storyNodes = {
     red_bad_moxing: {
         bgm: "red",
         speaker: "moxing",
+        characters: {
+            player: "normal",
+            moxing: "normal"
+        },
         background: "image/nightmarket02.webp",
         next: "red_epilogue_bad",
         text: [
@@ -717,6 +741,9 @@ const storyNodes = {
         bgm: "surface",
         se:"nightmarket",
         speaker: "player",
+        characters: {
+            player: "normal",
+        },
         characters: {
             player: "normal",
         },
@@ -734,6 +761,9 @@ const storyNodes = {
         bgm: "surface",
         se:"nightmarket",
         speaker: "player",
+        characters: {
+            player: "normal",
+        },
         characters: {
             player: "normal",
         },

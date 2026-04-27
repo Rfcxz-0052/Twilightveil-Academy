@@ -576,7 +576,7 @@ input[type="range"] {
         width: 42%;
         aspect-ratio: 5 / 6;
         max-height: 65vh;
-        bottom: 180px;
+        bottom: 200px;
     }
 
     .character img {
@@ -604,7 +604,7 @@ input[type="range"] {
         width: 100%;
         max-width: 100%;
         border-radius: 16px 16px 0 0;
-        min-height: 180px;
+        min-height: 200px;
         max-height: none;
         overflow: visible;
 
