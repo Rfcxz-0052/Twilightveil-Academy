@@ -21,9 +21,9 @@ const storyNodes = {
         ],
         background: "image/InnerWorld.webp",
         choices: [
-            { text: "一頭紅色短髮，氣場強勢，彷彿理所當然要妳站到他身邊的男子", next: "inner01", affection: { yanzhen: 2 } }, //炎燼好感度+1
-            { text: "一頭黑色短髮，目光溫柔，像是在擔心妳是否害怕的男子", next: "inner02", affection: { moxing: 2}  }, //墨行好感度+1
-            { text: "一頭銀白色長髮，他的目光冷淡，卻讓你產生一種莫名的熟悉感。" , next: "inner00", affection: { baiqi: 2 } } //白祈好感度+1
+            { text: "看向紅髮男子，氣場逼人", next: "inner01", affection: { yanzhen: 2 } },
+            { text: "看向黑髮男子，目光溫柔", next: "inner02", affection: { moxing: 2 } },
+            { text: "看向銀白長髮男子，冷意熟悉", next: "inner00", affection: { baiqi: 2 } }
         ]
     },
 
@@ -42,9 +42,9 @@ const storyNodes = {
         ],
         background: "image/InnerWorld.webp",
         choices: [
-            { text: "……我們是不是在哪裡見過？（壓下想靠近他的衝動)", next: "inner03", affection: { baiqi: 2 }, lightShadow: { light: 1 } }, //白祈好感度+2
-            { text: "為什麼……我會覺得你很熟悉？（忍不住向他走近）", next: "inner03", affection: { baiqi: 1 }, lightShadow: { shadow: 1 } }, //白祈好感度+1
-            { text: "你是誰?", next: "inner03",affection: { baiqi: 0 } }  //白祈好感度沒有增加
+            { text: "試著靠近他", next: "inner03", affection: { baiqi: 2 }, lightShadow: { light: 1 } },
+            { text: "追問熟悉感", next: "inner03", affection: { baiqi: 1 }, lightShadow: { shadow: 1 } },
+            { text: "保持距離觀察", next: "inner03", affection: { baiqi: 0 } }
         ]
     },
 
@@ -63,9 +63,9 @@ const storyNodes = {
         ],
         background: "image/InnerWorld.webp",
         choices: [
-            { text: "……好，我準備走向你。", next: "inner03", affection: { yanzhen: 2 }, lightShadow: { shadow: 1 } }, //炎燼好感度+2
-            { text: "你憑什麼命令我？", next: "inner03", affection: { yanzhen: 0 } }, //炎燼好感度沒有增加
-            { text: "我自己可以站著。", next: "inner03", affection: { yanzhen: 1 }, lightShadow: { light: 1 } }  //炎燼好感度+1
+            { text: "聽從他的指示", next: "inner03", affection: { yanzhen: 2 }, lightShadow: { shadow: 1 } },
+            { text: "反問他的態度", next: "inner03", affection: { yanzhen: 0 } },
+            { text: "拒絕被支配", next: "inner03", affection: { yanzhen: 1 }, lightShadow: { light: 1 } }
         ]
     },
 
@@ -84,9 +84,9 @@ const storyNodes = {
         ],
         background: "image/InnerWorld.webp",
         choices: [
-            { text: "……謝謝你，我確實有點不舒服。", next: "inner03", affection: { moxing: 2 }, lightShadow: { light: 1 } }, //墨行好感度+2
-            { text: "你一直在看著我?", next: "inner03", affection: { moxing: 1 } }, //墨行好感度+1         
-            { text: "我還撐得住。",  next: "inner03", affection: { moxing: 0 }, lightShadow: { shadow: 1 } } //墨行好感度沒有增加
+            { text: "接受他的關心", next: "inner03", affection: { moxing: 2 }, lightShadow: { light: 1 } },
+            { text: "多看他一眼", next: "inner03", affection: { moxing: 1 } },
+            { text: "強撐不退", next: "inner03", affection: { moxing: 0 }, lightShadow: { shadow: 1 } }
         ]
     },
 
@@ -338,22 +338,22 @@ const storyNodes = {
         background: "image/InnerWorld.webp",
         choices: [
             {
-                text: "（咬牙）先回去……不能讓媽媽擔心。",
+                text: "先回家再說",
                 next: "inner08_6",
                 lightShadow: { light: 1 },
-                affection: {baiqi: 1, }
+                affection: { baiqi: 1 }
             },
             {
-                text: "……剛剛那個身影，是誰？",
+                text: "追問那個身影",
                 next: "inner08_6",
                 lightShadow: { shadow: 1 },
-                affection: {moxing: 1 }
+                affection: { moxing: 1 }
             },
             {
-                text: "（強行壓下所有記憶）穩住靈力。",
+                text: "壓下異樣感",
                 next: "inner08_6",
                 lightShadow: { shadow: 1 },
-                affection: {yanzhen: 1 }                
+                affection: { yanzhen: 1 }
             }
         ]
     },
@@ -409,9 +409,9 @@ const storyNodes = {
         ],
         background: "image/InnerWorld.webp",
         choices: [
-            { text: "走向白祈", next: "bond_baiqi_1" },
-            { text: "走向炎燼", next: "bond_yanzhen_1" },
-            { text: "走向墨行", next: "bond_moxing_1" }
+            { text: "選白祈", next: "bond_baiqi_1" },
+            { text: "選炎燼", next: "bond_yanzhen_1" },
+            { text: "選墨行", next: "bond_moxing_1" }
         ]
     },
 
@@ -519,7 +519,7 @@ const storyNodes = {
         background: "image/InnerWorld.webp",
         choices: [
             {
-                text: "挑釁他",
+                text: "語氣帶刺回應",
                 next: "bond_yanzhen_provoke",
                 affection: { yanzhen: 2 },
                 lightShadow: { shadow: 1 }
