@@ -682,13 +682,16 @@ const storyNodes = {
             const { baiqi, yanzhen, moxing } = affection;
 
             if (baiqi > yanzhen && baiqi > moxing) {
+                window.route = "baiqi";   // ⭐記錄路線
                 return "inner11_1";
             } else if (yanzhen > baiqi && yanzhen > moxing) {
+                window.route = "yanzhen";
                 return "inner11_2";
             } else if (moxing > baiqi && moxing > yanzhen) {
+                window.route = "moxing";
                 return "inner11_3";
             } else {
-                return "inner11_tie"; // ⭐ 平手
+                return "inner11_tie";
             }
         }
     },
@@ -918,13 +921,17 @@ const storyNodes = {
         background: "image/InnerWorld.webp",
 
         next: () => {
-            const { baiqi, yanzhen, moxing } = affection;
-
-            // 平手情況 → 用隨機 or 微差值
             const rand = Math.random();
 
-            if (rand < 0.33) return "inner11_1";
-            if (rand < 0.66) return "inner11_2";
+            if (rand < 0.33) {
+                window.route = "baiqi";
+                return "inner11_1";
+            }
+            if (rand < 0.66) {
+                window.route = "yanzhen";
+                return "inner11_2";
+            }
+            window.route = "moxing";
             return "inner11_3";
         }
     },

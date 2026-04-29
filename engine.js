@@ -6,16 +6,12 @@ import { seMap, playSE, stopSE, switchBGM, setBGMVolume, setSEVolume } from './a
 import {saveSlot, loadSlot, clearSlot, clearAllSaves } from './saveSystem.js';
 import { evaluate, resolveText, resolveValue } from './condition.js';
 import { characterConfig } from "./characterConfig.js";
+import { setRoute, getRoute, resetRoute } from './route.js';
 
 // ⏱️ 延遲工具
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-// ======================
-// 💾 常數設定
-// ======================
-const SAVE_KEY = "moonShadow_save";
 
 // ======================
 // 🎮 狀態
@@ -30,7 +26,8 @@ function getState() {
     return {
         affection: { ...affection },
         lightShadow: { ...lightShadow },
-        currentNode
+        currentNode,
+        route: getRoute()
     };
 }
 
@@ -44,7 +41,8 @@ function getGameState() {
         chapter: storyNodes[currentNode]?.bgm || "未知章節",
         text: storyNodes[currentNode]?.text?.[textIndex] || "",
         affection: { ...affection },
-        lightShadow: { ...lightShadow }
+        lightShadow: { ...lightShadow },
+        route: getRoute() 
     };
 }
 
@@ -56,11 +54,9 @@ export function loadGameData() {
 }
 
 function applySaveData(data) {
-    // 🔥 清空
     resetAffection();
     resetLightShadow();
 
-    // 🔥 還原數值
     for (const key in affection) {
         affection[key] = data.affection?.[key] ?? 0;
     }
@@ -69,7 +65,9 @@ function applySaveData(data) {
         lightShadow[key] = data.lightShadow?.[key] ?? 0;
     }
 
-    // 🔥 還原劇情
+    // ⭐ 關鍵：還原路線
+    setRoute(data.route || null);
+
     currentNode = data.currentNode;
     textIndex = data.textIndex;
 
@@ -152,6 +150,7 @@ export function goHome() {
     setUI("home");
     resetAffection();
     resetLightShadow();
+    resetRoute();
 }
 
 // ======================

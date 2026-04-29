@@ -550,7 +550,7 @@ const storyNodes = {
             red: "normal"
         },
         text: [ 
-            "我身邊的小女孩焦急地看著紅傘女",
+            "小女孩焦急地看著紅傘女",
             "一直喊著:媽媽，我在這，一直在這",                                                     
         ],
         background: "image/nightmarket02.webp",
@@ -570,55 +570,27 @@ const storyNodes = {
         text: [
             "紅傘女的氣息開始失控。",
             "她的聲音在哭與笑之間扭曲。",
-            "你必須做出選擇——"
+            "你必須做出選擇——",
+            "而你已經沒有時間再思考了。"
         ],
 
         background: "image/nightmarket02.webp",
 
-        choices: [
-            {
-                text: {
-                    cases: [
-                        ["light >= 3", "溫柔引導她看見孩子"],
-                        ["moxing >= 3", "在墨行的幫助下穩定她"],
-                        ["baiqi >= 3", "在白祈的協助下讓她冷靜"]
-                    ],
-                    default: "讓母女見面"
-                },
-
-                next: {
-                    cases: [
-                        ["light >= 3 || moxing >= 3 || baiqi >= 3", "red_route_good"]
-                    ],
-                    default: "red_route_bad"
-                }
-            },
-
-            {
-                text: {
-                    cases: [
-                        ["shadow >= 3", "直接壓制她"],
-                        ["yanzhen >= 3", "炎燼式鎮壓"]
-                    ],
-                    default: "阻止她暴走"
-                },
-
-                next: {
-                    cases: [
-                        ["shadow >= 3 || yanzhen >= 3", "red_route_bad"]
-                    ],
-                    default: "red_route_good"
-                }
-            }
-        ]
+        next: {
+            cases: [
+                ["light >= shadow", "red_route_good"],
+                ["shadow > light", "red_route_bad"]
+            ],
+            default: "red_route_bad"
+        }
     },
 
     red_route_good: {
         next: {
             cases: [
-                ["moxing >= baiqi && moxing >= yanzhen", "red_good_moxing"],
-                ["baiqi >= yanzhen", "red_good_baiqi"],
-                ["true", "red_good_yanzhen"]
+                ["route === 'baiqi'", "red_good_baiqi"],
+                ["route === 'yanzhen'", "red_good_yanzhen"],
+                ["route === 'moxing'", "red_good_moxing"]
             ]
         }
     },
@@ -626,9 +598,9 @@ const storyNodes = {
     red_route_bad: {
         next: {
             cases: [
-                ["yanzhen >= baiqi && yanzhen >= moxing", "red_bad_yanzhen"],
-                ["baiqi >= moxing", "red_bad_baiqi"],
-                ["true", "red_bad_moxing"]
+                ["route === 'baiqi'", "red_bad_baiqi"],
+                ["route === 'yanzhen'", "red_bad_yanzhen"],
+                ["route === 'moxing'", "red_bad_moxing"]
             ]
         }
     },

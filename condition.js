@@ -12,7 +12,8 @@ export function evaluate(expr, state) {
         ...state.affection,
         ...state.lightShadow,
         balance: state.lightShadow.light - state.lightShadow.shadow,
-        node: state.currentNode
+        node: state.currentNode,
+        route: state.route
     };
 
     try {
