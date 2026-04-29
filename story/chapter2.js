@@ -682,13 +682,13 @@ const storyNodes = {
             const { baiqi, yanzhen, moxing } = affection;
 
             if (baiqi > yanzhen && baiqi > moxing) {
-                window.route = "baiqi";   // ⭐記錄路線
+                setRoute("baiqi");   // ⭐記錄路線
                 return "inner11_1";
             } else if (yanzhen > baiqi && yanzhen > moxing) {
-                window.route = "yanzhen";
+                setRoute("yanzhen");
                 return "inner11_2";
             } else if (moxing > baiqi && moxing > yanzhen) {
-                window.route = "moxing";
+                setRoute("moxing");
                 return "inner11_3";
             } else {
                 return "inner11_tie";
@@ -924,14 +924,14 @@ const storyNodes = {
             const rand = Math.random();
 
             if (rand < 0.33) {
-                window.route = "baiqi";
+                setRoute("baiqi");
                 return "inner11_1";
             }
             if (rand < 0.66) {
-                window.route = "yanzhen";
+                setRoute("yanzhe");
                 return "inner11_2";
             }
-            window.route = "moxing";
+            setRoute("moxing");
             return "inner11_3";
         }
     },

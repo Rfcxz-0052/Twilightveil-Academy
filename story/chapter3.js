@@ -578,7 +578,7 @@ const storyNodes = {
 
         next: {
             cases: [
-                ["light >= shadow", "red_route_good"],
+                ["light > shadow", "red_route_good"],
                 ["shadow > light", "red_route_bad"]
             ],
             default: "red_route_bad"
