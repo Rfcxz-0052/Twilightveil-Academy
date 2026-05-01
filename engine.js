@@ -2,11 +2,12 @@
 import storyNodes from './story/storyData.js';
 import { affection, changeAffection, resetAffection, affectionNameMap } from './affection.js';
 import {lightShadow, changeLightShadow, resetLightShadow, getLightShadowBalance, getShadowText } from './lightShadow.js';
-import { seMap, playSE, stopSE, switchBGM, setBGMVolume, setSEVolume } from './audioController.js';
-import {saveSlot, loadSlot, clearSlot, clearAllSaves } from './saveSystem.js';
+import { playSE, stopSE, switchBGM, setBGMVolume, setSEVolume } from './audioController.js';
+import { saveSlot, loadSlot, clearSlot, clearAllSaves } from './saveSystem.js';
 import { evaluate, resolveText, resolveValue } from './condition.js';
 import { characterConfig } from "./characterConfig.js";
 import { setRoute, getRoute, resetRoute } from './route.js';
+import { preloadCharacters } from "./assetManager.js";
 
 // ⏱️ 延遲工具
 function delay(ms) {
@@ -21,6 +22,8 @@ let textIndex = 0;
 let isChoosing = false;
 let isTyping = false;
 let skipTyping = false;
+
+const preloadedNodes = new Set();
 
 function getState() {
     return {
@@ -181,10 +184,13 @@ async function typeWriter(text) {
 
     for (let char of text) {
 
-        if (skipTyping) {
-            p.textContent = text;
-            break;
-        }
+    if (skipTyping) {
+        p.textContent = text;
+        isTyping = false;
+        continueBtn.style.display = "block";
+        refreshUI();
+        return;
+    }
 
         buffer += char;
 
@@ -192,13 +198,6 @@ async function typeWriter(text) {
         if (buffer.length % 3 === 0) {
             p.textContent = buffer;
 
-            if (Math.random() < 0.1) {
-                playSE("sepage");
-            }
-
-            if (!skipTyping && Math.random() < 0.1) {
-                playSE("sepage");
-            }
             await delay(30);
         }
     }
@@ -436,6 +435,9 @@ function createCharacter(container, charId, emotion, options) {
     div.style.zIndex = options.z;
 
     const img = document.createElement("img");
+
+    img.loading = "lazy";
+    img.decoding = "async";
     img.src = imgSrc;
 
     div.appendChild(img);
@@ -453,6 +455,8 @@ function createCharacter(container, charId, emotion, options) {
 // 🎬 show node
 // ======================
 export function showNode(nodeId) {
+    
+    stopSE();
 
     if (nodeId === "__HOME__") {
         goHome();
@@ -460,10 +464,14 @@ export function showNode(nodeId) {
     }
 
     const node = storyNodes[nodeId];
+
     if (!node) {
         console.error("找不到 node:", nodeId);
         return;
     }
+
+    // 🔥 預載這個節點的角色圖片
+    preloadCharacters(node, characterConfig);
 
     currentNode = nodeId;
     textIndex = 0;
@@ -471,7 +479,6 @@ export function showNode(nodeId) {
 
     document.getElementById("choiceButtons").innerHTML = "";
 
-    Object.keys(seMap).forEach(k => stopSE(k));
     if (node.se) playSE(node.se);
 
     if (node.bgm !== undefined) {
@@ -515,6 +522,19 @@ export function showNode(nodeId) {
 
     renderText(node);
     refreshUI();
+
+    if (node.next) {
+        const nextNodeId = resolveValue(node.next, state);
+
+        if (!preloadedNodes.has(nextNodeId)) {
+            const nextNode = storyNodes[nextNodeId];
+
+            if (nextNode) {
+                preloadCharacters(nextNode, characterConfig);
+                preloadedNodes.add(nextNodeId);
+            }
+        }
+    }
 }
 
 // ======================

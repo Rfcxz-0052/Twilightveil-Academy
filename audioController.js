@@ -1,49 +1,45 @@
 // audioController.js
-export const bgmMap = {
-    surface: document.getElementById("bgmSurface"),
-    inner: document.getElementById("bgmInner"),
-    suspense: document.getElementById("bgmSuspense"),
-    red: document.getElementById("bgmred"),
-};
-
-export const seMap = {
-    ghost: document.getElementById("seghost"),
-    page: document.getElementById("sepage"),
-    attack01: document.getElementById("seattack01"),
-    attack02: document.getElementById("seattack02"),
-    ghost01: document.getElementById("seghost01"),
-    foot: document.getElementById("sefoot"),
-    nightmarket: document.getElementById("senightmarket"),
-};
+import { getBGM, playSEPool } from "./assetManager.js";
 
 let currentBGM = null;
+let currentSE = null;
+
 export let bgmVolume = parseFloat(localStorage.getItem("bgmVolume")) || 0.4;
 export let seVolume = parseFloat(localStorage.getItem("seVolume")) || 1.0;
 
+// ======================
+// 🔊 音量控制
+// ======================
 export function setBGMVolume(value){
-    bgmVolume=parseFloat(value);
-    Object.values(bgmMap).forEach(bgm=>bgm.volume=bgmVolume);
-    localStorage.setItem("bgmVolume",bgmVolume);
+    bgmVolume = parseFloat(value);
+
+    if(currentBGM){
+        currentBGM.volume = bgmVolume;
+    }
+
+    localStorage.setItem("bgmVolume", bgmVolume);
 }
 
 export function setSEVolume(value){
-    seVolume=parseFloat(value);
-    Object.values(seMap).forEach(se=>se.volume=seVolume);
-    localStorage.setItem("seVolume",seVolume);
+    seVolume = parseFloat(value);
+    localStorage.setItem("seVolume", seVolume);
 }
 
+// ======================
+// 🎵 BGM 切換（延遲載入）
+// ======================
 export function switchBGM(name){
-    const target = bgmMap[name];
+    const target = getBGM(name);
+
     if(!target) return;
 
-    // ✅ 如果是同一首，就不要動
+    // ✅ 同一首不重播
     if(target === currentBGM) return;
 
     if(currentBGM){
         currentBGM.pause();
     }
 
-    // ✅ 只有「新BGM」才從頭播放
     target.currentTime = 0;
     target.volume = bgmVolume;
     target.play();
@@ -51,20 +47,42 @@ export function switchBGM(name){
     currentBGM = target;
 }
 
+// ======================
+// 🔊 音效（Pool）
+// ======================
 export function playSE(name){
-    const sound=seMap[name];
-    if(!sound)return;
-    if(currentBGM)currentBGM.volume=bgmVolume*0.6;
-    sound.currentTime=0; sound.volume=seVolume; sound.play();
-    sound.onended=()=>{ if(currentBGM)currentBGM.volume=bgmVolume; }
+
+    // 🔥 停掉上一個 SE（核心）
+    if (currentSE) {
+        currentSE.pause();
+        currentSE.currentTime = 0;
+    }
+
+    const sound = new Audio(`audio/${name}.mp3`);
+    sound.volume = seVolume;
+
+    sound.play().catch(() => {});
+
+    currentSE = sound;
+
+    // 🔽 保留 BGM 壓低效果
+    if(currentBGM){
+        currentBGM.volume = bgmVolume * 0.6;
+        setTimeout(() => {
+            if(currentBGM){
+                currentBGM.volume = bgmVolume;
+            }
+        }, 300);
+    }
 }
 
-export function stopSE(name){
-    const sound=seMap[name];
-    if(!sound){ console.warn(`stopSE: sound "${name}" not found`); return; }
-    sound.pause(); sound.currentTime=0;
+// ======================
+// ⛔ 停止音效（可不實作）
+// ======================
+export function stopSE(){
+    if (currentSE) {
+        currentSE.pause();
+        currentSE.currentTime = 0;
+        currentSE = null;
+    }
 }
-
-// 初始化音量
-setBGMVolume(bgmVolume);
-setSEVolume(seVolume);
