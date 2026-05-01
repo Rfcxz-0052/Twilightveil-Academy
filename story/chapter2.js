@@ -1,4 +1,5 @@
 import { affection } from "../affection.js";
+import { setRoute } from "../route.js";
 
 // chapter2
 const storyNodes = {
@@ -23,7 +24,7 @@ const storyNodes = {
         choices: [
             { text: "看向紅髮男子，氣場逼人", next: "inner01", affection: { yanzhen: 2 } },
             { text: "看向黑髮男子，目光溫柔", next: "inner02", affection: { moxing: 2 } },
-            { text: "看向銀白長髮男子，冷意熟悉", next: "inner00", affection: { baiqi: 2 } }
+            { text: "看向銀髮男子，冷意熟悉", next: "inner00", affection: { baiqi: 2 } }
         ]
     },
 
@@ -678,21 +679,27 @@ const storyNodes = {
         ],
         background: "image/InnerWorld.webp",
 
-        next: () => {
-            const { baiqi, yanzhen, moxing } = affection;
+        next: (state) => {
+            const { baiqi = 0, yanzhen = 0, moxing = 0 } = state.affection;
 
             if (baiqi > yanzhen && baiqi > moxing) {
-                setRoute("baiqi");   // ⭐記錄路線
+                setRoute("baiqi");
                 return "inner11_1";
-            } else if (yanzhen > baiqi && yanzhen > moxing) {
+            }
+
+            if (yanzhen > baiqi && yanzhen > moxing) {
                 setRoute("yanzhen");
                 return "inner11_2";
-            } else if (moxing > baiqi && moxing > yanzhen) {
+            }
+
+            if (moxing > baiqi && moxing > yanzhen) {
                 setRoute("moxing");
                 return "inner11_3";
-            } else {
-                return "inner11_tie";
             }
+
+            // 🔥 tie fallback（一定要有 route）
+            setRoute("baiqi");
+            return "inner11_tie";
         }
     },
 
@@ -928,7 +935,7 @@ const storyNodes = {
                 return "inner11_1";
             }
             if (rand < 0.66) {
-                setRoute("yanzhe");
+                setRoute("yanzhen");
                 return "inner11_2";
             }
             setRoute("moxing");

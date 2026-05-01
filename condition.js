@@ -42,18 +42,32 @@ export function evaluateCases(config, state) {
 // ✅ 統一解析（🔥核心）
 export function resolveValue(val, state) {
 
+    let result;
+
     // function
     if (typeof val === "function") {
-        return val(state);
+        try {
+            result = val(state);
+        } catch (e) {
+            console.error("❌ next function 錯誤:", e);
+            return "__ERROR__";
+        }
     }
-
     // cases DSL
-    if (val && typeof val === "object" && Array.isArray(val.cases)) {
-        return evaluateCases(val, state);
+    else if (val && typeof val === "object" && Array.isArray(val.cases)) {
+        result = evaluateCases(val, state);
+    }
+    else {
+        result = val;
     }
 
-    // string（nodeId 或純文字）
-    return val;
+    // 🔥 防呆（超重要）
+    if (!result || typeof result !== "string") {
+        console.error("❌ resolveValue 結果錯誤:", result);
+        return "__ERROR__";
+    }
+
+    return result;
 }
 
 // ✅ cases

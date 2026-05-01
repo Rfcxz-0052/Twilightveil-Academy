@@ -1,6 +1,17 @@
 // chapter3
 const storyNodes = {
     // 第三章 紅傘女
+    red_start: {
+        next: {
+            cases: [
+                ["route === 'baiqi'", "red_baiqi_01"],
+                ["route === 'yanzhen'", "red_yanzhen_01"],
+                ["route === 'moxing'", "red_moxing_01"]
+            ],
+            default: "__ERROR__"
+        }
+    },
+
     red_b01: {
         bgm: "surface",
         se:"nightmarket",
@@ -353,10 +364,30 @@ const storyNodes = {
         },
         text: [
             "……人聲，突然消失了。",
+            "夜市的燈光像被什麼吞掉。",
+            "地面開始變得潮濕、冰冷。",
+            "你眨了一下眼——"
         ],
         background: "image/nightmarket02.webp",
-        next: "red_04"
+        next: "red_transition"
     }, 
+
+    red_transition: {
+        bgm: "red",
+        speaker: "player",
+        characters: {
+            player: "normal",
+            red: "normal"
+        },
+        text: [
+            "夜市消失了。",
+            "取而代之的，是一棵孤立在黑暗中的樹。",
+            "林投樹。",
+            "空氣中只剩海風與繩索的摩擦聲。"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_04"
+    },
 
     red_04: {
         bgm: "red",
@@ -372,7 +403,7 @@ const storyNodes = {
             "小姑娘，剛剛與我共鳴的是你嗎?",
             "她撐著紅傘，你看不清她。"
         ],
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         next: "red_05"
     },  
     
@@ -390,7 +421,7 @@ const storyNodes = {
             "她開始喃喃自語",
             "「孩子!我的孩子……你在哪裡……」"
         ],
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
 
         choices: [
             {
@@ -420,7 +451,7 @@ const storyNodes = {
             "「我的孩子……你在哪裡……」",
             "「都是媽媽的錯，是媽媽沒有保護好你，孩子，你在哪?」",            
         ],
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         next: "red_07"
     },
 
@@ -439,7 +470,7 @@ const storyNodes = {
             "是一個小女孩",
             "姐姐，你看的見我嗎?",            
         ],
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         next: "red_08"
     }, 
     
@@ -458,7 +489,7 @@ const storyNodes = {
             "是一個小女孩",
             "姐姐，你看的見我嗎?",            
         ],
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         choices: [
             { text: "是啊，你拉我有什麼事嗎?", next: "red_09"},
         ]
@@ -478,7 +509,7 @@ const storyNodes = {
             "但我一直在媽媽的身邊",
             "姐姐，你能幫幫我嗎?",            
         ],
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         choices: [
             { text: "我該怎麼幫妳呢?", next: "red_10"},
         ]
@@ -496,9 +527,9 @@ const storyNodes = {
         text: [
             "妳不幫我找我的孩子，妳在和誰說話!",          
         ],
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         choices: [
-            { text: "我在和妳的孩子說話", next: "red_11"},
+            { text: "你看不見嗎?你的孩子在你的旁邊", next: "red_11"},
         ]
     },
 
@@ -516,7 +547,7 @@ const storyNodes = {
             "所以我才選擇在林投樹上吊，為了陪我的孩子",   
             "妳騙我，妳一定是在騙我!!!",                              
         ],
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         choices: [
             { text: "不，妳的孩子一直在你的身邊，妳看不見嗎?", next: "red_12"},
         ]
@@ -536,7 +567,7 @@ const storyNodes = {
             "孩子，妳留下來吧!",   
             "媽媽會好好補償妳的",                                                     
         ],
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         next: "red_13"
     },
     
@@ -553,7 +584,7 @@ const storyNodes = {
             "小女孩焦急地看著紅傘女",
             "一直喊著:媽媽，我在這，一直在這",                                                     
         ],
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         next: "red_14"
     },
 
@@ -574,7 +605,7 @@ const storyNodes = {
             "而你已經沒有時間再思考了。"
         ],
 
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
 
         next: {
             cases: [
@@ -612,7 +643,7 @@ const storyNodes = {
             player: "normal",
             moxing: "normal"
         },
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         next: "red_epilogue_good",
         text: [
             "……她不是在傷人。",
@@ -631,7 +662,7 @@ const storyNodes = {
             player: "normal",
             baiqi: "normal"
         },
-        background: "image/nightmarket02.webp",
+        background: "image/image/lintou_tree.webp",
         next: "red_epilogue_good",
         text: [
             "這是她自己的執念。",
@@ -649,7 +680,7 @@ const storyNodes = {
             player: "normal",
             yanzhen: "normal"
         },
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         next: "red_epilogue_good",
         text: [
             "「下不為例。」",
@@ -666,7 +697,7 @@ const storyNodes = {
             player: "normal",
             yanzhen: "normal"
         },
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         next: "red_epilogue_bad",
         text: [
             "火焰瞬間爆發。",
@@ -683,7 +714,7 @@ const storyNodes = {
             player: "normal",
             baiqi: "normal"
         },
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         next: "red_epilogue_bad",
         text: [
             "靈力鎖鏈封印她。",
@@ -700,7 +731,7 @@ const storyNodes = {
             player: "normal",
             moxing: "normal"
         },
-        background: "image/nightmarket02.webp",
+        background: "image/lintou_tree.webp",
         next: "red_epilogue_bad",
         text: [
             "黑暗吞沒一切。",
@@ -748,6 +779,16 @@ const storyNodes = {
         background: "image/nightmarket01.webp",
         next: "__HOME__"
     },
+
+    __ERROR__: {
+        bgm: "surface",
+        text: [
+            "……不對。",
+            "這裡的空間，好像被扭曲了。",
+            "（畫面異常）"
+        ],
+        next: "__HOME__"
+    }
 }
 
 export default storyNodes;
