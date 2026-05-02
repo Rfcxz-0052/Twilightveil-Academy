@@ -728,10 +728,9 @@ const storyNodes = {
             "那就麻煩你了。"
         ],
         background: "image/InnerWorld.webp",
-
+        
         next: (state) => {
             const { baiqi = 0, yanzhen = 0, moxing = 0 } = state.affection;
-
             if (baiqi > yanzhen && baiqi > moxing) {
                 setRoute("baiqi");
                 return "inner11_1";
@@ -747,8 +746,6 @@ const storyNodes = {
                 return "inner11_3";
             }
 
-            // 🔥 tie fallback（一定要有 route）
-            setRoute("baiqi");
             return "inner11_tie";
         }
     },
@@ -973,24 +970,29 @@ const storyNodes = {
 
         text: [
             "失控的共鳴撕裂了空間——",
-            "有人抓住了你。"
+            "——不行。",
+            "再這樣下去，我會被撕裂。",
+            "我必須選一個人——現在。"
         ],
         background: "image/InnerWorld.webp",
 
-        next: () => {
-            const rand = Math.random();
-
-            if (rand < 0.33) {
-                setRoute("baiqi");
-                return "inner11_1";
+        choices: [
+            {
+                text: "抓住白祈",
+                action: () => setRoute("baiqi"),
+                next: "inner11_1"
+            },
+            {
+                text: "靠向炎燼",
+                action: () => setRoute("yanzhen"),
+                next: "inner11_2"
+            },
+            {
+                text: "伸手向墨行",
+                action: () => setRoute("moxing"),
+                next: "inner11_3"
             }
-            if (rand < 0.66) {
-                setRoute("yanzhen");
-                return "inner11_2";
-            }
-            setRoute("moxing");
-            return "inner11_3";
-        }
+        ]
     },
 
     inner11_1: {
@@ -1002,7 +1004,7 @@ const storyNodes = {
             baiqi: "normal",
         },
         text: [
-            "走吧!這裡的靈太多，妳很容易被影響的",
+            "走吧!這裡的靈太多，妳很容易再次被影響的",
         ],
         background: "image/InnerWorld.webp",
         next: "red_b01"
@@ -1017,7 +1019,8 @@ const storyNodes = {
             yanzhen: "normal",
         },
         text: [
-            "嘖，麻煩。要不是老頭子交代，我才沒空陪妳在表世界玩這種護送遊戲",
+            "嘖，麻煩。",
+            "要不是老頭子交代，我才沒空陪妳在表世界玩這種護送遊戲",
         ],
         background: "image/InnerWorld.webp",
         next: "red_y01"
@@ -1032,7 +1035,8 @@ const storyNodes = {
             moxing: "normal",
         },
         text: [
-            "別擔心，第一次來到『這邊』的世界，難免會有些不適應。",
+            "別擔心，試著跟著我的節奏呼吸。",
+            "第一次來到『這邊』的世界，難免會有些不適應。",
         ],
         background: "image/InnerWorld.webp",
         next: "red_m01"

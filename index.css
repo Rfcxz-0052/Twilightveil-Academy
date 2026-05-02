@@ -20,9 +20,23 @@ body {
     display: flex;
     flex-direction: column;
 
+    position: relative;
+
     background-size: cover;
     background-position: center;
     padding-bottom: 0;
+}
+
+/* 🔥 全局背景壓暗層 */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.35); /* 可調 0.25~0.5 */
+
+    pointer-events: none;
+    z-index: 0;
 }
 
 /* UI 切換 */
@@ -186,8 +200,9 @@ body[data-ui="game"] #homeUI { display: none; }
     flex: 1;
     display: flex;
     flex-direction: column;
-
+    
     box-sizing: border-box;
+    filter: saturate(0.95) contrast(1.05);
 }
 
 /* ==========================
@@ -208,6 +223,21 @@ body[data-ui="game"] #homeUI { display: none; }
 
     margin: 0 auto;
     padding-bottom: 0;
+}
+
+.story-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: radial-gradient(
+        ellipse at bottom,
+        rgba(0,0,0,0.15),
+        rgba(0,0,0,0.65)
+    );
+
+    pointer-events: none;
+    z-index: 2;
 }
 
 .story-container::after {
@@ -241,6 +271,7 @@ body[data-ui="game"] #homeUI { display: none; }
     bottom: 0;
     transition: all 0.35s ease;
     transform-origin: bottom center;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6));
 }
 
 /* 顯示狀態 */
@@ -294,6 +325,10 @@ body[data-ui="game"] #homeUI { display: none; }
     max-height: 220px;
 
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
 /* 文字 */

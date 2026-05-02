@@ -288,6 +288,9 @@ function showChoices(node) {
         btn.innerText = resolveText(choice.text, state);
 
         btn.onclick = () => {
+            if (choice.action) {
+                choice.action();
+            }
 
             if (choice.affection) {
                 for (const [k, v] of Object.entries(choice.affection)) {
