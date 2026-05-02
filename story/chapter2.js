@@ -18,7 +18,7 @@ const storyNodes = {
         text: [
             "突然，三股截然不同的靈壓同時逼近。",
             "一熱、一靜、一冷。",
-            "你抬頭，看見三道身影。你首先看向..."
+            "妳抬頭，看見三道身影。妳首先看向..."
         ],
         background: "image/InnerWorld.webp",
         choices: [
@@ -39,7 +39,7 @@ const storyNodes = {
         },
         text: [
             "……別站在那裡。",
-            "這裡的氣息，妳還承受不了。"
+            "這裡的氣息，現在的妳還撐不住。"
         ],
         background: "image/InnerWorld.webp",
         choices: [
@@ -59,8 +59,8 @@ const storyNodes = {
             yanzhen: "normal",
         },
         text: [
-            "第一次來?站到我這邊。妳還不夠強。",
-            "你承受不了這裡的氣息，不要傻站在那裡",
+            "第一次來？站過來。",
+            "現在的妳——還不夠實力待在那裡。",
         ],
         background: "image/InnerWorld.webp",
         choices: [
@@ -80,8 +80,8 @@ const storyNodes = {
             moxing: "normal",
         },
         text: [
-            "第一次來這裡?別害怕!剛來都會不適應",
-            "這裡氣息強烈，你要不要先離開？"
+            "別怕，第一次來都會這樣。",
+            "這裡的氣息很重……如果不舒服，我可以先帶妳離開。"
         ],
         background: "image/InnerWorld.webp",
         choices: [
@@ -100,9 +100,9 @@ const storyNodes = {
             male: "normal",
         },
         text: [
-            "此時，一個和藹的老爺爺突然出現，微笑看著你。",
+            "此時，一個和藹的老爺爺突然出現，微笑看著妳。",
             "小姑娘，別理那三個莽撞的臭小子",
-            "你剛來這裡，一定有很多疑惑吧？",
+            "妳剛來這裡，一定有很多疑惑吧？",
         ],
         background: "image/InnerWorld.webp",
         choices: [
@@ -120,13 +120,13 @@ const storyNodes = {
         },
         text: [
             "我是學院的引路人，專門引領剛進來的覺醒者",
-            "你剛覺醒靈力，",
-            "再加上你身上的界膜曾被某股力量劃破，",
-            "所以你會比較難適應這裡的氣息。"
+            "妳剛覺醒靈力，",
+            "再加上妳身上的界膜曾被某股力量劃破，",
+            "所以妳會比較難適應這裡的氣息。"
         ],
         background: "image/InnerWorld.webp",
         choices: [
-            { text: "爺爺你能跟我說說什麼是靈力和界膜嗎？", next: "inner05" },
+            { text: "爺爺，那什麼是靈力和界膜？", next: "inner05" },
         ]
     },
 
@@ -139,11 +139,11 @@ const storyNodes = {
             male: "normal",
         },
         text: [
-            "先說說界膜吧!它是每一個人出生天然擁有的",
+            "界膜，它是每一個人出生天然擁有的",
             "可以區隔人還活著的表世界，和亡者所在的裡世界",
             "所以界膜可以防止活人被一般的鬼魂所傷",
             "爺爺，那我這是來到地獄了嗎?",
-            "不，這裡是與冥界，也就是你說的地獄的交際處"
+            "不，這裡是與冥界，也就是妳說的地獄的交際處"
         ],
         background: "image/InnerWorld.webp",
         next: "inner06"
@@ -177,9 +177,9 @@ const storyNodes = {
         },
         text: [
             "至於靈力，是被破除界膜後，才有可能覺醒",
-            "靈學院靈力漫佈，再加上你剛剛才剛滅掉一個鬼魂",
-            "你需要學習如何穩定你的靈力",
-            "你的靈力才不會暴走"
+            "靈學院靈力漫佈，再加上妳剛剛才剛滅掉一個鬼魂",
+            "你需要學習如何穩定妳的靈力",
+            "妳的靈力才不會暴走"
         ],
         background: "image/InnerWorld.webp",
         choices: [
@@ -197,9 +197,9 @@ const storyNodes = {
         },
         text: [
             "先坐下打坐，閉上眼睛感受妳身體裡的力量",
-            "然後深呼吸，在呼吸之間平穩你的心神",
+            "然後深呼吸，在呼吸之間平穩妳的心神",
             "告訴自己，危機已過去",
-            "這樣你的靈力就可以平息下來了"
+            "這樣妳的靈力就可以平息下來了"
         ],
         background: "image/InnerWorld.webp",
         next: "inner08_1"
@@ -213,16 +213,46 @@ const storyNodes = {
             player: "normal",
         },
         text: [
-            "(胸口突然一陣劇痛)",
-            "……好痛……！",
-            "視線開始扭曲，周圍的景色像是被撕裂",
-            "那些聲音……是誰在哭？"
+            "……先冷靜下來。",
+            "照他說的，呼吸。",
+            "吸氣——",
+            "……吐氣——",
+            "胸口，忽然一緊。",
+            "不是痛。",
+            "是——被什麼東西『抓住』了。",
+            "……等等。",
+            "這個節奏，",
+            "不是我的呼吸。"
         ],
         background: "image/InnerWorld.webp",
         next: "inner08_2"
     },
 
     inner08_2: {
+        bgm: "suspense",
+        speaker: "player",
+
+        characters: {
+            player: "normal",
+        },
+
+        text: [
+            "有別的東西——",
+            "在跟著我一起呼吸。",
+            "……不對。",
+            "是它，在帶著我呼吸。",
+            "吸氣。",
+            "吐氣。",
+            "越來越快。",
+            "越來越亂。",
+            "——停不下來。"
+        ],
+
+        background: "image/InnerWorld.webp",
+        next: "inner08_3"
+    },
+
+    inner08_3: {
         bgm: "suspense",
         speaker: "yanzhen",
 
@@ -232,13 +262,15 @@ const storyNodes = {
             moxing: "normal",
         },
         text: [
-            "炎燼驚呼道:糟了，她的靈力要暴走了！"
+            "炎燼的聲音壓得很低。",
+            "「糟了!」",
+            "她被牽進去了。"
         ],
         background: "image/InnerWorld.webp",
         choices: [
-            { text: "白祈沒有碰你，但默默觀察你的靈力狀況", next: "inner08_baiqi" },
-            { text: "炎燼強行壓制", next: "inner08_yanzhen" },
-            { text: "墨行安撫", next: "inner08_moxing" }
+            { text: "白祈沒有碰妳，只是盯著妳的氣息變化", next: "inner08_baiqi", affection: { baiqi: 1 } },
+            { text: "炎燼直接出手壓制妳的靈力", next: "inner08_yanzhen", affection: { yanzhen: 1 } },
+            { text: "墨行靠近，試圖讓妳穩住情緒", next: "inner08_moxing", affection: { moxing: 1 } }
         ]
     },
 
@@ -251,11 +283,14 @@ const storyNodes = {
             baiqi: "normal",
         },
         text: [
-            "她不是失控，是在共鳴",
-            "你需要穩定心神，別讓這裡的靈影響你"
+            "……別動。",
+            "他的聲音很低，卻壓得住一切。",
+            "這不是妳的靈力。",
+            "是別人的東西，在進來。",
+            "妳需要穩定心神，別讓這裡的靈影響妳"
         ],
         background: "image/InnerWorld.webp",
-        next: "inner08_3"
+        next: "inner08_4"
     },
 
     inner08_yanzhen: {
@@ -267,11 +302,13 @@ const storyNodes = {
             yanzhen: "normal",
         },
         text: [
-            "控制不了就別亂用",
-            "這裡的殘靈直接滅了就好"
+            "給我醒著!",
+            "一股灼熱直接壓進妳的胸口。",
+            "這裡的殘靈——",
+            "直接燒掉就好。",
         ],
         background: "image/InnerWorld.webp",
-        next: "inner08_3"
+        next: "inner08_4"
     },
 
     inner08_moxing: {
@@ -283,23 +320,11 @@ const storyNodes = {
             moxing: "normal",
         },
         text: [
-            "別緊張，深呼吸，慢慢來",
-            "這裡的靈只是想和你分享他們的過往"
-        ],
-        background: "image/InnerWorld.webp",
-        next: "inner08_3"
-    },
-
-    inner08_3: {
-        bgm: "suspense",
-        speaker: "player",
-        characters: {
-            player: "normal",
-        },
-        text: [
-            "無數不屬於我的記憶湧進腦海。",
-            "像是有人在我腦中翻找什麼。",
-            "我快分不清，那些到底是不是「我」的過去。"
+            "別怕……看著我。",
+            "他的聲音很近。",
+            "那不是妳。",
+            "只是情緒……被放大了。",
+            "這裡的靈只是想和妳分享他們的過往"
         ],
         background: "image/InnerWorld.webp",
         next: "inner08_4"
@@ -312,17 +337,46 @@ const storyNodes = {
             player: "normal",
         },
         text: [
-            "但在混亂中，一個畫面突然浮現。",
-            "早上的餐桌，媽媽說今天會做我喜歡的菜。",
-            "她說：『晚上別加班太晚，記得早點回來吃飯。』",
-            "那份想回家的念頭，被放大了。",
-            "像是有什麼東西，也在呼喚『孩子』這個詞。"
+            "——不對。",
+            "那些東西，不是『看到』。",
+            "是被塞進來的。",
+            "畫面，聲音，氣味——",
+            "全部一起擠進腦海。",
+            "像有人在翻找什麼。",
+            "翻開。",
+            "撕開。",
+            "重疊。",
+            "……我在哪？",
+            "這裡不是我。",
+            "我快分不清，那些到底是不是「我」的。"
         ],
         background: "image/InnerWorld.webp",
-        next: "inner08_5",
+        next: "inner08_5"
     },
 
     inner08_5: {
+        bgm: "suspense",
+        speaker: "player",
+        characters: {
+            player: "normal",
+        },
+        text: [
+            "在混亂中，我掙扎著。",
+            "我突然想到",
+            "早上的餐桌，媽媽說今天會做我喜歡的菜。",
+            "她說：『晚上別加班太晚，記得早點回來吃飯。』",
+            "那一瞬間——",
+            "混亂停住了。",
+            "像有人把我從深水裡拉上來。",
+            "我抓住了那個感覺。",
+            "『回家。』",
+            "這個念頭，變得無比清晰。",
+        ],
+        background: "image/InnerWorld.webp",
+        next: "inner08_5_2",
+    },
+
+    inner08_5_2: {
         bgm: "suspense",
         se: "ghost",
         speaker: "player",
@@ -332,9 +386,14 @@ const storyNodes = {
             red: "normal"
         },
         text: [
+            "但就在那一刻——",
+            "空氣變了。",
+            "太安靜了。",
+            "像是有人，聽見了這個念頭。",
             "視線邊緣出現一抹紅色。",
             "像傘，又像血。",
-            "但下一瞬間又消失。"
+            "像是在『確認什麼』。",
+            "但過沒多久就消失。"
         ],
         background: "image/InnerWorld.webp",
         choices: [
@@ -410,9 +469,9 @@ const storyNodes = {
         ],
         background: "image/InnerWorld.webp",
         choices: [
-            { text: "選白祈", next: "bond_baiqi_1" },
-            { text: "選炎燼", next: "bond_yanzhen_1" },
-            { text: "選墨行", next: "bond_moxing_1" }
+            { text: "選白祈", next: "bond_baiqi_1", affection: { baiqi: 1 } },
+            { text: "選炎燼", next: "bond_yanzhen_1", affection: { yanzhen: 1 } },
+            { text: "選墨行", next: "bond_moxing_1", affection: { moxing: 1 } }
         ]
     },
 
@@ -522,13 +581,13 @@ const storyNodes = {
             {
                 text: "語氣帶刺回應",
                 next: "bond_yanzhen_provoke",
-                affection: { yanzhen: 2 },
+                affection: { yanzhen: 1 },
                 lightShadow: { shadow: 1 }
             },
             {
                 text: "承認有點不安",
                 next: "bond_yanzhen_soft",
-                affection: { yanzhen: 1 },
+                affection: { yanzhen: 2 },
                 lightShadow: { light: 1 }
             }
         ]
@@ -617,7 +676,8 @@ const storyNodes = {
             {
                 text: "自己穩住情緒",
                 next: "bond_moxing_hold",
-                affection: { moxing: 1 }
+                affection: { moxing: 1 },
+                lightShadow: { shadow: 1 }
             }
         ]
     },

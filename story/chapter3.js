@@ -105,7 +105,7 @@ const storyNodes = {
         ],
         background: "image/nightmarket01.webp",
         choices: [
-            { text: "消滅她", next: "red_b06", lightShadow: { light: 2 } },
+            { text: "消滅她", next: "red_b06", lightShadow: { shadow: 2 } },
             { text: "讓她離開", next: "red_b06", lightShadow: { light: 1 } },
             { text: "讓她留下", next: "red_b06", lightShadow: { shadow: 1 } }
         ]
@@ -327,7 +327,8 @@ const storyNodes = {
         text: [
             "在這種地方徘徊的，通常都不乾淨。",
             "拖越久，越容易出事。",
-            "我去處理掉。"
+            "這種東西，留著只會出事。",
+            "我現在就解決她。"
         ],
         background: "image/nightmarket01.webp",
         choices: [
@@ -428,19 +429,18 @@ const storyNodes = {
                 text: {
                     default: "詢問她在找什麼",
                     cases: [
-                        ["light >= 2", "溫柔詢問她的孩子"],
-                        ["shadow >= 2", "直接質問她的異常"]
+                        ["light > shadow", "溫柔詢問她的孩子"],
+                        ["shadow > light", "直接質問她的異常"]
                     ]
                 },
                 next: "red_06"
             }
-        ]
+        ],
     },
 
     red_06: {
         bgm: "red",
         speaker: "red",
-
         characters: {
             player: "normal",
             red: "normal"
@@ -465,13 +465,29 @@ const storyNodes = {
             red: "normal"
         },
         text: [
-            "此時你感覺有什麼在拉著你的衣服",
-            "你轉頭一看",
-            "是一個小女孩",
-            "姐姐，你看的見我嗎?",            
+            "有什麼東西，輕輕拉住你的衣角。",
+            "你低頭——",
+            "是一個小女孩。",
+            "她的手，很冰。",
+            "「姐姐……妳看得見我嗎？」"           
         ],
         background: "image/lintou_tree.webp",
-        next: "red_08"
+        choices: [
+            {
+                text: "蹲下來回應她",
+                next: "red_08",
+                lightShadow: { light: 1 }
+            },
+            {
+                text: "遲疑地看著她",
+                next: "red_08",
+            },
+            {
+                text: "覺得不對勁想甩開",
+                next: "red_08",
+                lightShadow: { shadow: 1 }
+            }
+        ]
     }, 
     
     red_08: {
@@ -484,38 +500,32 @@ const storyNodes = {
             red: "normal"
         },
         text: [
-            "此時你感覺有什麼在拉著你的衣服",
-            "你轉頭一看",
-            "是一個小女孩",
-            "姐姐，你看的見我嗎?",            
+            "她緊緊抓著你。",
+            "像是怕你一鬆手，就會消失。",
+            "我一直在媽媽旁邊……",
+            "可是她都看不見我……",
+            "姐姐，你能幫幫我嗎?",          
         ],
         background: "image/lintou_tree.webp",
         choices: [
-            { text: "是啊，你拉我有什麼事嗎?", next: "red_09"},
+            {
+                text: "我會幫妳",
+                next: "red_09",
+                lightShadow: { light: 1 }
+            },
+            {
+                text: "先告訴我發生什麼事",
+                next: "red_09",
+            },
+            {
+                text: "這不關我的事",
+                next: "red_09",
+                lightShadow: { shadow: 1 }
+            }
         ]
     },
     
     red_09: {
-        bgm: "red",
-        speaker: "redchild",
-
-        characters: {
-            player: "normal",
-            redchild: "normal",
-            red: "normal"
-        },
-        text: [
-            "媽媽，她總是看不見我",
-            "但我一直在媽媽的身邊",
-            "姐姐，你能幫幫我嗎?",            
-        ],
-        background: "image/lintou_tree.webp",
-        choices: [
-            { text: "我該怎麼幫妳呢?", next: "red_10"},
-        ]
-    },
-
-    red_10: {
         bgm: "red",
         speaker: "red",
 
@@ -529,11 +539,24 @@ const storyNodes = {
         ],
         background: "image/lintou_tree.webp",
         choices: [
-            { text: "你看不見嗎?你的孩子在你的旁邊", next: "red_11"},
+            {
+                text: "她就在妳身邊！妳看不到嗎？",
+                next: "red_11",
+                lightShadow: { light: 1 }
+            },
+            {
+                text: "冷靜一點，妳現在不對勁",
+                next: "red_11",
+            },
+            {
+                text: "直接拉開距離防備",
+                next: "red_11",
+                lightShadow: { shadow: 1 }
+            }
         ]
     },
 
-    red_11: {
+    red_10: {
         bgm: "red",
         speaker: "red",
 
@@ -549,9 +572,41 @@ const storyNodes = {
         ],
         background: "image/lintou_tree.webp",
         choices: [
-            { text: "不，妳的孩子一直在你的身邊，妳看不見嗎?", next: "red_12"},
+            {
+                text: "妳的孩子一直在等妳面對她",
+                next: "red_11_01",
+                lightShadow: { light: 2 }
+            },
+            {
+                text: "妳只是無法接受事實",
+                next: "red_11_01",
+                lightShadow: { shadow: 1 }
+            },
+            {
+                text: "（沉默）",
+                next: "red_11_01"
+            }
         ]
     },
+
+    red_11: {
+        bgm: "red",
+        speaker: "red",
+
+        characters: {
+            player: "normal",
+            redchild: "normal",
+            red: "normal"
+        },
+        text: [
+            "不……不可能……",
+            "我明明一直在找她……",
+            "為什麼……為什麼找不到……",
+            "為什麼妳聽得到她，我卻聽不到……"                            
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_12"
+    },  
 
     red_12: {
         bgm: "red",
@@ -568,7 +623,18 @@ const storyNodes = {
             "媽媽會好好補償妳的",                                                     
         ],
         background: "image/lintou_tree.webp",
-        next: "red_13"
+        choices: [
+            {
+                text: "我不是你的孩子",
+                next: "red_13",
+                lightShadow: { light: 2 }
+            },
+            {
+                text: "先順著她的話",
+                next: "red_13",
+                lightShadow: { shadow: 2 }
+            }
+        ]
     },
     
     red_13: {
@@ -643,16 +709,77 @@ const storyNodes = {
             player: "normal",
             moxing: "normal"
         },
+        text: [
+            "「她不是看不見。」",
+            "墨行低聲說。",
+            "「她只是……不敢面對。」",
+            "他握住你的手。",
+            "「陪她一起。」",
+            "……",
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_moxing_01"
+    },
+
+    red_good_moxing_01: {
+        bgm: "surface",
+        speaker: "moxing",
+        characters: {
+            player: "normal",
+            moxing: "normal"
+        },
+        text: [
+            "「不是每個人，都做得到面對。」",
+            "「有些人，只能一邊逃，一邊活下去。」",
+            "「那也沒有錯。」",
+            "……",
+            "「所以——」",
+            "「不用逼她。」",
+            "「我們在這裡，就夠了。」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_moxing_02"
+    },
+
+    red_good_moxing_02: {
+        bgm: "red",
+        speaker: "red",
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+        text: [
+            "紅傘女的腳步停下。",
+            "她的身體開始顫抖。",
+            "「……我找不到她……」",
+            "「我不敢停下來……」",
+            "「萬一……她恨我，我該怎麼面對她?」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_moxing_03",
+    },
+
+    red_good_moxing_03: {
+        bgm: "red",
+        speaker: "redchild",
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+        text: [
+            "小女孩輕輕抱住她。",
+            "「媽媽……我一直在。」",
+            "「我不恨你，我知道你是不得已的」",
+            "……",
+            "紅傘女崩潰地跪下。",
+            "她終於抱住她。",
+            "像是終於允許自己——",
+            "停下來。"
+        ],
         background: "image/lintou_tree.webp",
         next: "red_epilogue_good",
-        text: [
-            "……她不是在傷人。",
-            "她只是，一直在找她的孩子。",
-            "墨行握住你的手，引導靈力。",
-            "「一起讓她看見吧。」",
-            "光芒擴散。",
-            "母女相擁，在光中消散。"
-        ]
     },
 
     red_good_baiqi: {
@@ -662,15 +789,174 @@ const storyNodes = {
             player: "normal",
             baiqi: "normal"
         },
-        background: "image/image/lintou_tree.webp",
-        next: "red_epilogue_good",
         text: [
-            "這是她自己的執念。",
-            "白祈讓你穩住靈力。",
-            "你讓孩子的聲音被聽見。",
-            "紅傘女崩潰。",
-            "她終於抱住孩子。"
-        ]
+            "「別急。」",
+            "白祈的聲音很輕。",
+            "「妳已經看見了。」",
+            "「接下來，只差一件事。」",
+            "他沒有出手。",
+            "只是看著你。",
+            "「讓她也看見。」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_baiqi_01"
+    },
+
+    red_good_baiqi_01: {
+        bgm: "red",
+        speaker: "player",
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+        text: [
+            "你伸出手。",
+            "不是對紅傘女——",
+            "而是對那個小女孩。",
+            "「再說一次。」",
+            "「讓她聽見。」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_baiqi_02"
+    },
+
+    red_good_baiqi_02: {
+        bgm: "red",
+        speaker: "redchild",
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+
+        text: [
+            "小女孩愣了一下。",
+            "然後，用盡力氣喊出來——",
+            "「媽媽！！」",
+            "聲音，不再微弱。",
+            "那一瞬間——",
+            "整個空間安靜了。"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_baiqi_03"
+    },
+
+    red_good_baiqi_03: {
+        bgm: "red",
+        speaker: "red",
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+        text: [
+            "紅傘女的身體，猛地一震。",
+            "她緩緩轉頭。",
+            "……",
+            "「……聲音？」",
+            "「這個聲音……」",
+            "她的手開始顫抖。",
+            "「為什麼……這麼清楚……？」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_baiqi_break"
+    },
+
+        red_good_baiqi_break: {
+        bgm: "red",
+        speaker: "red",
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+        text: [
+            "「不對……」",
+            "「我聽到了……但這不是真的……」",
+            "她抱住頭，開始後退。",
+            "「如果是真的……」",
+            "「那我這麼久……到底在逃什麼？」",
+            "她的聲音開始崩潰。",
+            "「不可以……我不能承認……」"
+        ],
+        next: "red_good_baiqi_04"
+    },
+
+    red_good_baiqi_04: {
+        bgm: "red",
+        speaker: "baiqi",
+        characters: {
+            player: "normal",
+            baiqi: "normal",
+            red: "normal",
+        },
+        text: [
+            "「因為妳終於願意聽了。」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_baiqi_05"
+    },
+
+    red_good_baiqi_05: {
+        bgm: "red",
+        speaker: "red",
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+        text: [
+            "紅傘女睜大雙眼。",
+            "她像是終於意識到什麼。",
+            "「……我一直在找妳……」",
+            "「可是我不敢……」",
+            "「我怕，我怕你恨我……」",
+            "她的聲音開始崩潰。",
+            "「所以我才……看不見妳……？」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_baiqi_06"
+    },
+
+    red_good_baiqi_06: {
+        bgm: "red",
+        speaker: "player",
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+        text: [
+            "小女孩沒有再說話。",
+            "她只是走過去。",
+            "輕輕地，抱住她。",
+            "……",
+            "這一次——",
+            "紅傘女沒有錯過。"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_baiqi_07"
+    },
+
+    red_good_baiqi_07: {
+        bgm: "surface",
+        speaker: "baiqi",
+        characters: {
+            player: "normal",
+            baiqi: "normal"
+        },
+        text: [
+            "光芒慢慢擴散。",
+            "白祈看著那一幕。",
+            "語氣依舊平靜。",
+            "……",
+            "「聲音從來沒有消失。」",
+            "「只是，有些人——」",
+            "「太害怕聽見。」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_epilogue_good",
     },
 
     red_good_yanzhen: {
@@ -678,16 +964,62 @@ const storyNodes = {
         speaker: "yanzhen",
         characters: {
             player: "normal",
-            yanzhen: "normal"
+            yanzhen: "normal",
+            red: "normal",
+            redchild: "normal"
         },
+        text: [
+            "「……妳還要拖多久？」",
+            "炎燼看著你。",
+            "「現在不動手，就會失控。」",
+            "……",
+            "炎燼的火焰已經點燃。",
+            "只差一瞬間——",
+            "紅傘女就會被燒盡。"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_yanzhen_01",
+    },
+
+    red_good_yanzhen_01: {
+        bgm: "red",
+        speaker: "player",
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+        text: [
+            "你抓住他的手，沒有後退。",
+            "你站在紅傘女面前。",
+            "擋住了炎燼。",
+            "「再給她一次機會。」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_good_yanzhen_02",
+    },
+
+        red_good_yanzhen_02: {
+        bgm: "red",
+        speaker: "red",
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+        text: [
+            "紅傘女愣住。",
+            "她慢慢看向你。",
+            "再看向那個小女孩。",
+            "……",
+            "「……孩子？」",
+            "聲音顫抖。",
+            "然後崩潰。",
+            "她抱住她。",
+            "炎燼沒有再動手。"
+        ],
         background: "image/lintou_tree.webp",
         next: "red_epilogue_good",
-        text: [
-            "「下不為例。」",
-            "他沒有阻止你。",
-            "你讓母女相見。",
-            "執念崩解。"
-        ]
     },
 
     red_bad_yanzhen: {
@@ -697,14 +1029,18 @@ const storyNodes = {
             player: "normal",
             yanzhen: "normal"
         },
-        background: "image/lintou_tree.webp",
-        next: "red_epilogue_bad",
         text: [
-            "火焰瞬間爆發。",
-            "紅傘女被吞噬。",
-            "「不需要猶豫。」",
-            "但你心裡不太對勁。"
-        ]
+            "「我說過了，不需要猶豫。」",
+            "火焰，在一瞬間爆發。",
+            "紅傘女的身影被吞沒。",
+            "她的聲音，在火中扭曲——",
+            "「孩子……」",
+            "——然後，消失了。",
+            "……",
+            "世界安靜下來。"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_bad_after",
     },
 
     red_bad_baiqi: {
@@ -714,14 +1050,19 @@ const storyNodes = {
             player: "normal",
             baiqi: "normal"
         },
-        background: "image/lintou_tree.webp",
-        next: "red_epilogue_bad",
         text: [
-            "靈力鎖鏈封印她。",
-            "「她已經失控。」",
-            "但聲音仍在回響。",
-            "孩子……"
-        ]
+            "靈力鎖鏈收緊。",
+            "紅傘女被封印。",
+            "她掙扎著。",
+            "「孩子……我還沒找到……」",
+            "聲音逐漸消失。",
+            "……",
+            "白祈淡淡開口。",
+            "「這是最穩定的處理方式。」",
+            "「她已經失控了。」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_bad_after",
     },
 
     red_bad_moxing: {
@@ -731,13 +1072,18 @@ const storyNodes = {
             player: "normal",
             moxing: "normal"
         },
-        background: "image/lintou_tree.webp",
-        next: "red_epilogue_bad",
         text: [
-            "黑暗吞沒一切。",
-            "他沒能救到她。",
-            "「……還是太慢了。」"
-        ]
+            "黑暗擴散。",
+            "紅傘女的身影被吞沒。",
+            "「……太晚了。」",
+            "她的聲音逐漸崩解。",
+            "「孩子……對不起……」",
+            "——然後，一切歸於寂靜。",
+            "墨行沒有說話。",
+            "只是慢慢放下手。"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_bad_after",
     },
 
     red_epilogue_good: {
@@ -747,17 +1093,76 @@ const storyNodes = {
         characters: {
             player: "normal",
         },
+        text: [
+            "夜市的聲音回來了。",
+            "人群依舊擁擠。",
+            "燈光依舊閃爍。",
+            "……",
+            "彷彿什麼都沒發生過。",
+            "但你知道——",
+            "剛剛，有一段等待，被結束了。",
+            "……",
+            "你下意識看向人群。",
+            "那裡，已經沒有那把紅傘了。",
+            "……",
+            "但你忽然停下腳步。",
+            "剛才那個小女孩的聲音——",
+            "還殘留在你的耳邊。",
+            "「媽媽。」",
+            "……",
+            "你輕輕閉上眼。",
+            "那聲音，沒有消失。",
+            "只是變得很遠，很遠。"
+        ],
+        background: "image/nightmarket01.webp",
+        next: "red_epilogue_good_01"
+    },
+
+    red_epilogue_good_01: {
+        bgm: "surface",
+        se:"nightmarket",
+        speaker: "player",
         characters: {
             player: "normal",
         },
-
         text: [
-            "夜市的聲音回來了。",
-            "彷彿什麼都沒發生過。",
-            "但你知道，有什麼已經改變了。"
+            "你走進人群。",
+            "但你忽然有種感覺——",
+            "以後......",
+            "也許，還會看見她們。",
+            "(故事未完，待續......)",
         ],
         background: "image/nightmarket01.webp",
         next: "__HOME__"
+    },
+
+    red_bad_after: {
+        bgm: "red",
+        speaker: "redchild",
+        characters: {
+            player: "normal",
+            redchild: "normal"
+        },
+        text: [
+            "……你感覺，有什麼還在原地。",
+            "你低頭。",
+            "那個小女孩，還站在那裡。",
+            "她沒有消失。",
+            "……",
+            "她慢慢看向剛剛媽媽消失的位置。",
+            "「……媽媽？」",
+            "……",
+            "沒有回應。",
+            "她的手，還維持著剛剛想伸出去的樣子。",
+            "「……姐姐？」",
+            "她轉頭看向你。",
+            "眼神裡沒有恐懼。",
+            "只有困惑。",
+            "……",
+            "「為什麼……媽媽還是看不見我？」"
+        ],
+        background: "image/lintou_tree.webp",
+        next: "red_epilogue_bad"
     },
 
     red_epilogue_bad: {
@@ -767,14 +1172,19 @@ const storyNodes = {
         characters: {
             player: "normal",
         },
-        characters: {
-            player: "normal",
-        },
-
         text: [
             "夜市恢復了熱鬧。",
-            "但你的心，卻沉了下去。",
-            "那個聲音，仍在你耳邊回響。"
+            "人聲再次填滿四周。",
+            "彷彿什麼都沒發生過。",
+            "……",
+            "但你知道，有什麼被留下來了。",
+            "你不自覺回頭。",
+            "人群之中——",
+            "好像有個小小的身影。",
+            "站在原地。",
+            "……",
+            "她還在等。",
+            "(故事未完，待續......)"
         ],
         background: "image/nightmarket01.webp",
         next: "__HOME__"
