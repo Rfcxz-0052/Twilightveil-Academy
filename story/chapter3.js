@@ -703,7 +703,7 @@ const storyNodes = {
     },
 
     red_good_moxing: {
-        bgm: "surface",
+        bgm: "red",
         speaker: "moxing",
         characters: {
             player: "normal",
@@ -722,7 +722,7 @@ const storyNodes = {
     },
 
     red_good_moxing_01: {
-        bgm: "surface",
+        bgm: "red",
         speaker: "moxing",
         characters: {
             player: "normal",
@@ -783,7 +783,7 @@ const storyNodes = {
     },
 
     red_good_baiqi: {
-        bgm: "surface",
+        bgm: "red",
         speaker: "baiqi",
         characters: {
             player: "normal",
@@ -940,7 +940,7 @@ const storyNodes = {
     },
 
     red_good_baiqi_07: {
-        bgm: "surface",
+        bgm: "red",
         speaker: "baiqi",
         characters: {
             player: "normal",
@@ -960,7 +960,7 @@ const storyNodes = {
     },
 
     red_good_yanzhen: {
-        bgm: "surface",
+        bgm: "red",
         speaker: "yanzhen",
         characters: {
             player: "normal",

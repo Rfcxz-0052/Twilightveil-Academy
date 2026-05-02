@@ -139,11 +139,11 @@ const storyNodes = {
             male: "normal",
         },
         text: [
-            "界膜，它是每一個人出生天然擁有的",
-            "可以區隔人還活著的表世界，和亡者所在的裡世界",
-            "所以界膜可以防止活人被一般的鬼魂所傷",
+            "界膜就像是人與鬼之間的一面鏡子。",
+            "活人在這頭，亡者在那頭，本來互不相干。",
+            "但你的鏡子碎了一道縫，所以那些『東西』就看見你了。",
             "爺爺，那我這是來到地獄了嗎?",
-            "不，這裡是與冥界，也就是妳說的地獄的交際處"
+            "不，這裡是與冥界，也就是妳說的地獄的交界處"
         ],
         background: "image/InnerWorld.webp",
         next: "inner06"
@@ -337,18 +337,10 @@ const storyNodes = {
             player: "normal",
         },
         text: [
-            "——不對。",
-            "那些東西，不是『看到』。",
-            "是被塞進來的。",
             "畫面，聲音，氣味——",
-            "全部一起擠進腦海。",
-            "像有人在翻找什麼。",
-            "翻開。",
-            "撕開。",
-            "重疊。",
-            "……我在哪？",
-            "這裡不是我。",
-            "我快分不清，那些到底是不是「我」的。"
+            "那些記憶像潮水灌進喉嚨。",
+            "陌生的哭聲、不屬於我的恨意、被撕裂的痛苦……",
+            "快被淹沒了。我……是誰？",
         ],
         background: "image/InnerWorld.webp",
         next: "inner08_5"
@@ -387,8 +379,6 @@ const storyNodes = {
         },
         text: [
             "但就在那一刻——",
-            "空氣變了。",
-            "太安靜了。",
             "像是有人，聽見了這個念頭。",
             "視線邊緣出現一抹紅色。",
             "像傘，又像血。",
@@ -951,7 +941,7 @@ const storyNodes = {
 
         text: [
             "「來不及了……」",
-            "「她已經被『牽上』了。」"
+            "「她已經被『纏上』了。」"
         ],
         background: "image/InnerWorld.webp",
         next: "inner11_tie_11"
@@ -1012,7 +1002,7 @@ const storyNodes = {
             baiqi: "normal",
         },
         text: [
-            "嗯!走吧",
+            "走吧!這裡的靈太多，妳很容易被影響的",
         ],
         background: "image/InnerWorld.webp",
         next: "red_b01"
@@ -1027,7 +1017,7 @@ const storyNodes = {
             yanzhen: "normal",
         },
         text: [
-            "要不是看在老頭子的面子上，我才懶得帶新人",
+            "嘖，麻煩。要不是老頭子交代，我才沒空陪妳在表世界玩這種護送遊戲",
         ],
         background: "image/InnerWorld.webp",
         next: "red_y01"
@@ -1042,7 +1032,7 @@ const storyNodes = {
             moxing: "normal",
         },
         text: [
-            "別客氣，叫我墨行就好，我會安全護送你到家的",
+            "別擔心，第一次來到『這邊』的世界，難免會有些不適應。",
         ],
         background: "image/InnerWorld.webp",
         next: "red_m01"
