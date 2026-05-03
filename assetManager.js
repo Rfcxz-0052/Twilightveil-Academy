@@ -45,9 +45,6 @@ export function getBGM(name) {
         audio.loop = true;
         audio.preload = "auto";
 
-        // 🔥 強制預載避免 NotSupportedError
-        audio.load();
-
         audioCache[name] = audio;
     }
 

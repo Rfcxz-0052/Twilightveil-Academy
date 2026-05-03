@@ -27,18 +27,6 @@ body {
     padding-bottom: 0;
 }
 
-/* 🔥 全局背景壓暗層 */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.35); /* 可調 0.25~0.5 */
-
-    pointer-events: none;
-    z-index: 0;
-}
-
 /* UI 切換 */
 body[data-ui="home"] #gameUI { display: none; }
 body[data-ui="game"] #homeUI { display: none; }
@@ -200,6 +188,8 @@ body[data-ui="game"] #homeUI { display: none; }
     flex: 1;
     display: flex;
     flex-direction: column;
+
+    pointer-events: auto;
     
     box-sizing: border-box;
     filter: saturate(0.95) contrast(1.05);
@@ -424,6 +414,10 @@ body[data-ui="game"] #homeUI { display: none; }
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
+.ui-layer {
+    pointer-events: auto;
+}
+
 /* ==========================
    debug panel
 ========================== */
@@ -453,7 +447,6 @@ body.debug-open .debug-toggle {
 }
 
 .debug-panel {
-    display: none;
     position: fixed;
     top: 0;
     right: 0;
@@ -477,16 +470,16 @@ body.debug-open .debug-toggle {
 }
 
 .debug-panel.active {
-    display: block;
     transform: translateX(0);
 }
 
 .log-popup {
     position: fixed;
-    top: 100px;
-    left: 100px;
-    width: 400px;
-    height: 300px;
+    top: 0;
+    left: 0;
+
+    width: 360px;
+    height: 280px;
 
     background: rgba(0,0,0,0.9);
     border: 1px solid #666;
@@ -495,11 +488,11 @@ body.debug-open .debug-toggle {
     display: flex;
     flex-direction: column;
 
-    resize: both;      /* ⭐ 關鍵：可縮放 */
-    overflow: auto;    /* ⭐ 不然內容會爆掉 */
+    overflow: hidden;
 
-    min-width: 250px;
-    min-height: 150px;
+    transform: translate(0px, 0px);
+
+    user-select: none;
 }
 
 .log-popup.hidden {
@@ -519,8 +512,20 @@ body.debug-open .debug-toggle {
     overflow: hidden;
 
     /* ⭐ 讓它可縮放 */
-    resize: both;
     overflow: hidden;
+}
+
+.log-resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    width: 14px;
+    height: 14px;
+
+    cursor: nwse-resize;
+
+    background: rgba(255,255,255,0.2);
 }
 
 /* 標題列（拖曳區） */
@@ -532,6 +537,17 @@ body.debug-open .debug-toggle {
     top: 0;
 
     z-index: 10;
+}
+
+.log-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.log-controls button {
+    pointer-events: auto;
+    position: relative;
+    z-index: 999;
 }
 
 .log-content {
@@ -564,7 +580,7 @@ body.debug-open .debug-toggle {
 }
 
 .sidebar {
-    top: o;
+    top: 0;
     width: 220px;
     height: 100%;
     font-size: 12px;
@@ -576,7 +592,6 @@ body.debug-open .debug-toggle {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 12px;
     z-index: 1000;
 }
 
@@ -784,4 +799,35 @@ input[type="range"] {
     #continueBtn {
         font-size: 18px;
     }
+}
+
+.log-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 6px 10px;
+    cursor: grab;
+    user-select: none;
+
+    background: #222;
+}
+
+#logZoomIn,
+#logZoomOut {
+    width: 28px;
+    height: 28px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #333;
+    color: white;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.log-content {
+    font-size: 12px;
 }

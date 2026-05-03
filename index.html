@@ -102,71 +102,78 @@
         <audio id="foot" src="./audio/foot.mp3"></audio>
         <audio id="nightmarket" src="./audio/nightmarket.mp3"></audio>
 
-        <!-- 🧪 Debug Toggle（獨立控制器） -->
-        <button id="debugToggle" class="debug-toggle">🧪</button>
+        <!-- 🧪 Debug UI（隔離層） -->
+        <div id="debugRoot" class="ui-layer">
 
-        <div id="debugPanel" class="debug-panel">
+            <button id="debugToggle" class="debug-toggle">🧪</button>
 
-            <!-- 🔒 鎖定畫面 -->
-            <div id="debugLockScreen">
-                <h3>🏫 暮影學院管理員系統</h3>
-                <p>請輸入訪問碼</p>
+            <div id="debugPanel" class="debug-panel">
 
-                <input id="debugPassword" type="password" placeholder="Access Code">
-                <button id="debugUnlockBtn">確認</button>
+                    <!-- 🔒 鎖定畫面 -->
+                    <div id="debugLockScreen">
+                        <h3>🏫 暮影學院管理員系統</h3>
+                        <p>請輸入訪問碼</p>
 
-                <p id="debugLockState">🔒 系統鎖定中</p>
-            </div>
+                        <input id="debugPassword" type="password" placeholder="Access Code">
+                        <button id="debugUnlockBtn">確認</button>
 
-            <!-- 🔓 解鎖後內容（全部包起來） -->
-            <div id="debugContent" style="display:none;">
+                        <p id="debugLockState">🔒 系統鎖定中</p>
+                    </div>
 
-                <h3>🧪 開發人員面板 </h3>
+                    <!-- 🔓 解鎖後內容（全部包起來） -->
+                    <div id="debugContent" style="display:none;">
 
-                <div id="debugState"></div>
+                        <h3>🧪 開發人員面板 </h3>
 
-                <hr>
+                        <div id="debugState"></div>
 
-                <h4>💖 好感度</h4>
-                <button onclick="debugAddAffection('baiqi', 1)">白祈 +1</button>
-                <button onclick="debugAddAffection('yanzhen', 1)">炎燼 +1</button>
-                <button onclick="debugAddAffection('moxing', 1)">墨行 +1</button>
+                        <hr>
 
-                <h4>🌗 光影</h4>
-                <button onclick="debugAddLight('light', 1)">光 +1</button>
-                <button onclick="debugAddLight('shadow', 1)">影 +1</button>
+                        <h4>💖 好感度</h4>
+                        <button onclick="debugAddAffection('baiqi', 1)">白祈 +1</button>
+                        <button onclick="debugAddAffection('yanzhen', 1)">炎燼 +1</button>
+                        <button onclick="debugAddAffection('moxing', 1)">墨行 +1</button>
 
-                <h4>🧭 Node</h4>
-                <input id="debugNodeInput" placeholder="node id">
-                <button onclick="debugGoNode()">跳轉</button>
+                        <h4>🌗 光影</h4>
+                        <button onclick="debugAddLight('light', 1)">光 +1</button>
+                        <button onclick="debugAddLight('shadow', 1)">影 +1</button>
 
-                <h4>💾 存檔</h4>
-                <button onclick="debugSave()">Save 1</button>
-                <button onclick="debugLoad()">Load 1</button>
+                        <h4>🧭 Node</h4>
+                        <input id="debugNodeInput" placeholder="node id">
+                        <button onclick="debugGoNode()">跳轉</button>
 
-                <h4>🧨 系統</h4>
-                <button onclick="debugReset()">Reset</button>
+                        <h4>💾 存檔</h4>
+                        <button onclick="debugSave()">Save 1</button>
+                        <button onclick="debugLoad()">Load 1</button>
 
-                <hr>
+                        <h4>🧨 系統</h4>
+                        <button onclick="debugReset()">Reset</button>
 
-                <h4>🪵 Choice Log</h4>
-                <button id="openLogBtn">打開 Log</button>
+                        <hr>
 
-            </div>
+                        <h4>🪵 Choice Log</h4>
+                        <button id="openLogBtn">打開 Log</button>
 
+                    </div>
+
+            </div>  <!-- debugPanel -->
         </div>
 
         <script type="module" src="./engine.js"></script>
 
-        <div id="logPopup" class="log-popup hidden">
+        <div id="logPopup" class="log-popup ui-layer hidden">
             <div class="log-popup-box">
                 <div class="log-popup-header">
                     🪵 Choice Log
-                    <button id="closeLogBtn">✕</button>
+
+                    <div class="log-controls">
+                        <button id="closeLogBtn">✕</button>
+                    </div>
                 </div>
 
                 <div id="debugLog" class="log-content"></div>
             </div>
+            <div class="log-resize-handle"></div>
         </div>
 </body>
 </html>

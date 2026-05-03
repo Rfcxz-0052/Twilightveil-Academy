@@ -2,7 +2,7 @@
 import storyNodes from './story/storyData.js';
 import { affection, changeAffection, resetAffection, affectionNameMap } from './affection.js';
 import {lightShadow, changeLightShadow, resetLightShadow, getLightShadowBalance, getShadowText } from './lightShadow.js';
-import { playSE, stopSE, switchBGM, setBGMVolume, setSEVolume } from './audioController.js';
+import { playSE, switchBGM, setBGMVolume, setSEVolume, stopAllAudio, currentBGMName } from './audioController.js';
 import { saveSlot, loadSlot, clearSlot, clearAllSaves } from './saveSystem.js';
 import { evaluate, resolveText, resolveValue } from './condition.js';
 import { characterConfig } from "./characterConfig.js";
@@ -24,6 +24,7 @@ let isChoosing = false;
 let isTyping = false;
 let skipTyping = false;
 let debugUnlocked = false;
+let logInitialized = false;
 
 const preloadedNodes = new Set();
 
@@ -158,6 +159,8 @@ export function goHome() {
     resetAffection();
     resetLightShadow();
     resetRoute();
+
+    stopAllAudio();
 }
 
 // ======================
@@ -474,8 +477,6 @@ export function showNode(nodeId) {
         to: nodeId
     });
 
-    stopSE();
-
     if (nodeId === "__HOME__") {
         goHome();
         return;
@@ -499,7 +500,7 @@ export function showNode(nodeId) {
 
     if (node.se) playSE(node.se);
 
-    if (node.bgm !== undefined) {
+    if(node.bgm){
         switchBGM(node.bgm);
     }
 
@@ -652,18 +653,21 @@ window.addEventListener("DOMContentLoaded", () => {
     // ======================
     document.addEventListener("click", (e) => {
 
-        // 點到按鈕不觸發（避免選項/介面誤觸）
-        if (e.target.closest("button, input, .sidebar, .save-modal")) return;
+        // ✅ UI 層全部隔離
+        if (e.target.closest(".ui-layer")) return;
 
-        // 如果正在選項畫面 → 不允許跳劇情
+        // ✅ 明確補 logPopup（保險）
+        if (e.target.closest("#logPopup")) return;
+
+        if (e.target.closest(".sidebar, .save-modal")) return;
+
         if (isChoosing) return;
 
         if (isTyping) {
             skipTyping = true;
-            return; // ❗阻止進入 handleContinue
+            return;
         }
 
-        // 點擊繼續（打字中會變 skip）
         handleContinue();
     });
 
@@ -692,57 +696,206 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    function initLogPopupV2() {
+        const logPopup = document.getElementById("logPopup");
+        if (!logPopup) return;
+
+        const header = logPopup.querySelector(".log-popup-header");
+        const resizeHandle = logPopup.querySelector(".log-resize-handle");
+        const closeBtn = document.getElementById("closeLogBtn");
+        const zoomIn = document.getElementById("logZoomIn");
+        const zoomOut = document.getElementById("logZoomOut");
+
+        if (!header || !resizeHandle) return;
+
+        // ======================
+        // 🧠 單一狀態源（核心）
+        // ======================
+        const logState = {
+            x: 100,
+            y: 100,
+            scale: 1,
+            width: 360,
+            height: 240,
+            dragging: false,
+            resizing: false,
+            offsetX: 0,
+            offsetY: 0,
+            startW: 0,
+            startH: 0,
+            startX: 0,
+            startY: 0
+        };
+
+        // ======================
+        // 💾 記憶位置（localStorage）
+        // ======================
+        const saveState = () => {
+            localStorage.setItem("logPopup_state", JSON.stringify({
+                x: logState.x,
+                y: logState.y,
+                scale: logState.scale,
+                width: logState.width,
+                height: logState.height
+            }));
+        };
+
+        const loadState = () => {
+            const saved = localStorage.getItem("logPopup_state");
+            if (!saved) return;
+
+            const data = JSON.parse(saved);
+            Object.assign(logState, data);
+        };
+
+        loadState();
+
+        // ======================
+        // 🎨 render
+        // ======================
+        function render() {
+            logPopup.style.transform =
+                `translate(${logState.x}px, ${logState.y}px) scale(${logState.scale})`;
+
+            logPopup.style.width = logState.width + "px";
+            logPopup.style.height = logState.height + "px";
+
+            logPopup.style.transformOrigin = "top left";
+        }
+
+        render();
+
+        // ======================
+        // 🖱️ 拖曳
+        // ======================
+        header.addEventListener("pointerdown", (e) => {
+            if (e.target.closest(".log-controls")) return;
+            if (e.target.closest(".log-resize-handle")) return;
+
+            logState.dragging = true;
+
+            logState.offsetX = e.clientX - logState.x;
+            logState.offsetY = e.clientY - logState.y;
+
+            header.setPointerCapture(e.pointerId);
+        });
+
+        document.addEventListener("pointermove", (e) => {
+
+            // ======================
+            // 🖱️ drag
+            // ======================
+            if (logState.dragging) {
+                const rect = logPopup.getBoundingClientRect();
+
+                const maxX = window.innerWidth - rect.width;
+                const maxY = window.innerHeight - rect.height;
+
+                logState.x = Math.max(0, Math.min(e.clientX - logState.offsetX, maxX));
+                logState.y = Math.max(0, Math.min(e.clientY - logState.offsetY, maxY));
+
+                render();
+            }
+
+            // ======================
+            // 📏 resize
+            // ======================
+            if (logState.resizing) {
+
+                const newW = logState.startW + (e.clientX - logState.startX);
+                const newH = logState.startH + (e.clientY - logState.startY);
+
+                logState.width = Math.max(260, Math.min(newW, window.innerWidth));
+                logState.height = Math.max(180, Math.min(newH, window.innerHeight));
+
+                render();
+            }
+        });
+
+        document.addEventListener("pointerup", () => {
+            if (logState.dragging || logState.resizing) {
+                saveState();
+            }
+
+            logState.dragging = false;
+            logState.resizing = false;
+        });
+
+        // ======================
+        // 📏 縮放
+        // ======================
+        resizeHandle.addEventListener("pointerdown", (e) => {
+            e.stopPropagation();
+
+            logState.resizing = true;
+
+            logState.startW = logState.width;
+            logState.startH = logState.height;
+
+            logState.startX = e.clientX;
+            logState.startY = e.clientY;
+
+            document.body.style.userSelect = "none";
+        });
+
+        // ======================
+        // 🔍 zoom
+        // ======================
+        zoomIn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            logState.scale = Math.min(logState.scale + 0.1, 2);
+            render();
+            saveState();
+        });
+
+        zoomOut?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            logState.scale = Math.max(logState.scale - 0.1, 0.6);
+            render();
+            saveState();
+        });
+
+        // ======================
+        // ❌ close
+        // ======================
+        function closeLog(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            logPopup.classList.add("hidden");
+        }
+
+        // 🔥 防拖曳（最早攔）
+        closeBtn?.addEventListener("pointerdown", (e) => {
+            e.stopPropagation();
+        });
+
+        // 🔥 正式關閉（標準 click）
+        closeBtn?.addEventListener("click", closeLog);
+
+        // ======================
+        // 🧱 UI 隔離
+        // ======================
+        logPopup.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+
+        console.log("LogPopup v2 initialized");
+    }
+
+    initLogPopupV2();
+
     const openLogBtn = document.getElementById("openLogBtn");
     const logPopup = document.getElementById("logPopup");
-    const closeLogBtn = document.getElementById("closeLogBtn");
-    const header = logPopup.querySelector(".log-popup-header");
 
-    let logInitialized = false;
-
-    openLogBtn.onclick = () => {
+    openLogBtn.onclick = (e) => {
+        e.stopPropagation();
 
         if (!logInitialized) {
-            logPopup.style.position = "fixed";
-            logPopup.style.left = "100px";
-            logPopup.style.top = "100px";
             logInitialized = true;
         }
 
         logPopup.classList.remove("hidden");
     };
 
-    let isDragging = false;
-    let offsetX = 0;
-    let offsetY = 0;
-
-    header.addEventListener("mousedown", (e) => {
-        isDragging = true;
-
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
-
-        header.style.cursor = "grabbing";
-    });
-
-    logPopup.style.transform =
-        `translate(${e.clientX - offsetX}px, ${e.clientY - offsetY}px)`;
-
-    document.addEventListener("mouseup", () => {
-        isDragging = false;
-        header.style.cursor = "grab";
-    });
-    openLogBtn.onclick = () => {
-        logPopup.classList.remove("hidden");
-    };
-
-    closeLogBtn.onclick = () => {
-        logPopup.classList.add("hidden");
-    };
-
-    // 點外面關閉
-    logPopup.onclick = (e) => {
-        if (e.target === logPopup) {
-            logPopup.classList.add("hidden");
-        }
-    };
 });

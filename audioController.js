@@ -2,6 +2,7 @@
 import { getBGM, playSEPool } from "./assetManager.js";
 
 let currentBGM = null;
+export let currentBGMName = null;
 let currentSE = null;
 
 export let bgmVolume = parseFloat(localStorage.getItem("bgmVolume")) || 0.4;
@@ -29,22 +30,32 @@ export function setSEVolume(value){
 // 🎵 BGM 切換（延遲載入）
 // ======================
 export function switchBGM(name){
-    const target = getBGM(name);
 
-    if(!target) return;
+    if(!name){
+        if(currentBGM){
+            currentBGM.pause();
+            currentBGM.currentTime = 0;
+        }
+        currentBGM = null;
+        currentBGMName = null;
+        return;
+    }
 
-    // ✅ 同一首不重播
-    if(target === currentBGM) return;
+    // ⭐ 核心：只看名字
+    if(currentBGMName === name){
+        return;
+    }
 
     if(currentBGM){
         currentBGM.pause();
+        currentBGM.currentTime = 0;
     }
 
-    target.currentTime = 0;
-    target.volume = bgmVolume;
-    target.play();
+    currentBGM = getBGM(name);
+    currentBGMName = name;
 
-    currentBGM = target;
+    currentBGM.volume = bgmVolume;
+    currentBGM.play();
 }
 
 // ======================
@@ -77,9 +88,18 @@ export function playSE(name){
 }
 
 // ======================
-// ⛔ 停止音效（可不實作）
+// ⛔ 停止全部音效（BGM + SE）
 // ======================
-export function stopSE(){
+export function stopAllAudio() {
+    // 停 BGM
+    if (currentBGM) {
+        currentBGM.pause();
+        currentBGM.currentTime = 0;
+        currentBGM = null;
+        currentBGMName = null; // ⭐關鍵：重置狀態
+    }
+
+    // 停 SE
     if (currentSE) {
         currentSE.pause();
         currentSE.currentTime = 0;
