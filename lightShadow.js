@@ -1,4 +1,6 @@
 // lightShadow.js
+import { logDebug } from "./debugSystem.js";
+
 // 🔥 光影數值物件
 const lightShadow = {
     light: 0,
@@ -9,7 +11,12 @@ const lightShadow = {
 function changeLightShadow(type, value) {
     if (lightShadow.hasOwnProperty(type)) {
         lightShadow[type] += value;
-        console.log(`${type} 值變為: ${lightShadow[type]}`);
+
+        logDebug("LIGHT_SHADOW", {
+            type,
+            delta: value,
+            total: lightShadow[type]
+        });
     }
 }
 

@@ -8,6 +8,7 @@ import { evaluate, resolveText, resolveValue } from './condition.js';
 import { characterConfig } from "./characterConfig.js";
 import { setRoute, getRoute, resetRoute } from './route.js';
 import { preloadCharacters } from "./assetManager.js";
+import { logDebug } from "./debugSystem.js";
 
 // ⏱️ 延遲工具
 function delay(ms) {
@@ -22,6 +23,7 @@ let textIndex = 0;
 let isChoosing = false;
 let isTyping = false;
 let skipTyping = false;
+let debugUnlocked = false;
 
 const preloadedNodes = new Set();
 
@@ -45,9 +47,11 @@ function getGameState() {
         text: storyNodes[currentNode]?.text?.[textIndex] || "",
         affection: { ...affection },
         lightShadow: { ...lightShadow },
-        route: getRoute() 
+        route: getRoute()
     };
 }
+
+window.getGameState = getGameState;
 
 export function loadGameData() {
     const data = loadSlot(1);
@@ -288,6 +292,10 @@ function showChoices(node) {
         btn.innerText = resolveText(choice.text, state);
 
         btn.onclick = () => {
+            logDebug("CHOICE_CLICK", {
+                text: btn.innerText
+            });
+
             if (choice.action) {
                 choice.action();
             }
@@ -295,12 +303,14 @@ function showChoices(node) {
             if (choice.affection) {
                 for (const [k, v] of Object.entries(choice.affection)) {
                     changeAffection(k, v);
+                    logDebug("AFFECTION_CHANGE", { k, v });
                 }
             }
 
             if (choice.lightShadow) {
                 for (const [k, v] of Object.entries(choice.lightShadow)) {
                     changeLightShadow(k, v);
+                    logDebug("LIGHT_SHADOW_CHANGE", { k, v });
                 }
             }
 
@@ -459,6 +469,11 @@ function createCharacter(container, charId, emotion, options) {
 // ======================
 export function showNode(nodeId) {
     
+    logDebug("NODE_ENTER", {
+        from: currentNode,
+        to: nodeId
+    });
+
     stopSE();
 
     if (nodeId === "__HOME__") {
@@ -651,4 +666,83 @@ window.addEventListener("DOMContentLoaded", () => {
         // 點擊繼續（打字中會變 skip）
         handleContinue();
     });
+
+    document.getElementById("debugToggle").onclick = () => {
+    document.getElementById("debugPanel").classList.toggle("active");
+    };
+
+    const btn = document.getElementById("debugUnlockBtn");
+    const input = document.getElementById("debugPassword");
+    const lockScreen = document.getElementById("debugLockScreen");
+    const content = document.getElementById("debugContent");
+    const stateText = document.getElementById("debugLockState");
+
+    btn.onclick = () => {
+        if (input.value === "0906") {
+
+            debugUnlocked = true;
+
+            lockScreen.style.display = "none";
+            content.style.display = "block";
+
+            stateText.textContent = "🔓 系統已解鎖";
+        } 
+        else {
+            stateText.textContent = "❌ 訪問碼錯誤";
+        }
+    };
+
+    const openLogBtn = document.getElementById("openLogBtn");
+    const logPopup = document.getElementById("logPopup");
+    const closeLogBtn = document.getElementById("closeLogBtn");
+    const header = logPopup.querySelector(".log-popup-header");
+
+    let logInitialized = false;
+
+    openLogBtn.onclick = () => {
+
+        if (!logInitialized) {
+            logPopup.style.position = "fixed";
+            logPopup.style.left = "100px";
+            logPopup.style.top = "100px";
+            logInitialized = true;
+        }
+
+        logPopup.classList.remove("hidden");
+    };
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    header.addEventListener("mousedown", (e) => {
+        isDragging = true;
+
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+
+        header.style.cursor = "grabbing";
+    });
+
+    logPopup.style.transform =
+        `translate(${e.clientX - offsetX}px, ${e.clientY - offsetY}px)`;
+
+    document.addEventListener("mouseup", () => {
+        isDragging = false;
+        header.style.cursor = "grab";
+    });
+    openLogBtn.onclick = () => {
+        logPopup.classList.remove("hidden");
+    };
+
+    closeLogBtn.onclick = () => {
+        logPopup.classList.add("hidden");
+    };
+
+    // 點外面關閉
+    logPopup.onclick = (e) => {
+        if (e.target === logPopup) {
+            logPopup.classList.add("hidden");
+        }
+    };
 });

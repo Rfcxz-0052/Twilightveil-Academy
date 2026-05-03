@@ -1,4 +1,5 @@
 // affection.js
+import { logDebug } from "./debugSystem.js";
 
 const affection = {
     baiqi: 0,   // 白祈
@@ -20,7 +21,11 @@ function changeAffection(character, value) {
 
     affection[character] += value;
 
-    console.log(`${character} 好感度變為: ${affection[character]}`);
+    logDebug("AFFECTION", {
+        character,
+        delta: value,
+        total: affection[character]
+    });
 }
 
 /**

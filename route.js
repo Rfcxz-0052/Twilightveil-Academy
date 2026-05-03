@@ -1,9 +1,14 @@
 //route.js
+import { logDebug } from "./debugSystem.js";
+
 let route = null;
 
 function setRoute(value) {
     route = value;
-    console.log("當前路線:", route);
+
+    logDebug("ROUTE", {
+        route
+    });
 }
 
 function getRoute() {

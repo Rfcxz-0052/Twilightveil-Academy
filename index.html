@@ -52,7 +52,9 @@
         <!-- 側邊欄 -->
         <div id="sidebarWrapper" class="sidebar-wrapper">
             <div id="sidebar" class="sidebar">
+                <!-- ☰ Sidebar 開關 -->
                 <button id="toggleSidebar" class="sidebar-toggle">☰</button>
+
                 <div class="panel-section">
                     <h3>聲音設定</h3>
                     <label>音樂
@@ -100,6 +102,71 @@
         <audio id="foot" src="./audio/foot.mp3"></audio>
         <audio id="nightmarket" src="./audio/nightmarket.mp3"></audio>
 
+        <!-- 🧪 Debug Toggle（獨立控制器） -->
+        <button id="debugToggle" class="debug-toggle">🧪</button>
+
+        <div id="debugPanel" class="debug-panel">
+
+            <!-- 🔒 鎖定畫面 -->
+            <div id="debugLockScreen">
+                <h3>🏫 暮影學院管理員系統</h3>
+                <p>請輸入訪問碼</p>
+
+                <input id="debugPassword" type="password" placeholder="Access Code">
+                <button id="debugUnlockBtn">確認</button>
+
+                <p id="debugLockState">🔒 系統鎖定中</p>
+            </div>
+
+            <!-- 🔓 解鎖後內容（全部包起來） -->
+            <div id="debugContent" style="display:none;">
+
+                <h3>🧪 開發人員面板 </h3>
+
+                <div id="debugState"></div>
+
+                <hr>
+
+                <h4>💖 好感度</h4>
+                <button onclick="debugAddAffection('baiqi', 1)">白祈 +1</button>
+                <button onclick="debugAddAffection('yanzhen', 1)">炎燼 +1</button>
+                <button onclick="debugAddAffection('moxing', 1)">墨行 +1</button>
+
+                <h4>🌗 光影</h4>
+                <button onclick="debugAddLight('light', 1)">光 +1</button>
+                <button onclick="debugAddLight('shadow', 1)">影 +1</button>
+
+                <h4>🧭 Node</h4>
+                <input id="debugNodeInput" placeholder="node id">
+                <button onclick="debugGoNode()">跳轉</button>
+
+                <h4>💾 存檔</h4>
+                <button onclick="debugSave()">Save 1</button>
+                <button onclick="debugLoad()">Load 1</button>
+
+                <h4>🧨 系統</h4>
+                <button onclick="debugReset()">Reset</button>
+
+                <hr>
+
+                <h4>🪵 Choice Log</h4>
+                <button id="openLogBtn">打開 Log</button>
+
+            </div>
+
+        </div>
+
         <script type="module" src="./engine.js"></script>
+
+        <div id="logPopup" class="log-popup hidden">
+            <div class="log-popup-box">
+                <div class="log-popup-header">
+                    🪵 Choice Log
+                    <button id="closeLogBtn">✕</button>
+                </div>
+
+                <div id="debugLog" class="log-content"></div>
+            </div>
+        </div>
 </body>
 </html>
