@@ -2,7 +2,7 @@
 import storyNodes from './story/storyData.js';
 import { affection, changeAffection, resetAffection, affectionNameMap } from './affection.js';
 import {lightShadow, changeLightShadow, resetLightShadow, getLightShadowBalance, getShadowText } from './lightShadow.js';
-import { playSE, switchBGM, setBGMVolume, setSEVolume, stopAllAudio, currentBGMName } from './audioController.js';
+import { playSE, stopSE, switchBGM, setBGMVolume, setSEVolume, stopAllAudio, currentBGMName } from './audioController.js';
 import { saveSlot, loadSlot, clearSlot, clearAllSaves } from './saveSystem.js';
 import { evaluate, resolveText, resolveValue } from './condition.js';
 import { characterConfig } from "./characterConfig.js";
@@ -498,7 +498,11 @@ export function showNode(nodeId) {
 
     document.getElementById("choiceButtons").innerHTML = "";
 
-    if (node.se) playSE(node.se);
+    if (node.se) {
+        playSE(node.se);
+    } else {
+        stopSE(); // ⭐ 沒有 SE 就清掉上一個
+    }
 
     if(node.bgm){
         switchBGM(node.bgm);

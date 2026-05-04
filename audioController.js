@@ -1,5 +1,5 @@
 // audioController.js
-import { getBGM, playSEPool } from "./assetManager.js";
+import { getBGM } from "./assetManager.js";
 
 let currentBGM = null;
 export let currentBGMName = null;
@@ -100,6 +100,17 @@ export function stopAllAudio() {
     }
 
     // 停 SE
+    if (currentSE) {
+        currentSE.pause();
+        currentSE.currentTime = 0;
+        currentSE = null;
+    }
+}
+
+// ======================
+// 🔇 停止 SE（單獨控制）
+// ======================
+export function stopSE() {
     if (currentSE) {
         currentSE.pause();
         currentSE.currentTime = 0;

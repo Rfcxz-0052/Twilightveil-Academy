@@ -532,7 +532,7 @@ body.debug-open .debug-toggle {
 .log-popup-header {
     cursor: grab;
     user-select: none;
-
+    touch-action: none;
     position: sticky;
     top: 0;
 
