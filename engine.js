@@ -8,7 +8,9 @@ import { evaluate, resolveText, resolveValue } from './condition.js';
 import { characterConfig } from "./characterConfig.js";
 import { setRoute, getRoute, resetRoute } from './route.js';
 import { preloadCharacters } from "./assetManager.js";
-import { logDebug } from "./debugSystem.js";
+import * as debugSystem from "./debugSystem.js";
+
+const { logDebug } = debugSystem;
 
 // ⏱️ 延遲工具
 function delay(ms) {
@@ -903,3 +905,8 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
 });
+
+window.showNode = showNode;
+window.getGameState = getGameState;
+window.applySaveData = applySaveData;
+window.refreshGameUI = refreshUI;

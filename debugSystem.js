@@ -1,7 +1,6 @@
 // debugSystem.js
 import { changeAffection } from "./affection.js";
 import { changeLightShadow } from "./lightShadow.js";
-import { showNode } from "./engine.js";
 import { saveSlot, loadSlot } from "./saveSystem.js";
 
 let debugEnabled = true; // 🔥 可開關
@@ -56,6 +55,8 @@ function setDebugEnabled(val) {
 window.debugAddAffection = (char, val) => {
     changeAffection(char, val);
 
+    window.refreshGameUI?.();
+
     logDebug("DEBUG_ADD_AFFECTION", {
         char,
         val
@@ -65,6 +66,8 @@ window.debugAddAffection = (char, val) => {
 // 光影
 window.debugAddLight = (type, val) => {
     changeLightShadow(type, val);
+
+    window.refreshGameUI?.();
 
     logDebug("DEBUG_ADD_LIGHT", {
         type,
@@ -78,7 +81,7 @@ window.debugGoNode = () => {
     if (!id) return;
 
     logDebug("DEBUG_JUMP", { to: id });
-    showNode(id);
+    window.showNode(id);
 };
 
 // 存檔
@@ -98,7 +101,7 @@ window.debugLoad = () => {
 
     logDebug("DEBUG_LOAD", { slot: 1 });
 
-    location.reload(); // 你目前用 reload 是 OK 的
+    window.applySaveData(data);
 };
 
 // 重置
