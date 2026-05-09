@@ -779,7 +779,7 @@ const storyNodes = {
             "停下來。"
         ],
         background: "image/lintou_tree.webp",
-        next: "red_epilogue_good",
+        next: "red_reunion",
     },
 
     red_good_baiqi: {
@@ -956,7 +956,7 @@ const storyNodes = {
             "「太害怕聽見。」"
         ],
         background: "image/lintou_tree.webp",
-        next: "red_epilogue_good",
+        next: "red_reunion",
     },
 
     red_good_yanzhen: {
@@ -1019,7 +1019,7 @@ const storyNodes = {
             "炎燼沒有再動手。"
         ],
         background: "image/lintou_tree.webp",
-        next: "red_epilogue_good",
+        next: "red_reunion",
     },
 
     red_bad_yanzhen: {
@@ -1084,6 +1084,37 @@ const storyNodes = {
         ],
         background: "image/lintou_tree.webp",
         next: "red_bad_after",
+    },
+
+    red_reunion: {
+        bgm: "red",
+        speaker: "player",
+
+        characters: {
+            player: "normal",
+            red: "normal",
+            redchild: "normal"
+        },
+
+        text: [
+            "風，慢慢停了下來。",
+            "林投樹下。",
+            "紅傘女緊緊抱著小女孩。",
+            "這一次——",
+            "她終於真正感受到她的存在。",
+            "小女孩開心地笑了。",
+            "「媽媽終於找到我了。」",
+            "紅傘女沒有再哭喊。",
+            "只是顫抖地抱著她。",
+            "像是想把這些年缺失的一切，全都補回來。",
+            "……",
+            "那把紅傘，慢慢滑落地面。",
+            "而周圍扭曲的黑暗，也開始逐漸消散。"
+        ],
+
+        background: "image/red_good_ending.webp",
+
+        next: "red_epilogue_good"
     },
 
     red_epilogue_good: {
@@ -1153,7 +1184,7 @@ const storyNodes = {
             "「……媽媽？」",
             "……",
             "沒有回應。",
-            "她的手，還維持著剛剛想伸出去的樣子。",
+            "她的手，拿著媽媽留下的紅傘。",
             "「……姐姐？」",
             "她轉頭看向你。",
             "眼神裡沒有恐懼。",
@@ -1162,6 +1193,38 @@ const storyNodes = {
             "「為什麼……媽媽還是看不見我？」"
         ],
         background: "image/lintou_tree.webp",
+        next: "red_bad_reunion"
+    },
+
+        red_bad_reunion: {
+        bgm: "red",
+        speaker: "redchild",
+
+        characters: {
+            player: "normal",
+            redchild: "normal"
+        },
+
+        text: [
+            "小女孩慢慢跑向剛才紅傘女消失的位置。",
+            "那裡，已經什麼都沒有了。",
+            "……",
+            "她蹲下身。",
+            "地上，只剩下一把破舊的紅傘。",
+            "小女孩輕輕抱住那把傘。",
+            "「媽媽……？」",
+            "她的聲音很小。",
+            "像是害怕太大聲，就會承認某件事。",
+            "……",
+            "沒有回應。",
+            "海風吹過林投樹。",
+            "繩索輕輕搖晃。",
+            "而小女孩，只是安靜地抱著那把紅傘。",
+            "再也沒有放開。"
+        ],
+
+        background: "image/lintou_tree.webp",
+
         next: "red_epilogue_bad"
     },
 

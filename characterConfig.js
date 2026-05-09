@@ -4,7 +4,7 @@ export const characterConfig = {
         normal: "image/player.webp"
     },
     xiaoying: {
-        normal: "image/girl01.webp",
+        normal: "image/girl01.webp"
     },
     ghost: {
         normal: "image/ghost02.webp"

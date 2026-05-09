@@ -223,26 +223,25 @@ body[data-ui="game"] #homeUI { display: none; }
 
     background: radial-gradient(
         ellipse at bottom,
-        rgba(0,0,0,0.15),
-        rgba(0,0,0,0.65)
+        rgba(0,0,0,0.3),
+        rgba(0,0,0,0.8)
     );
 
     pointer-events: none;
     z-index: 2;
 }
 
-.story-container::after {
+.character::after {
     content: "";
     position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.6),
-        rgba(0,0,0,0.1),
-        transparent
-    );
-    pointer-events: none;
-    z-index: 1;
+    bottom: 10px;
+    left: 50%;
+    width: 120px;
+    height: 20px;
+    background: rgba(0,0,0,0.5);
+    filter: blur(10px);
+    transform: translateX(-50%);
+    z-index: -1;
 }
 
 /* 角色圖片 */
@@ -302,8 +301,12 @@ body[data-ui="game"] #homeUI { display: none; }
 /* ==========================
    💬 對話框
 ========================== */
-.dialog-box {
-    background: rgba(3, 3, 3, 0.4);
+    .dialog-box {
+        background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.4)
+    );
     border-radius: 12px;
     padding: 20px;
 
@@ -746,7 +749,7 @@ input[type="range"] {
         width: 42%;
         aspect-ratio: 5 / 6;
         max-height: 65vh;
-        bottom: 200px;
+        bottom: 120px;
     }
 
     .character img {
@@ -767,7 +770,7 @@ input[type="range"] {
         width: 100%;
 
         z-index: 50;
-
+        flex-shrink: 0;
         padding-bottom: env(safe-area-inset-bottom);
     }
 
@@ -777,7 +780,7 @@ input[type="range"] {
         width: 100%;
         max-width: 100%;
         border-radius: 16px 16px 0 0;
-        max-height: 45vh;
+        max-height: 55vh;
         min-height: 180px;
         overflow-y: auto;
 
