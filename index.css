@@ -25,6 +25,7 @@ body {
     background-size: cover;
     background-position: center;
     padding-bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* UI 切換 */
@@ -336,7 +337,9 @@ body[data-ui="game"] #homeUI { display: none; }
    🎯 選項按鈕（劇情）
 ========================== */
 .choice-area {
-    flex: 1;                 /* 吃掉中間空間 */
+    flex: none;
+    padding-top: 10px;
+    padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
     display: flex;
     align-items: center;     /* 垂直置中 */
     justify-content: center;  /* 水平置中 */
@@ -755,8 +758,11 @@ input[type="range"] {
 
     /* 中間區變成疊層容器 */
     .middle-area {
-        position: fixed;
-        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: auto;
+        max-height: 100vh;
         left: 0;
         width: 100%;
 
@@ -771,9 +777,9 @@ input[type="range"] {
         width: 100%;
         max-width: 100%;
         border-radius: 16px 16px 0 0;
-        min-height: 200px;
-        max-height: 290px;
-        overflow: visible;
+        max-height: 45vh;
+        min-height: 180px;
+        overflow-y: auto;
 
         background: rgba(0, 0, 0, 0.55);
         backdrop-filter: blur(10px);
