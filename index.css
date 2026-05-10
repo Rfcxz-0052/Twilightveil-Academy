@@ -781,7 +781,7 @@ input[type="range"] {
 
         border-radius: 16px 16px 0 0;
 
-        max-height: 50dvh;
+        max-height: 70dvh;
 
         overflow-y: auto;
         overflow-x: hidden;
@@ -807,7 +807,7 @@ input[type="range"] {
         flex-shrink: 1;
 
         padding-top: 10px;
-        padding-bottom: calc(env(safe-area-inset-bottom) + 18px);
+        padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
 
         display: flex;
         justify-content: center;
