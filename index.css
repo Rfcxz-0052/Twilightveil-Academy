@@ -739,7 +739,7 @@ input[type="range"] {
         justify-content: flex-end;
         align-items: center;
         min-height: 100dvh;
-        height: 100vh; 
+        height: 100dvh;
 
         padding-bottom: 0;
         gap: 0;
@@ -749,7 +749,7 @@ input[type="range"] {
         width: 42%;
         aspect-ratio: 5 / 6;
         max-height: 65vh;
-        bottom: 120px;
+        bottom: 22vh;
     }
 
     .character img {
@@ -774,15 +774,22 @@ input[type="range"] {
         padding-bottom: env(safe-area-inset-bottom);
     }
 
-    /* 💬 對話框浮在人物上 */
     .dialog-box {
         position: relative;
+
         width: 100%;
         max-width: 100%;
+
         border-radius: 16px 16px 0 0;
-        max-height: 55vh;
+
         min-height: 180px;
+        max-height: 60dvh;
+
         overflow-y: auto;
+        overflow-x: hidden;
+
+        display: flex;
+        flex-direction: column;
 
         background: rgba(0, 0, 0, 0.55);
         backdrop-filter: blur(10px);
@@ -791,11 +798,23 @@ input[type="range"] {
 
         margin: 0;
         box-sizing: border-box;
+
+        -webkit-overflow-scrolling: touch;
     }
 
     /* 文字縮小一點比較好讀 */
     .story {
         font-size: 16px;
+    }
+
+    .choice-area {
+        flex-shrink: 0;
+
+        padding-top: 10px;
+        padding-bottom: calc(env(safe-area-inset-bottom) + 18px);
+
+        display: flex;
+        justify-content: center;
     }
 
     /* 選項按鈕 */
@@ -804,9 +823,9 @@ input[type="range"] {
         min-width: 160px;
     }
 
-    /* continue 按鈕更像手機 VN */
     #continueBtn {
-        font-size: 18px;
+        margin-top: 12px;
+        align-self: center;
     }
 }
 
@@ -820,21 +839,6 @@ input[type="range"] {
     user-select: none;
 
     background: #222;
-}
-
-#logZoomIn,
-#logZoomOut {
-    width: 28px;
-    height: 28px;
-
-    border: none;
-    border-radius: 6px;
-
-    background: #333;
-    color: white;
-
-    font-size: 16px;
-    cursor: pointer;
 }
 
 .log-content {
