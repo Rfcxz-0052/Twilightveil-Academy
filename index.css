@@ -749,7 +749,7 @@ input[type="range"] {
         width: 42%;
         aspect-ratio: 5 / 6;
         max-height: 65vh;
-        bottom: 22vh;
+        bottom: 24vh;
     }
 
     .character img {
@@ -764,26 +764,24 @@ input[type="range"] {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        height: auto;
-        max-height: 100vh;
-        left: 0;
+
         width: 100%;
 
         z-index: 50;
-        flex-shrink: 0;
-        padding-bottom: env(safe-area-inset-bottom);
+
+        flex-shrink: 1;
+
+        min-height: 0;
     }
 
     .dialog-box {
-        position: relative;
 
         width: 100%;
         max-width: 100%;
 
         border-radius: 16px 16px 0 0;
 
-        min-height: 180px;
-        max-height: 60dvh;
+        max-height: 50dvh;
 
         overflow-y: auto;
         overflow-x: hidden;
@@ -792,14 +790,12 @@ input[type="range"] {
         flex-direction: column;
 
         background: rgba(0, 0, 0, 0.55);
-        backdrop-filter: blur(10px);
 
         padding: 14px;
 
-        margin: 0;
         box-sizing: border-box;
 
-        -webkit-overflow-scrolling: touch;
+        min-height: 0;
     }
 
     /* 文字縮小一點比較好讀 */
@@ -808,7 +804,7 @@ input[type="range"] {
     }
 
     .choice-area {
-        flex-shrink: 0;
+        flex-shrink: 1;
 
         padding-top: 10px;
         padding-bottom: calc(env(safe-area-inset-bottom) + 18px);
