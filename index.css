@@ -807,7 +807,7 @@ input[type="range"] {
         flex-shrink: 1;
 
         padding-top: 10px;
-        padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
+        padding-bottom: calc(env(safe-area-inset-bottom) + 50px);
 
         display: flex;
         justify-content: center;
