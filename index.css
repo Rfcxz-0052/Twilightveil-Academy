@@ -796,6 +796,7 @@ input[type="range"] {
         box-sizing: border-box;
 
         min-height: 0;
+        padding-bottom: 20px;
     }
 
     .story {
@@ -826,7 +827,7 @@ input[type="range"] {
         position: sticky;
         bottom: 0;
 
-        padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
+        padding-bottom: calc(env(safe-area-inset-bottom) + 6px);
 
         z-index: 5;
 
