@@ -807,7 +807,7 @@ input[type="range"] {
         flex-shrink: 1;
 
         padding-top: 10px;
-        padding-bottom: calc(env(safe-area-inset-bottom) + 40px);
+        padding-bottom: calc(env(safe-area-inset-bottom) + 30px);
 
         display: flex;
         justify-content: center;
@@ -827,7 +827,7 @@ input[type="range"] {
         position: sticky;
         bottom: 0;
 
-        padding-bottom: calc(env(safe-area-inset-bottom) + 12px);
+        padding-bottom: calc(env(safe-area-inset-bottom) + 18px);
 
         z-index: 5;
 
