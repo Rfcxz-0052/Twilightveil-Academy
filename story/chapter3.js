@@ -1152,11 +1152,10 @@ const storyNodes = {
             "你走進人群。",
             "但你忽然有種感覺——",
             "以後......",
-            "也許，還會看見她們。",
-            "(故事未完，待續......)",
+            "也許，還會看見她們。"
         ],
         background: "image/nightmarket01.webp",
-        next: "__HOME__"
+        next: "ending"
     },
 
     red_bad_after: {
@@ -1238,11 +1237,25 @@ const storyNodes = {
             "好像有個小小的身影。",
             "站在原地。",
             "……",
-            "她還在等。",
-            "(故事未完，待續......)"
+            "她還在等。"
         ],
         background: "image/nightmarket01.webp",
-        next: "__HOME__"
+        next: "ending"
+    },
+
+    ending: {
+        bgm: "surface",
+        text: [
+            "故事未完，待續......",
+            "創作者正在創作接下來的故事，請耐心等候......"
+        ],
+        background: "image/DuskCampus.webp",
+        choices: [
+            {
+                text: "重新開始遊戲",
+                next: "__HOME__",
+            }
+        ]
     },
 
     __ERROR__: {
