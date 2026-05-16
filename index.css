@@ -798,7 +798,6 @@ input[type="range"] {
         min-height: 0;
     }
 
-    /* 文字縮小一點比較好讀 */
     .story {
         font-size: 16px;
     }
@@ -827,15 +826,10 @@ input[type="range"] {
         position: sticky;
         bottom: 0;
 
-        padding-bottom: calc(env(safe-area-inset-bottom) + 6px);
+        padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
 
         z-index: 5;
 
-        background: linear-gradient(
-            to top,
-            rgba(0,0,0,0.85),
-            rgba(0,0,0,0)
-        );
     }
 }
 
