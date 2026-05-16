@@ -1088,14 +1088,6 @@ const storyNodes = {
 
     red_reunion: {
         bgm: "red",
-        speaker: "player",
-
-        characters: {
-            player: "normal",
-            red: "normal",
-            redchild: "normal"
-        },
-
         text: [
             "風，慢慢停了下來。",
             "林投樹下。",
