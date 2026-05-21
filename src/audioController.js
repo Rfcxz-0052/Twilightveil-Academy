@@ -56,6 +56,7 @@ export function switchBGM(name){
 
     currentBGM.volume = bgmVolume;
     currentBGM.play();
+    currentBGM.play().catch(() => {});
 }
 
 // ======================
@@ -69,7 +70,7 @@ export function playSE(name){
         currentSE.currentTime = 0;
     }
 
-    const sound = new Audio(`audio/${name}.mp3`);
+    const sound = new Audio(`/audio/${name}.mp3`);
     sound.volume = seVolume;
 
     sound.play().catch(() => {});

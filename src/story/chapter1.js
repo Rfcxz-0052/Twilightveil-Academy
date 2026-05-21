@@ -12,7 +12,7 @@ const storyNodes = {
             "你是一個剛入職的大學書店店員，",
             "第一次踏入這裡，心中既興奮又緊張。"
         ],
-        background: "image/SurfaceWorld.webp",
+        background: "/image/SurfaceWorld.webp",
 
         choices: [
             { text: "經過幾個月的學習，你對店裡的業務漸漸上手", next: "node00" },
@@ -29,7 +29,7 @@ const storyNodes = {
             "新學期開始，訂書的學生絡繹不絕。",
             "事情還沒做完，你決定..."
         ],
-        background: "image/DuskCampus.webp",
+        background: "/image/DuskCampus.webp",
         choices: [
             { text: "加班完成工作", next: "node01" },
             { text: "不加班，交給明天再處理", next: "__HOME__" }
@@ -49,7 +49,7 @@ const storyNodes = {
             "——沙。",
             "書頁翻動的聲音，在空無一人的角落響起。",
         ],
-        background: "image/DuskCampus.webp",
+        background: "/image/DuskCampus.webp",
         choices: [
             { text: "走向聲音來源查看", next: "node02" },
             { text: "太可怕了，先收拾東西回家吧", next: "__HOME__" }
@@ -70,7 +70,7 @@ const storyNodes = {
             "這不是學校圖書館的書嗎?怎麼會出現在這裡?",
             "難道是學生遺落的?"
         ],
-        background: "image/DuskCampus.webp",
+        background: "/image/DuskCampus.webp",
         choices: [
             { text: "翻開書查看", next: "node03", lightShadow: { shadow: 1 } },   // 好奇心偏影
             { text: "不碰，放回原處", next: "node03", lightShadow: { light: 1 } } //克制偏光
@@ -94,7 +94,7 @@ const storyNodes = {
             "姐姐，工作辛苦嗎？要不要一起玩？",
             "你心裡一驚，感覺她出現得太突然了。"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "你是誰？", next: "node04" },
             { text: "這裡是哪裡？", next: "node04" }
@@ -115,7 +115,7 @@ const storyNodes = {
             "這裡是圖書館，你喜歡嗎？",
             "我一直在這裡讀書……為了畢業後找到好工作。",
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "為何我會在這裡?", next: "node05" },
         ]
@@ -135,7 +135,7 @@ const storyNodes = {
             "感覺好像很辛苦，我來替你工作好不好？",
             "你看著她渴望的眼神，覺得氣氛越來越奇怪，心裡有一絲不安。"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "嗯……好吧", next: "node06" },
             { text: "不……不用了！謝謝(你往後退)", next: "node06" }
@@ -159,7 +159,7 @@ const storyNodes = {
             "但臉頰仍被劃出一道淺淺的傷痕，",
             "你心裡一震——這到底是什麼？從來沒遇過這種感覺……"
          ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "等等，你想做什麼?", next: "node07" },
             { text: "後退，保持距離", next: "node07" } 
@@ -180,7 +180,7 @@ const storyNodes = {
             "姐姐不是常常抱怨要加班",
             "把妳的身體給我，姐姐就可以休息了",
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "這不是你的命運，你要守護自己的努力(你警惕看著她)", next: "node08", lightShadow: { light: 2 } },
             { text: "繼續往後退，看看四周哪裡可以逃跑", next: "node09", lightShadow: { shadow: 1 } }
@@ -201,7 +201,7 @@ const storyNodes = {
             "這裡……好冷……姐姐……抱我……",
             "你心中不忍，慢慢靠近她，想伸出手。"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "慢慢地靠近小英", next: "node10"},
             { text: "對小英的哀求，你沒有理會，只是一心想著離開", next: "node09"}
@@ -222,7 +222,7 @@ const storyNodes = {
             "我在這裡被困了好久",
             "妳也別想離開"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "被小英搶奪身體，你失去了意識...", next: "__HOME__" }
         ]
@@ -243,7 +243,7 @@ const storyNodes = {
             "就在絕望之際，一股奇異的力量從體內湧出，溫暖而強烈，",
             "疼痛依舊，但你心裡充滿疑惑——這是……我自己發出的力量嗎？"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "你不想死，還有家人在等妳", next: "node11" },
             { text: "太痛了,你放棄掙扎", next: "node10b" }
@@ -264,7 +264,7 @@ const storyNodes = {
             "抱歉，姐姐，我真的很想離開",
             "我會代替你好好活著的"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "小英進入你的身體，你的意識漸漸消失了...", next: "__HOME__" }
         ]
@@ -283,7 +283,7 @@ const storyNodes = {
             "血流慢慢止住，但腹部的疼痛依舊，你看向腹部，心裡充滿疑惑——",
             "這是怎麼做到的？難道是那股未知的力量？"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         next: "node12"
     },
 
@@ -300,7 +300,7 @@ const storyNodes = {
             "姐姐，你……怎麼辦到的？",
             "她的眼神中透出一絲好奇。"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "你忍著腹部的疼痛站起", next: "node13" }
         ]
@@ -320,7 +320,7 @@ const storyNodes = {
             "突然，一個猥瑣的胖男鬼出現，笑聲刺耳，盯著女孩不放。",
             "小英嚇得躲到你身後。"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "擋在小英前：你是誰？", next: "node14", lightShadow: { light: 1 }},
             { text: "你是誰？", next: "node14", lightShadow: { shadow: 1 } }
@@ -340,7 +340,7 @@ const storyNodes = {
             "胖男鬼咧嘴傻笑，伸手靠近你們：",
             "漂亮的小妞，和叔叔玩玩嗎？"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "施展剛剛湧現的力量，阻止他靠近", next: "node15" }
         ]
@@ -361,7 +361,7 @@ const storyNodes = {
             "像她這種拼命讀書的，最有趣了。",
             "小英微微後退，但她的手心光芒閃動，彷彿準備出手。",
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "不!你不能動她!(你獨自施展力量，消滅男鬼)", next: "node18", lightShadow: { shadow: 2 }},
             { text: "你感覺到小英的力量與你共鳴", next: "node17", lightShadow: { light: 2 }},
@@ -379,7 +379,7 @@ const storyNodes = {
         text: [
             "小英被男鬼吞噬，你回到書店，耳邊仍迴響著她的慘叫...",
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "回到遊戲首頁", next: "__HOME__" }
         ]
@@ -398,7 +398,7 @@ const storyNodes = {
             "小英，我感覺到你的力量在與我共鳴",
             "你也來一起幫我，我快抵擋不了了",
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "小英被你點醒，不再害怕，她的力量與你的融合，與你一起消滅男鬼", next: "node18" }
         ]
@@ -418,7 +418,7 @@ const storyNodes = {
             "「其實……我成績一直都很好。」",
             "「老師說，只要再撐一學期，就可以拿到推薦資格。」",
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "靜靜地聽著小英的敘述...", next: "node19" },
         ]
@@ -439,7 +439,7 @@ const storyNodes = {
             "離開圖書館時，已經很晚了……整棟樓都沒有燈。",
             "我以為只有我一個人。"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         next: "node19b"
     },
 
@@ -458,7 +458,7 @@ const storyNodes = {
             "……就什麼都不記得了。",
             "姐姐，你說……如果那天我早一點離開，是不是就不一樣了？"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "我安慰著流淚的小英", next: "node20" }
         ]
@@ -479,7 +479,7 @@ const storyNodes = {
             "她的指尖泛起柔和的光，溫暖順著傷口蔓延開來。",
             "她的身影在光中慢慢透明。"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "我擔憂地看著小英", next: "node21" }
         ]
@@ -498,7 +498,7 @@ const storyNodes = {
             "我只是要去下一段旅程了。",
             "希望下次，我能走到畢業典禮。"
         ],
-        background: "image/library.webp",
+        background: "/image/library.webp",
         choices: [
             { text: "小英，下輩子一定要幸福喔!", next: "node22" }
         ]
@@ -517,7 +517,7 @@ const storyNodes = {
             "(你總覺得……有東西在盯著你)",
             "(但當你回頭時，什麼也沒有)"
         ],
-        background: "image/InnerWorld.webp",
+        background: "/image/InnerWorld.webp",
         choices: [{ text: "我觀察著四周，因為陌生，沒有四處走動", next: "inner" }]
     },
 };
