@@ -94,7 +94,7 @@ const storyNodes = {
             "姐姐，工作辛苦嗎？要不要一起玩？",
             "你心裡一驚，感覺她出現得太突然了。"
         ],
-        background: "image/DuskCampus.webp",
+        background: "image/library.webp",
         choices: [
             { text: "你是誰？", next: "node04" },
             { text: "這裡是哪裡？", next: "node04" }
