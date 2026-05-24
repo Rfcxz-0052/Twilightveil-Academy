@@ -70,7 +70,7 @@ export function playSE(name){
         currentSE.currentTime = 0;
     }
 
-    const sound = new Audio(`/audio/${name}.mp3`);
+    const sound = new Audio(`audio/${name}.mp3`);
     sound.volume = seVolume;
 
     sound.play().catch(() => {});

@@ -24,7 +24,7 @@ const storyNodes = {
         text: [
             "白祈先生，我家要走過夜市才能到，謝謝你送我回家",
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_b02"
     },
 
@@ -42,7 +42,7 @@ const storyNodes = {
             "這裡明明很熱鬧，但你卻感到一絲違和。",
             "……好像少了什麼。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_b03"
     },
 
@@ -61,7 +61,7 @@ const storyNodes = {
             "「這裡的『聲音』太多了。」",
             "「多到……有些東西，反而被蓋掉了。」"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         choices: [
             { text: "什麼意思？", next: "red_b04", lightShadow: { light: 1 } },
             { text: "你是不是知道什麼？", next: "red_b04", lightShadow: { shadow: 1 } }
@@ -85,7 +85,7 @@ const storyNodes = {
             "……",
             "「但那只是看起來而已。」"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_b05"
     },
 
@@ -103,7 +103,7 @@ const storyNodes = {
             "「如果妳看見了——」",
             "「妳會選擇讓她留下、讓她離開，還是消滅她？」"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         choices: [
             { text: "消滅她", next: "red_b06", lightShadow: { shadow: 2 } },
             { text: "讓她離開", next: "red_b06", lightShadow: { light: 1 } },
@@ -129,7 +129,7 @@ const storyNodes = {
             "沒有人注意到她。",
             "除了你。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_03"
     },
 
@@ -145,7 +145,7 @@ const storyNodes = {
         text: [
             "墨行先生，我家要走過夜市才能到，謝謝你送我回家",
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_m02"
     },
 
@@ -162,7 +162,7 @@ const storyNodes = {
             "夜市啊……人很多，你應該會比較安心一點。",
             "如果覺得不舒服，記得跟我說。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_m03"
     }, 
 
@@ -180,7 +180,7 @@ const storyNodes = {
             "你先別走那邊。",
             "那裡的氣息，有點不對。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         choices: [
             { text: "你感覺到了什麼？", next: "red_m04", lightShadow: { light: 1 } },
             { text: "只是夜市而已吧？", next: "red_m04", lightShadow: { shadow: 1 } }
@@ -203,7 +203,7 @@ const storyNodes = {
             "……",
             "也比較不容易被發現。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_m05"
     },
 
@@ -221,7 +221,7 @@ const storyNodes = {
             "人群之中，一個撐著紅傘的女人。",
             "她沒有影子。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_m06"
     },
 
@@ -239,7 +239,7 @@ const storyNodes = {
             "她的狀態……不像是惡意。",
             "比較像是……在找什麼。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_03"
     },
 
@@ -256,7 +256,7 @@ const storyNodes = {
         text: [
             "炎燼先生，我家要走過夜市才能到，謝謝你送我回家",
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_y02"
     },
 
@@ -274,7 +274,7 @@ const storyNodes = {
             "這種地方最麻煩。",
             "……氣息全混在一起。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_y03"
     },
     
@@ -290,7 +290,7 @@ const storyNodes = {
         text: [
             "……找到了。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         choices: [
             { text: "找到什麼？", next: "red_y04", lightShadow: { light: 1 } },
             { text: "你要做什麼？", next: "red_y04", lightShadow: { shadow: 1 } }
@@ -311,7 +311,7 @@ const storyNodes = {
             "看到了嗎？",
             "那種靈壓，不會錯。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_y05"
     },
 
@@ -330,7 +330,7 @@ const storyNodes = {
             "這種東西，留著只會出事。",
             "我現在就解決她。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         choices: [
             { text: "等等，她好像沒有惡意", next: "red_y06", lightShadow: { light: 1 } },
             { text: "交給你了", next: "red_03", lightShadow: { shadow: 1 } }
@@ -351,7 +351,7 @@ const storyNodes = {
             "她是靈。",
             "這就夠了。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_03"
     },
 
@@ -369,7 +369,7 @@ const storyNodes = {
             "地面開始變得潮濕、冰冷。",
             "你眨了一下眼——"
         ],
-        background: "/image/nightmarket02.webp",
+        background: "image/nightmarket02.webp",
         next: "red_transition"
     }, 
 
@@ -386,7 +386,7 @@ const storyNodes = {
             "林投樹。",
             "空氣中只剩海風與繩索的摩擦聲。"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_04"
     },
 
@@ -404,7 +404,7 @@ const storyNodes = {
             "小姑娘，剛剛與我共鳴的是你嗎?",
             "她撐著紅傘，你看不清她。"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_05"
     },  
     
@@ -422,7 +422,7 @@ const storyNodes = {
             "她開始喃喃自語",
             "「孩子!我的孩子……你在哪裡……」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
 
         choices: [
             {
@@ -451,7 +451,7 @@ const storyNodes = {
             "「我的孩子……你在哪裡……」",
             "「都是媽媽的錯，是媽媽沒有保護好你，孩子，你在哪?」",            
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_07"
     },
 
@@ -471,7 +471,7 @@ const storyNodes = {
             "她的手，很冰。",
             "「姐姐……妳看得見我嗎？」"           
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         choices: [
             {
                 text: "蹲下來回應她",
@@ -506,7 +506,7 @@ const storyNodes = {
             "可是她都看不見我……",
             "姐姐，你能幫幫我嗎?",          
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         choices: [
             {
                 text: "我會幫妳",
@@ -537,7 +537,7 @@ const storyNodes = {
         text: [
             "妳不幫我找我的孩子，妳在和誰說話!",          
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         choices: [
             {
                 text: "她就在妳身邊！妳看不到嗎？",
@@ -570,7 +570,7 @@ const storyNodes = {
             "所以我才選擇在林投樹上吊，為了陪我的孩子",   
             "妳騙我，妳一定是在騙我!!!",                              
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         choices: [
             {
                 text: "妳的孩子一直在等妳面對她",
@@ -604,7 +604,7 @@ const storyNodes = {
             "為什麼……為什麼找不到……",
             "為什麼妳聽得到她，我卻聽不到……"                            
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_12"
     },  
 
@@ -622,7 +622,7 @@ const storyNodes = {
             "孩子，妳留下來吧!",   
             "媽媽會好好補償妳的",                                                     
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         choices: [
             {
                 text: "我不是你的孩子",
@@ -650,7 +650,7 @@ const storyNodes = {
             "小女孩焦急地看著紅傘女",
             "一直喊著:媽媽，我在這，一直在這",                                                     
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_14"
     },
 
@@ -671,7 +671,7 @@ const storyNodes = {
             "而你已經沒有時間再思考了。"
         ],
 
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
 
         next: {
             cases: [
@@ -717,7 +717,7 @@ const storyNodes = {
             "「陪她一起。」",
             "……",
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_moxing_01"
     },
 
@@ -737,7 +737,7 @@ const storyNodes = {
             "「不用逼她。」",
             "「我們在這裡，就夠了。」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_moxing_02"
     },
 
@@ -756,7 +756,7 @@ const storyNodes = {
             "「我不敢停下來……」",
             "「萬一……她恨我，我該怎麼面對她?」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_moxing_03",
     },
 
@@ -778,7 +778,7 @@ const storyNodes = {
             "像是終於允許自己——",
             "停下來。"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_reunion",
     },
 
@@ -798,7 +798,7 @@ const storyNodes = {
             "只是看著你。",
             "「讓她也看見。」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_baiqi_01"
     },
 
@@ -811,13 +811,13 @@ const storyNodes = {
             redchild: "normal"
         },
         text: [
-            "你伸出手。",
+            "你伸出手，運用著靈力",
             "不是對紅傘女——",
             "而是對那個小女孩。",
             "「再說一次。」",
             "「讓她聽見。」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_baiqi_02"
     },
 
@@ -838,7 +838,7 @@ const storyNodes = {
             "那一瞬間——",
             "整個空間安靜了。"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_baiqi_03"
     },
 
@@ -859,7 +859,7 @@ const storyNodes = {
             "她的手開始顫抖。",
             "「為什麼……這麼清楚……？」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_baiqi_break"
     },
 
@@ -880,7 +880,7 @@ const storyNodes = {
             "她的聲音開始崩潰。",
             "「不可以……我不能承認……」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_baiqi_04"
     },
 
@@ -895,7 +895,7 @@ const storyNodes = {
         text: [
             "「因為妳終於願意聽了。」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_baiqi_05"
     },
 
@@ -916,7 +916,7 @@ const storyNodes = {
             "她的聲音開始崩潰。",
             "「所以我才……看不見妳……？」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_baiqi_06"
     },
 
@@ -936,7 +936,7 @@ const storyNodes = {
             "這一次——",
             "紅傘女沒有錯過。"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_baiqi_07"
     },
 
@@ -956,7 +956,7 @@ const storyNodes = {
             "「只是，有些人——」",
             "「太害怕聽見。」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_reunion",
     },
 
@@ -978,7 +978,7 @@ const storyNodes = {
             "只差一瞬間——",
             "紅傘女就會被燒盡。"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_yanzhen_01",
     },
 
@@ -996,7 +996,7 @@ const storyNodes = {
             "擋住了炎燼。",
             "「再給她一次機會。」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_good_yanzhen_02",
     },
 
@@ -1019,7 +1019,7 @@ const storyNodes = {
             "她抱住她。",
             "炎燼沒有再動手。"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_reunion",
     },
 
@@ -1040,7 +1040,7 @@ const storyNodes = {
             "……",
             "世界安靜下來。"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_bad_after",
     },
 
@@ -1062,7 +1062,7 @@ const storyNodes = {
             "「這是最穩定的處理方式。」",
             "「她已經失控了。」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_bad_after",
     },
 
@@ -1083,7 +1083,7 @@ const storyNodes = {
             "墨行沒有說話。",
             "只是慢慢放下手。"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_bad_after",
     },
 
@@ -1105,7 +1105,7 @@ const storyNodes = {
             "而周圍扭曲的黑暗，也開始逐漸消散。"
         ],
 
-        background: "/image/red_good_ending.webp",
+        background: "image/red_good_ending.webp",
 
         next: "red_epilogue_good"
     },
@@ -1138,7 +1138,7 @@ const storyNodes = {
             "那聲音，沒有消失。",
             "只是變得很遠，很遠。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "red_epilogue_good_01"
     },
 
@@ -1155,7 +1155,7 @@ const storyNodes = {
             "以後......",
             "也許，還會看見她們。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "ending"
     },
 
@@ -1184,7 +1184,7 @@ const storyNodes = {
             "……",
             "「為什麼……媽媽還是看不見我？」"
         ],
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
         next: "red_bad_reunion"
     },
 
@@ -1215,7 +1215,7 @@ const storyNodes = {
             "再也沒有放開。"
         ],
 
-        background: "/image/lintou_tree.webp",
+        background: "image/lintou_tree.webp",
 
         next: "red_epilogue_bad"
     },
@@ -1240,7 +1240,7 @@ const storyNodes = {
             "……",
             "她還在等。"
         ],
-        background: "/image/nightmarket01.webp",
+        background: "image/nightmarket01.webp",
         next: "ending"
     },
 
@@ -1250,7 +1250,7 @@ const storyNodes = {
             "故事未完，待續......",
             "創作者正在創作接下來的故事，請耐心等候......"
         ],
-        background: "/image/DuskCampus.webp",
+        background: "image/DuskCampus.webp",
         choices: [
             {
                 text: "重新開始遊戲",
@@ -1266,7 +1266,7 @@ const storyNodes = {
             "這裡的空間，好像被扭曲了。",
             "（畫面異常）"
         ],
-        background: "/image/DuskCampus.webp",
+        background: "image/DuskCampus.webp",
         next: "__HOME__"
     }
 }

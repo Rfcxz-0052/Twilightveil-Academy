@@ -1,30 +1,33 @@
-//characterConfig.js
+// characterConfig.js
+
+const asset = (path) => import.meta.env.BASE_URL + path;
+
 export const characterConfig = {
     player: {
-        normal: "/image/player.webp"
+        normal: asset("image/player.webp")
     },
     xiaoying: {
-        normal: "/image/girl01.webp"
+        normal: asset("image/girl01.webp")
     },
     ghost: {
-        normal: "/image/ghost02.webp"
+        normal: asset("image/ghost02.webp")
     },
     male: {
-        normal: "/image/male04.webp"
+        normal: asset("image/male04.webp")
     },
     baiqi: {
-        normal: "/image/male.webp"
+        normal: asset("image/male.webp")
     },
     yanzhen: {
-        normal: "/image/male01.webp"
+        normal: asset("image/male01.webp")
     },
     moxing: {
-        normal: "/image/male02.webp"
+        normal: asset("image/male02.webp")
     },
     red: {
-        normal: "/image/red01.webp"
+        normal: asset("image/red01.webp")
     },
     redchild: {
-        normal: "/image/redchild.webp"
+        normal: asset("image/redchild.webp")
     },
 };

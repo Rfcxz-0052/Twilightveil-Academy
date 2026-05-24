@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-    base: "/Twilightveil-Academy/",
-    build: {
-        outDir: 'dist'
-    }
+  base: process.env.NODE_ENV === 'production'
+    ? '/Twilightveil-Academy/'
+    : '/',
+  build: {
+    outDir: 'dist'
+  }
 })

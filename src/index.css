@@ -126,7 +126,7 @@ body[data-ui="game"] #homeUI { display: none; }
 
     text-align: center;
 
-    background: url("/image/DuskCampus.webp") center/cover no-repeat;
+    background: url("image/DuskCampus.webp") center/cover no-repeat;
     z-index: 10;
 }
 
