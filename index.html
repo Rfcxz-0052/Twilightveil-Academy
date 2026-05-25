@@ -16,6 +16,8 @@
 </head>
 
 <body id="gameBody" data-ui="home">
+    <!-- 🌙 App Splash -->
+    <div id="splash"></div>
 
     <!-- 🔵 首頁 UI -->
     <div id="homeUI">
@@ -160,6 +162,35 @@
         </div>
 
         <script type="module" src="./src/engine.js"></script>
+
+        <script>
+            window.addEventListener("load", () => {
+
+                // 是否為 PWA / App 模式
+                const isApp =
+                    window.matchMedia('(display-mode: standalone)').matches
+                    || window.navigator.standalone;
+
+                // 如果是 App
+                if (isApp) {
+
+                    setTimeout(() => {
+
+                        document
+                            .getElementById("splash")
+                            .classList.add("hide");
+
+                    }, 2500);
+
+                } else {
+
+                    // 網頁版直接隱藏
+                    document
+                        .getElementById("splash")
+                        .style.display = "none";
+                }
+            });
+        </script>
 
         <div id="logPopup" class="log-popup ui-layer hidden">
             <div class="log-popup-box">
