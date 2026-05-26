@@ -106,83 +106,190 @@ body[data-ui="game"] #homeUI { display: none; }
     transform: translateY(2px) scale(0.98);
 }
 
-
 /* ==========================
-   🏠 首頁 UI
+   🌙 主選單首頁
 ========================== */
+
 #homeUI {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
 
-    width: 100%;
-    height: 100vh;
+    overflow: hidden;
 
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
 
     text-align: center;
 
-    background: url("/image/DuskCampus.webp") center/cover no-repeat;
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.35),
+            rgba(0,0,0,0.55)
+        ),
+        url("/image/DuskCampus.webp");
+
+    background-size: cover;
+    background-position: center;
+
     z-index: 10;
 }
 
-/* 標題 */
-#homeUI h1 {
-    font-size: 48px;
+/* 🌫 黑霧 */
+.fog {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle,
+            transparent 20%,
+            rgba(0,0,0,0.55) 100%
+        );
+
+    animation:
+        fogMove 8s ease-in-out infinite alternate;
+}
+
+/* 🌙 主內容 */
+.title-screen {
+    position: relative;
+    z-index: 2;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 🌙 遊戲標題 */
+.game-title {
+    font-size: 58px;
+
+    letter-spacing: 10px;
+
+    margin: 0;
+
+    color: #1f1f1f;
+
+    text-shadow:
+        0 0 6px rgba(255,255,255,0.15),
+        0 0 16px rgba(120,160,255,0.18);
 
     opacity: 0;
     transform: translateY(-20px);
-    animation: slideDown 0.8s forwards;
-    animation-delay: 0.2s;
 
-    text-shadow: 0 0 12px rgba(112, 111, 112, 0.9);
+    animation:
+        slideDown 0.9s forwards;
 }
 
-/* 副標 */
-#homeUI h3 {
-    font-size: 24px;
+/* ✨ 英文副標 */
+.sub-title {
+    font-size: 16px;
+
+    letter-spacing: 4px;
+
+    margin-top: 12px;
+    margin-bottom: 40px;
 
     opacity: 0;
-    transform: translateY(-10px);
-    animation: slideDown 0.8s forwards;
-    animation-delay: 0.4s;
 
-    text-shadow: 0 0 6px rgba(112, 111, 112, 0.9);
+    animation:
+        fadeIn 1.2s forwards;
+
+    animation-delay: 0.3s;
 }
 
-/* 首頁按鈕 */
-#homeUI button {
-    padding: 12px 24px;
+/* 👻 開場句 */
+.opening-text {
+    font-size: 22px;
+
+    line-height: 1.8;
+
+    margin-bottom: 50px;
+
+    color: #ffd8d8;
+
+    text-shadow:
+        0 0 8px rgba(255,80,80,0.5);
+
+    opacity: 0;
+
+    animation:
+        fadeIn 1.2s forwards;
+
+    animation-delay: 0.5s;
+}
+
+/* ▶ 開始按鈕 */
+#startBtn {
+    padding: 14px 40px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    border-radius: 12px;
+
+    background:
+        rgba(0,0,0,0.35);
+
+    backdrop-filter: blur(6px);
+
+    color: white;
+
     font-size: 18px;
-    border: none;
-    border-radius: 10px;
+
+    letter-spacing: 3px;
+
     cursor: pointer;
 
-    background: rgba(162, 52, 212, 0.9);
-    color: yellow;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    text-shadow: 0 0 5px rgba(255,255,0,0.8);
-
     opacity: 0;
+
     transform: translateY(20px);
-    animation: fadeUp 0.5s forwards;
-    animation-delay: 0.6s;
 
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    animation:
+        fadeUp 0.7s forwards;
+
+    animation-delay: 0.8s;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-#homeUI button:hover {
-    background-color: rgb(62, 9, 66);
-    transform: translateY(0) scale(1.05);
+/* Hover */
+#startBtn:hover {
+    background:
+        rgba(120,0,0,0.35);
+
+    transform:
+        translateY(0)
+        scale(1.05);
+
+    box-shadow:
+        0 0 20px rgba(255,0,0,0.25);
 }
 
-#homeUI button:active {
-    transform: translateY(2px) scale(0.98);
+/* 點擊 */
+#startBtn:active {
+    transform:
+        translateY(2px)
+        scale(0.98);
+}
+
+/* 🌫 黑霧動畫 */
+@keyframes fogMove {
+
+    from {
+        opacity: 0.45;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0.7;
+        transform: scale(1.08);
+    }
 }
 
 #gameUI {
@@ -730,6 +837,45 @@ input[type="range"] {
         overflow: hidden; /* 🚫 禁止整頁滾動 */
     }
 
+/* ==========================
+   🌙 主選單首頁
+========================== */   
+    .title-screen {
+        width: 90%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .game-title {
+        font-size: 38px;
+        letter-spacing: 4px;
+    }
+
+    .sub-title {
+        font-size: 14px;
+        letter-spacing: 2px;
+
+        margin-bottom: 28px;
+    }
+
+    .opening-text {
+        font-size: 18px;
+
+        line-height: 1.6;
+
+        margin-bottom: 36px;
+    }
+
+    #startBtn {
+        width: 80%;
+
+        max-width: 260px;
+
+        font-size: 16px;
+
+        padding: 14px 20px;
+    }
+
     .story-container {
         position: relative;
         flex-direction: column;
@@ -845,25 +991,4 @@ input[type="range"] {
 
 .log-content {
     font-size: 12px;
-}
-
-/* 🌙 App 啟動畫面 */
-#splash {
-    position: fixed;
-    inset: 0;
-
-    background-image: url("/image/splash.webp");
-    background-size: cover;
-    background-position: center;
-
-    z-index: 99999;
-
-    opacity: 1;
-    transition: opacity 1s ease;
-}
-
-/* 淡出 */
-#splash.hide {
-    opacity: 0;
-    pointer-events: none;
 }

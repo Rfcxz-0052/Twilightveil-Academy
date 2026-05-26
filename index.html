@@ -16,14 +16,33 @@
 </head>
 
 <body id="gameBody" data-ui="home">
-    <!-- 🌙 App Splash -->
-    <div id="splash"></div>
 
-    <!-- 🔵 首頁 UI -->
+    <!-- 🌙 主選單 UI -->
     <div id="homeUI">
-        <h1>歡迎來到暮影學院!</h1>
-        <h3>光與影的交際處</h3>
-        <button id="startBtn">進入遊戲</button>
+
+        <!-- 🌫 黑霧 -->
+        <div class="fog"></div>
+
+        <!-- 🌙 主畫面 -->
+        <div class="title-screen">
+
+            <h1 class="game-title">
+                暮影學院
+            </h1>
+
+            <p class="sub-title">
+                Twilightveil Academy
+            </p>
+
+            <p class="opening-text">
+                如果有一天，你能看見鬼魂......
+            </p>
+
+            <button id="startBtn">
+                進入學院
+            </button>
+
+        </div>
     </div>
 
     <!-- 🎮 遊戲 UI -->
@@ -162,35 +181,6 @@
         </div>
 
         <script type="module" src="./src/engine.js"></script>
-
-        <script>
-            window.addEventListener("load", () => {
-
-                // 是否為 PWA / App 模式
-                const isApp =
-                    window.matchMedia('(display-mode: standalone)').matches
-                    || window.navigator.standalone;
-
-                // 如果是 App
-                if (isApp) {
-
-                    setTimeout(() => {
-
-                        document
-                            .getElementById("splash")
-                            .classList.add("hide");
-
-                    }, 2500);
-
-                } else {
-
-                    // 網頁版直接隱藏
-                    document
-                        .getElementById("splash")
-                        .style.display = "none";
-                }
-            });
-        </script>
 
         <div id="logPopup" class="log-popup ui-layer hidden">
             <div class="log-popup-box">
